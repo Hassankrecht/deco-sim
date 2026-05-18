@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AdminCouponController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminIncomeController;
 use App\Http\Controllers\Admin\AdminAppHomeSettingController;
+use App\Http\Controllers\Admin\AdminMessageController;
 use App\Http\Controllers\Admin\AdminHomeSettingController;
 use App\Http\Controllers\Admin\RegisteredUserController;
 use App\Http\Controllers\PageEventController;
@@ -215,5 +216,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('income/export', [AdminIncomeController::class, 'export'])->name('income.export');
         Route::get('reports/orders', [OrderReportController::class, 'index'])->name('reports.orders.index');
         Route::get('reports/orders/export', [OrderReportController::class, 'export'])->name('reports.orders.export');
+
+        // Contact Messages
+        Route::get('messages', [AdminMessageController::class, 'index'])->name('messages.index');
+        Route::get('messages/{message}', [AdminMessageController::class, 'show'])->name('messages.show');
+        Route::delete('messages/{message}', [AdminMessageController::class, 'destroy'])->name('messages.destroy');
+        Route::post('messages/{message}/mark-read', [AdminMessageController::class, 'markRead'])->name('messages.mark-read');
+        Route::post('messages/{message}/mark-unread', [AdminMessageController::class, 'markUnread'])->name('messages.mark-unread');
     });
 });

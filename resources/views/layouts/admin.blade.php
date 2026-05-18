@@ -200,6 +200,9 @@
         <a href="{{ route('admin.app-home-settings.edit') }}"
             class="{{ request()->routeIs('admin.app-home-settings.*') ? 'active' : '' }}"><i
                 class="bi bi-phone me-2"></i>App Home</a>
+        <a href="{{ route('admin.messages.index') }}"
+            class="{{ request()->routeIs('admin.messages.*') ? 'active' : '' }}"><i
+                class="bi bi-envelope me-2"></i>Messages</a>
         <a href="{{ route('admin.admin-users.index') }}"
             class="{{ request()->routeIs('admin.admin-users.*') ? 'active' : '' }}"><i
                 class="bi bi-people me-2"></i>Admins</a>

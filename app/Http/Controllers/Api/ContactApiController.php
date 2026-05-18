@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ContactFormMail;
-use App\Models\Contact;
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContactApiController extends Controller
 {
@@ -19,9 +20,22 @@ class ContactApiController extends Controller
             'message' => ['required', 'string', 'min:10', 'max:5000'],
         ]);
 
-        Contact::create($validated);
+        // Save to database first
+        $contactMessage = ContactMessage::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'subject' => $validated['subject'],
+            'message' => $validated['message'],
+            'is_read' => false,
+        ]);
 
-        Mail::to('h.krecht01@gmail.com')->send(new ContactFormMail($validated));
+        // Send email notification
+        try {
+            Mail::to('h.krecht01@gmail.com')->send(new ContactFormMail($validated));
+        } catch (\Exception $e) {
+            // Log email error but don't break the API response
+            Log::error('API contact form email failed: ' . $e->getMessage());
+        }
 
         return response()->json([
             'message' => 'Message sent successfully',

@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Product;
 use App\Models\PageEvent;
 use App\Models\PageVisit;
+use App\Models\ContactMessage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +20,7 @@ class DashboardController extends Controller
         $ordersCount   = Checkout::count();
         $projectsCount = Project::count();
         $productsCount = Product::count();
+        $unreadMessagesCount = ContactMessage::where('is_read', false)->count();
 
         // نطاقات الزمن
         $range = request('range', 'last_7');
@@ -131,6 +133,7 @@ class DashboardController extends Controller
             'ordersCount',
             'projectsCount',
             'productsCount',
+            'unreadMessagesCount',
             'visitsToday',
             'eventsToday',
             'visitsRange',

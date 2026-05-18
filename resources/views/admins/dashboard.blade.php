@@ -146,6 +146,21 @@
     </div>
 </div>
 
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="card card-dark p-3 d-flex flex-row align-items-center gap-3">
+            <div class="rounded-circle bg-dark text-gold d-flex align-items-center justify-content-center" style="width:46px;height:46px;">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <div>
+                <div class="text-muted small">Unread Messages</div>
+                <div class="fs-5 fw-bold text-gold">{{ $unreadMessagesCount ?? 0 }}</div>
+                <div class="small text-muted"><a href="{{ route('admin.messages.index') }}" class="text-gold">View messages</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card card-dark p-4 mb-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <div>
