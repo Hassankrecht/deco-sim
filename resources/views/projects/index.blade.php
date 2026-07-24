@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('messages.projects_page.hero_title'))
-@section('meta_description', 'Discover our portfolio of luxury carpentry and interior design projects completed by Deco Sim in the UAE.')
+@section('meta_description', 'Discover our portfolio of luxury carpentry and interior design projects completed by Deco Sim in Angola.')
 
 @section('content')
     <div class=" akg-hero-img-box">

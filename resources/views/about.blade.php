@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('messages.about_page.hero_title'))
-@section('meta_description', 'Learn about Deco Sim, our mission, values, and expertise in luxury carpentry and interior design in the UAE.')
+@section('meta_description', 'Learn about Deco Sim, our mission, values, and expertise in luxury carpentry and interior design in Angola.')
 
 @section('content')
 
