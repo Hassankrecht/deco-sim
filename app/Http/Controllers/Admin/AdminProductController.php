@@ -115,9 +115,9 @@ class AdminProductController extends Controller
             'image'       => null, // initially empty
         ]);
 
-    // Sync translations for all supported locales
+    // Sync translations for admin content locales
     $translations = $request->input('translations', []);
-    $locales = config('app.supported_locales', [config('app.locale', 'en')]);
+    $locales = config('app.frontend_locales', ['pt', 'en']);
 
     foreach ($locales as $locale) {
         $title = $translations[$locale]['title'] ?? $validated['title'];
@@ -202,7 +202,7 @@ class AdminProductController extends Controller
 
     // Update translations based on submitted locales
     $translations = $request->input('translations', []);
-    $locales = config('app.supported_locales', [config('app.locale', 'en')]);
+    $locales = config('app.frontend_locales', ['pt', 'en']);
 
     foreach ($locales as $locale) {
         $title = $translations[$locale]['title'] ?? $validated['title'];

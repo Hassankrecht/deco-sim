@@ -27,7 +27,7 @@ class ProjectCategoryController extends Controller
         // translations
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $name = $translations[$locale]['name'] ?? ($locale === $fallback ? $data['name'] : $data['name']);
             $category->translations()->updateOrCreate(
@@ -55,7 +55,7 @@ class ProjectCategoryController extends Controller
         // translations
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $name = $translations[$locale]['name'] ?? ($locale === $fallback ? $data['name'] : $data['name']);
             $category->translations()->updateOrCreate(

@@ -35,7 +35,7 @@ class AdminCategoryController extends Controller
         $category = Category::latest()->first();
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $name = $translations[$locale]['name'] ?? ($locale === $fallback ? $request->name : $request->name);
             $category->translations()->updateOrCreate(
@@ -64,7 +64,7 @@ class AdminCategoryController extends Controller
 
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $name = $translations[$locale]['name'] ?? ($locale === $fallback ? $request->name : $request->name);
             $cat->translations()->updateOrCreate(

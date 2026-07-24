@@ -120,7 +120,7 @@ class AdminProjectController extends Controller
         // ترجمات
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $title = $translations[$locale]['title'] ?? $data['title'];
             $desc  = $translations[$locale]['description'] ?? ($data['description'] ?? '');
@@ -190,7 +190,7 @@ class AdminProjectController extends Controller
         // تحديث الترجمات
         $translations = $request->input('translations', []);
         $fallback = config('app.locale', 'en');
-        $locales = config('app.supported_locales', [$fallback]);
+        $locales = config('app.frontend_locales', ['pt', 'en']);
         foreach ($locales as $locale) {
             $title = $translations[$locale]['title'] ?? $data['title'];
             $desc  = $translations[$locale]['description'] ?? ($data['description'] ?? '');
