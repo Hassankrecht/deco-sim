@@ -19,15 +19,15 @@ return [
         'process' => 'Process',
     ],
     'meta' => [
-        'home_description' => 'Ali Krecht Group: Luxury carpentry, interior design, and bespoke woodwork in the UAE. Discover our services and projects.',
+        'home_description' => 'Deco Sim: Luxury carpentry, interior design, and bespoke woodwork in the UAE. Discover our services and projects.',
         'services_description' => 'Explore our range of luxury carpentry, interior design, and bespoke woodwork services for homes and businesses in the UAE.',
-        'contact_description' => 'Contact Ali Krecht Group for luxury carpentry, interior design, and bespoke woodwork services. Get in touch today!',
-        'products_description' => 'Browse our exclusive collection of luxury wood products, custom furniture, and interior solutions by Ali Krecht Group.',
-        'product_show_description' => 'View details and features of :product from Ali Krecht Group. Luxury woodwork and custom furniture in the UAE.',
-        'service_description' => 'Learn more about our :service service at Ali Krecht Group. Bespoke carpentry and interior design in the UAE.',
-        'checkout_description' => 'Securely complete your purchase of luxury wood products and interior solutions from Ali Krecht Group.',
-        'checkout_confirm_description' => 'Review and confirm your order for luxury products and services from Ali Krecht Group. Secure checkout process.',
-        'checkout_thankyou_description' => 'Thank you for your order! Your luxury product from Ali Krecht Group is being processed. View your order details here.',
+        'contact_description' => 'Contact Deco Sim for luxury carpentry, interior design, and bespoke woodwork services. Get in touch today!',
+        'products_description' => 'Browse our exclusive collection of luxury wood products, custom furniture, and interior solutions by Deco Sim.',
+        'product_show_description' => 'View details and features of :product from Deco Sim. Luxury woodwork and custom furniture in the UAE.',
+        'service_description' => 'Learn more about our :service service at Deco Sim. Bespoke carpentry and interior design in the UAE.',
+        'checkout_description' => 'Securely complete your purchase of luxury wood products and interior solutions from Deco Sim.',
+        'checkout_confirm_description' => 'Review and confirm your order for luxury products and services from Deco Sim. Secure checkout process.',
+        'checkout_thankyou_description' => 'Thank you for your order! Your luxury product from Deco Sim is being processed. View your order details here.',
     ],
     'footer' => [
         'all_rights' => 'All Rights Reserved.',
@@ -62,7 +62,7 @@ return [
         'contact_sub' => 'We reply in under 24 hours. Call us or drop a quick note.',
         'contact_send' => 'Send Inquiry',
         'why' => [
-            'title' => 'Why Choose Ali Krecht Group?',
+            'title' => 'Why Choose Deco Sim?',
             'quality_title' => 'Premium Quality',
             'quality_desc' => 'Top materials, meticulous finishing.',
             'team_title' => 'Expert Team',
@@ -93,7 +93,7 @@ return [
         ],
         'about' => [
             'heading_full' => 'Craftsmanship at Its Finest',
-            'paragraph1' => 'Ali Krecht Group specializes in carpentry, construction, interiors, and decorative designs. We combine modern techniques with traditional craftsmanship to deliver premium results.',
+            'paragraph1' => 'Deco Sim specializes in carpentry, construction, interiors, and decorative designs. We combine modern techniques with traditional craftsmanship to deliver premium results.',
             'paragraph2' => 'Every project we create reflects precision, creativity, and quality that lasts for years. From bespoke wardrobes to full-scale builds — excellence is our standard.',
             'why_1' => 'Turnkey delivery: design, build, interiors under one roof.',
             'why_2' => 'Cost and timeline transparency from day one.',
@@ -274,7 +274,7 @@ return [
     ],
     'testimonials' => [
         'none' => 'No testimonials available.',
-        'meta_description' => 'Read client testimonials and reviews for Ali Krecht Group. See what our customers say about our luxury carpentry and design services.',
+        'meta_description' => 'Read client testimonials and reviews for Deco Sim. See what our customers say about our luxury carpentry and design services.',
     ],
     'projects' => [
         'no_projects' => 'No projects available.',
@@ -286,7 +286,7 @@ return [
     'pricing' => [
         'title' => 'Pricing & Estimates',
         'section_head' => 'Services & Estimates',
-        'meta_description' => 'See transparent pricing for all Ali Krecht Group luxury carpentry and interior design services in the UAE.',
+        'meta_description' => 'See transparent pricing for all Deco Sim luxury carpentry and interior design services in the UAE.',
         'disclaimer' => 'Pricing is indicative and varies by scope, materials, and complexity. Final quote after site visit and measurements.',
         'choose_service' => 'Choose a service',
         'quick_estimate' => 'Quick Estimate',
@@ -310,11 +310,11 @@ return [
     ],
     'gallery' => [
         'none' => 'No images available.',
-        'meta_description' => 'Browse our gallery of completed luxury carpentry and interior design projects by Ali Krecht Group.',
+        'meta_description' => 'Browse our gallery of completed luxury carpentry and interior design projects by Deco Sim.',
     ],
     'process' => [
         'title' => 'Our Work Process',
-        'meta_description' => 'Learn about our step-by-step process for delivering luxury carpentry and interior design projects at Ali Krecht Group.',
+        'meta_description' => 'Learn about our step-by-step process for delivering luxury carpentry and interior design projects at Deco Sim.',
     ],
     'forms' => [
         'name' => 'Your Name',
@@ -334,10 +334,10 @@ return [
         'hero_title' => 'Our Services',
         'intro_label' => 'What We Do',
         'intro_head' => 'Crafting Excellence in Every Detail',
-        'intro_body' => 'At Ali Krecht Group, we bring together craftsmanship, innovation, and luxury to deliver exceptional services in construction, carpentry and interior design.',
+        'intro_body' => 'At Deco Sim, we bring together craftsmanship, innovation, and luxury to deliver exceptional services in construction, carpentry and interior design.',
         'all_services' => 'All Services',
         'offer_head' => 'What We Offer',
-        'why_head' => 'Why Choose Ali Krecht Group?',
+        'why_head' => 'Why Choose Deco Sim?',
         'cta' => 'Contact Us',
         'learn_more' => 'Learn more',
         'why_quality' => 'Premium Quality',
@@ -368,7 +368,7 @@ return [
     'errors' => [
         '403' => [
             'title' => '403 - Forbidden',
-            'meta_description' => 'Access denied. You do not have permission to view this page. Return to Ali Krecht Group home or contact support.',
+            'meta_description' => 'Access denied. You do not have permission to view this page. Return to Deco Sim home or contact support.',
             'heading' => 'Access Forbidden',
             'message' => 'You don’t have permission to access this resource.',
             'contact_support' => 'If you believe this is an error, please contact support.',
@@ -383,8 +383,8 @@ return [
         'hero_title' => 'About Us',
         'breadcrumb' => 'About',
         'about_label' => 'About Us',
-        'about_head' => 'Welcome to Ali Krecht Group',
-        'p1' => 'At Ali Krecht Group, craftsmanship is not only a profession—it is a heritage. We bring together decades of experience in construction, carpentry, and interior design to deliver projects defined by elegance, precision, and long-lasting value.',
+        'about_head' => 'Welcome to Deco Sim',
+        'p1' => 'At Deco Sim, craftsmanship is not only a profession—it is a heritage. We bring together decades of experience in construction, carpentry, and interior design to deliver projects defined by elegance, precision, and long-lasting value.',
         'p2' => 'From structural development to the final artistic touches, our work reflects a deep commitment to detail and refined quality. Every material, every design choice, and every finishing element is handled with exceptional care—ensuring that the spaces we build carry a signature of excellence.',
         'p3' => 'Our team consists of engineers, master carpenters, designers, and specialists dedicated to transforming raw materials into functional, luxurious environments. Whether it’s a custom-made furniture piece, a full interior renovation, or a complete construction project, we deliver with integrity and passion.',
         'p_quote' => 'Your vision. Our craftsmanship. A partnership built on trust and excellence.',
@@ -408,7 +408,7 @@ return [
     ],
     'dashboard' => [
         'title' => 'My Dashboard',
-        'meta_description' => 'Access your Ali Krecht Group dashboard to manage orders, profile, and view your project history securely.',
+        'meta_description' => 'Access your Deco Sim dashboard to manage orders, profile, and view your project history securely.',
         'my_coupons' => 'My Coupons',
         'my_orders' => 'My Orders',
         'profile' => 'Profile',
@@ -431,7 +431,7 @@ return [
     ],
     'orders' => [
         'title' => 'My Orders',
-        'meta_description' => 'View your order history and track your luxury product purchases with Ali Krecht Group. Secure customer dashboard.',
+        'meta_description' => 'View your order history and track your luxury product purchases with Deco Sim. Secure customer dashboard.',
         'heading' => 'My Orders',
         'description' => 'Track your recent orders and applied coupons.',
         'no_orders' => 'You have no orders yet.',
@@ -452,7 +452,7 @@ return [
     ],
     'profile' => [
         'title' => 'My Profile',
-        'meta_description' => 'Manage your profile, contact details, and preferences with Ali Krecht Group. Update your information securely.',
+        'meta_description' => 'Manage your profile, contact details, and preferences with Deco Sim. Update your information securely.',
         'heading' => 'Update your information',
         'name' => 'Name',
         'email' => 'Email',

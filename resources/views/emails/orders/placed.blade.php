@@ -1,20 +1,20 @@
 @component('mail::message')
 <div style="text-align:center; margin-bottom:20px;">
-    <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Ali Krecht Group Logo" width="100">
-    <h2 style="color:#d4af37; margin-top:10px;">Ali Krecht Group</h2>
+    <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Deco Sim Logo" width="100">
+    <h2 style="color:#d4af37; margin-top:10px;">Deco Sim</h2>
 </div>
 
 @if ($isAdmin)
 # 🟡 New Order Received
 
 Hello Admin,<br>
-A new order has been placed through your **Ali Krecht Group** website.
+A new order has been placed through your **Deco Sim** website.
 
 @else
 # ✅ Thank You for Your Order!
 
 Hello **{{ $order->name }}**,  
-Your order with **Ali Krecht Group** has been received successfully!  
+Your order with **Deco Sim** has been received successfully!
 Below are your details:
 @endif
 
@@ -57,7 +57,7 @@ Please keep it for your records.
 ---
 
 <div style="background-color:#111; color:#d4af37; padding:15px; border-radius:8px; text-align:center; margin-top:30px;">
-    <strong>Ali Krecht Group</strong><br>
+    <strong>Deco Sim</strong><br>
     123 Business Street, Prague, Czech Republic<br>
     📞 +420 777 555 333 | ✉️ support@alikrechtgroup.com<br>
     🌐 <a href="https://alikrechtgroup.com" style="color:#d4af37;">alikrechtgroup.com</a>

@@ -156,7 +156,7 @@
             <a class="navbar-brand d-flex align-items-center flex-shrink-0 me-lg-4" href="{{ url('/') }}">
                 <img src="{{ asset('assets/img/ChatGPT Image Nov 16, 2025, 09_51_06 AM.png') }}" alt="Logo"
                     class="akg-logo">
-                <span class="akg-brand-text ms-2">{{ config('app.name', 'Ali Krecht Group') }}</span>
+                <span class="akg-brand-text ms-2">{{ config('app.name', 'Deco Sim') }}</span>
             </a>
 
             <!-- Mobile Toggle -->
@@ -301,7 +301,7 @@
     <!-- ===================== FOOTER ===================== -->
     <footer class="akg-footer text-center">
         <div class="container py-4">
-            <p class="mb-2">© {{ date('Y') }} Ali Krecht Group. {{ __('messages.footer.all_rights') }}</p>
+            <p class="mb-2">© {{ date('Y') }} Deco Sim. {{ __('messages.footer.all_rights') }}</p>
             <div class="mb-3"><small class="text-muted">Developed by Hassan Krecht</small></div>
             <div class="akg-footer-menu mb-3">
                 <a href="{{ route('home') }}">{{ __('messages.nav.home') }}</a> |

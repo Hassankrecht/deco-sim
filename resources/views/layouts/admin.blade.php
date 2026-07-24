@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin | Ali Krecht Group</title>
+    <title>Admin | Deco Sim</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -169,7 +169,7 @@
         <div class="px-4 mb-4">
             <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" style="height:46px"
                 alt="">
-            <div class="small text-muted mt-2">Ali Krecht Group</div>
+            <div class="small text-muted mt-2">Deco Sim</div>
         </div>
         <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i
                 class="bi bi-speedometer2 me-2"></i>Dashboard</a>

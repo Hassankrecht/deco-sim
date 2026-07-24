@@ -61,7 +61,7 @@
                                     <span class="small fw-bold text-dark">{{ $settings->banner_text }}</span>
                                 </div>
                             @endif
-                            <h3 class="fw-bold mb-2">{{ $settings->hero_title ?? 'Ali Krecht Group' }}</h3>
+                            <h3 class="fw-bold mb-2">{{ $settings->hero_title ?? 'Deco Sim' }}</h3>
                             <p class="mb-0">{{ $settings->hero_subtitle ?? 'Premium products and services' }}</p>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Invoice - Ali Krecht Group</title>
+    <title>Invoice - Deco Sim</title>
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
@@ -60,8 +60,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ public_path('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Ali Krecht Group Logo">
-        <h1>Ali Krecht Group</h1>
+        <img src="{{ public_path('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Deco Sim Logo">
+        <h1>Deco Sim</h1>
         <p>High Quality Doors & Professional Solutions</p>
     </div>
 
@@ -97,7 +97,7 @@
     </div>
 
     <div class="footer">
-        © {{ date('Y') }} Ali Krecht Group — All Rights Reserved<br>
+        © {{ date('Y') }} Deco Sim — All Rights Reserved<br>
         📞 +420 777 555 333 • ✉️ support@alikrechtgroup.com<br>
         🌐 <a href="https://alikrechtgroup.com" style="color:#d4af37;">alikrechtgroup.com</a>
     </div>

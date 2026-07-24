@@ -11,7 +11,7 @@ class AppHomeSettingApiController extends Controller
     public function show()
     {
         $settings = AppHomeSetting::firstOrCreate([], [
-            'hero_title' => 'Ali Krecht Group',
+            'hero_title' => 'Deco Sim',
             'hero_subtitle' => 'Premium products and services',
             'hero_media_type' => 'image',
             'hero_image_fit' => 'contain',

@@ -5,7 +5,7 @@
 
 @section('content')
     <div class=" akg-hero-img-box">
-        <img src="{{ asset('assets/img/ChatGPT Image Nov 7, 2025, 12_15_05 PM.png') }}" alt="Contact Ali Krecht Group"
+        <img src="{{ asset('assets/img/ChatGPT Image Nov 7, 2025, 12_15_05 PM.png') }}" alt="Contact Deco Sim"
             class="akg-hero-img" loading="lazy">
 
         <div class="container text-center hero-content">

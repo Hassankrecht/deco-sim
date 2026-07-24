@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '404 - Page Not Found')
-@section('meta_description', 'Sorry, the page you are looking for could not be found. Return to Ali Krecht Group home or browse our services.')
+@section('meta_description', 'Sorry, the page you are looking for could not be found. Return to Deco Sim home or browse our services.')
 
 @section('content')
 <div class="error-container min-vh-100 d-flex align-items-center justify-content-center bg-light">

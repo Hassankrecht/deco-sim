@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '500 - Server Error')
-@section('meta_description', 'A server error occurred. Please try again later or contact Ali Krecht Group for assistance.')
+@section('meta_description', 'A server error occurred. Please try again later or contact Deco Sim for assistance.')
 
 @section('content')
 <div class="error-container min-vh-100 d-flex align-items-center justify-content-center bg-light">

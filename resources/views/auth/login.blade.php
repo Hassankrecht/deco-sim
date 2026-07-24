@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('messages.auth.login_title'))
-@section('meta_description', 'Login to your Ali Krecht Group account to access your dashboard, manage orders, and update your profile securely.')
+@section('meta_description', 'Login to your Deco Sim account to access your dashboard, manage orders, and update your profile securely.')
 
 @section('content')
     <div class=" akg-hero-img-box">

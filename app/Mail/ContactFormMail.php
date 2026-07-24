@@ -25,7 +25,7 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
-        return $this->from(config('mail.from.address'), 'Ali Krecht Group Contact')
+        return $this->from(config('mail.from.address'), 'Deco Sim Contact')
                     ->replyTo($this->data['email'], $this->data['name'])
                     ->subject('New AKG Contact Message: ' . $this->data['subject'])
                     ->view('emails.contact')

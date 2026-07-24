@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Order Confirmation')
-@section('meta _description', 'Confirm your order with Ali Krecht Group. Review your luxury product details and complete your secure purchase.')
+@section('meta _description', 'Confirm your order with Deco Sim. Review your luxury product details and complete your secure purchase.')
 
 @section('content')
     <div class=" akg-hero-img-box">

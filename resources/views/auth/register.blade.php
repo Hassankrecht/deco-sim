@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('messages.auth.register_title'))
-@section('meta_description', 'Register for an account with Ali Krecht Group to enjoy luxury carpentry, interior design, and personalized services.')
+@section('meta_description', 'Register for an account with Deco Sim to enjoy luxury carpentry, interior design, and personalized services.')
 
 @section('content')
     <div class=" akg-hero-img-box">

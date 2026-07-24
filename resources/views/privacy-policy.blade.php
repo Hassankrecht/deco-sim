@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Privacy Policy | Ali Krecht Group')
-@section('meta_description', 'Privacy Policy for Ali Krecht Group account, order, contact, Google login, and Facebook login data.')
+@section('title', 'Privacy Policy | Deco Sim')
+@section('meta_description', 'Privacy Policy for Deco Sim account, order, contact, Google login, and Facebook login data.')
 
 @section('content')
     <section class="py-5" style="background: #111;">
@@ -15,7 +15,7 @@
 
                     <div class="bg-dark p-4 p-md-5 rounded-3 border" style="border-color: rgba(212, 175, 55, 0.25) !important;">
                         <p class="text-light">
-                            Ali Krecht Group collects basic account information such as name, email address, phone number,
+                            Deco Sim collects basic account information such as name, email address, phone number,
                             login provider information, order details, coupon usage, and contact messages to provide shopping,
                             order, support, and account services.
                         </p>
@@ -45,7 +45,7 @@
 
                         <h2 class="h4 text-gold mt-4">Contact</h2>
                         <p class="text-light mb-0">
-                            Ali Krecht Group<br>
+                            Deco Sim<br>
                             Email: <a href="mailto:alikrechtgroup@gmail.com" class="text-gold">alikrechtgroup@gmail.com</a><br>
                             Phone/WhatsApp: <a href="tel:+96178768725" class="text-gold">+961 78 768 725</a>
                         </p>
