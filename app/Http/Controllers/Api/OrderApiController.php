@@ -91,7 +91,7 @@ class OrderApiController extends Controller
                 'email' => $user->email,
                 'phone_number' => $validated['customer_phone'],
                 'town' => $city,
-                'country' => $user->country ?? 'Lebanon',
+                'country' => $user->country ?? 'Angola',
                 'zipcode' => $user->zipcode ?? '',
                 'address' => $streetAddress,
                 'total_price' => $total,
