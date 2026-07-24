@@ -17,7 +17,7 @@
         <link rel="canonical" href="{{ url()->current() }}" />
 
         <!-- Hreflang tags for multi-language SEO -->
-        @foreach(config('app.supported_locales', ['ar','en','pt']) as $locale)
+        @foreach(config('app.frontend_locales', ['pt','en']) as $locale)
                 <link rel="alternate" hreflang="{{ $locale }}" href="{{ url()->current() }}?lang={{ $locale }}" />
         @endforeach
 
@@ -276,7 +276,7 @@
                                     {{ strtoupper(app()->getLocale()) }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end akg-dropdown">
-                                    @foreach (config('app.supported_locales') as $locale)
+                                    @foreach (config('app.frontend_locales') as $locale)
                                         <li>
                                             <a class="dropdown-item {{ app()->getLocale() === $locale ? 'active' : '' }}" href="{{ route('lang.switch', $locale) }}">
                                                 {{ strtoupper($locale) }}

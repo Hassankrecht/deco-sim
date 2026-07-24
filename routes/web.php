@@ -79,7 +79,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 |--------------------------------------------------------------------------
 */
 Route::get('/lang/{locale}', function ($locale) {
-    $supported = config('app.supported_locales', ['en', 'ar', 'pt']);
+    $supported = config('app.frontend_locales', ['pt', 'en']);
     if (in_array($locale, $supported)) {
         session(['app_locale' => $locale]);
     }
