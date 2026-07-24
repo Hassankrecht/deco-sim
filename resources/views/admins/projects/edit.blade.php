@@ -125,7 +125,7 @@
                             <div class="card-body">
                             <h6 class="fw-bold mb-3" style="color: #c7954b;">Translations</h6>
                             <div class="row g-3">
-                                @foreach(config('app.supported_locales', []) as $locale)
+                                @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
                                     @continue($locale === config('app.locale'))
                                     @php $t = $project->translations->firstWhere('locale', $locale); @endphp
                                     <div class="col-md-6">
@@ -295,7 +295,7 @@
                     <input type="text" id="parentCatName" class="form-control" placeholder="e.g., Carpentry">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.supported_locales', []) as $locale)
+                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.locale'))
                         <div class="col-md-6">
                             <label class="form-label">Name ({{ strtoupper($locale) }})</label>
@@ -336,7 +336,7 @@
                     <input type="text" id="childCatName" class="form-control" placeholder="e.g., Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.supported_locales', []) as $locale)
+                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.locale'))
                         <div class="col-md-6">
                             <label class="form-label">Name ({{ strtoupper($locale) }})</label>
@@ -364,7 +364,7 @@ function saveParentCategory() {
     }
     
     const translations = {};
-    @foreach(config('app.supported_locales', []) as $locale)
+    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
         @continue($locale === config('app.locale'))
         translations['{{ $locale }}'] = {
             name: document.getElementById('parentCatName_{{ $locale }}').value || name
@@ -403,7 +403,7 @@ function saveChildCategory() {
     }
     
     const translations = {};
-    @foreach(config('app.supported_locales', []) as $locale)
+    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
         @continue($locale === config('app.locale'))
         translations['{{ $locale }}'] = {
             name: document.getElementById('childCatName_{{ $locale }}').value || name

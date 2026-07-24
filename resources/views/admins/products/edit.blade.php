@@ -79,7 +79,7 @@
                     {{-- Translations --}}
                     <div class="mb-4">
                         <h5 class="fw-bold mb-3" style="color: #c7954b;">Translations</h5>
-                        @foreach (config('app.supported_locales', []) as $locale)
+                        @foreach (config('app.frontend_locales', ['pt', 'en']) as $locale)
                             @continue($locale === config('app.locale'))
                             @php
                                 $t = $product->translations->firstWhere('locale', $locale);
@@ -119,7 +119,7 @@
                         <div id="components-list">
                             @php
                                 $components = old('components', $product->productComponents->toArray());
-                                $locales = config('app.supported_locales', ['en', 'ar']);
+                                $locales = config('app.frontend_locales', ['pt', 'en']);
                             @endphp
                             @foreach ($components as $i => $component)
                                 <div class="component-row mb-2 d-flex gap-2 flex-wrap">
@@ -129,6 +129,9 @@
                                             <input type="text" name="components[{{ $i }}][name_translations][{{ $locale }}]" value="{{ $component['name_translations'][$locale] ?? '' }}" placeholder="Name ({{ strtoupper($locale) }})" class="form-control" required>
                                         </div>
                                     @endforeach
+                                    @if(isset($component['name_translations']['ar']) && !empty($component['name_translations']['ar']))
+                                        <input type="hidden" name="components[{{ $i }}][name_translations][ar]" value="{{ $component['name_translations']['ar'] }}">
+                                    @endif
                                     <input type="text" name="components[{{ $i }}][width]" value="{{ $component['width'] ?? '' }}" placeholder="Width" class="form-control">
                                     <input type="text" name="components[{{ $i }}][length]" value="{{ $component['length'] ?? '' }}" placeholder="Length" class="form-control">
                                     <input type="text" name="components[{{ $i }}][height]" value="{{ $component['height'] ?? '' }}" placeholder="Height" class="form-control">
@@ -270,7 +273,7 @@
                     <input type="text" id="parentCatName" class="form-control" placeholder="e.g., Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.supported_locales', []) as $locale)
+                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.locale'))
                         <div class="col-md-6">
                             <label class="form-label">Name ({{ strtoupper($locale) }})</label>
@@ -311,7 +314,7 @@
                     <input type="text" id="childCatName" class="form-control" placeholder="e.g., Sliding Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.supported_locales', []) as $locale)
+                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.locale'))
                         <div class="col-md-6">
                             <label class="form-label">Name ({{ strtoupper($locale) }})</label>
@@ -335,7 +338,7 @@
 document.getElementById('add-component').onclick = function() {
     var list = document.getElementById('components-list');
     var index = list.children.length;
-    var locales = @json(config('app.supported_locales', ['en', 'ar']));
+    var locales = @json(config('app.frontend_locales', ['pt', 'en']));
     var row = document.createElement('div');
     row.className = 'component-row mb-2 d-flex gap-2 flex-wrap';
     var html = '';
