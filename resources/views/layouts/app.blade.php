@@ -192,7 +192,6 @@
                             ['route' => 'contact', 'label' => __('messages.nav.contact'), 'extra' => 'data-track-action="nav_contact"'],
                         ];
                         $extraItems = [
-                            'app' => true,
                             'cart' => true,
                             'auth' => true,
                             'lang' => true,
@@ -204,7 +203,6 @@
                                 'data' => $item
                             ];
                         }
-                        $allItems[] = ['type' => 'app'];
                         $allItems[] = ['type' => 'cart'];
                         $allItems[] = ['type' => 'auth'];
                         $allItems[] = ['type' => 'lang'];
@@ -216,12 +214,6 @@
                         @if ($item['type'] === 'nav')
                             <li class="nav-item">
                                 <a class="nav-link px-2" href="{{ route($item['data']['route']) }}" {!! $item['data']['extra'] ?? '' !!}>{{ $item['data']['label'] }}</a>
-                            </li>
-                        @elseif ($item['type'] === 'app')
-                            <li class="nav-item">
-                                <a class="nav-link px-2 text-gold" href="{{ asset('downloads/app-release.apk') }}" download>
-                                    <i class="fab fa-android me-1"></i>App
-                                </a>
                             </li>
                         @elseif ($item['type'] === 'cart')
                             <li class="nav-item dropdown mx-lg-1 akg-nav-tight">
