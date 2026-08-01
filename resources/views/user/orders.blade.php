@@ -40,8 +40,8 @@
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->created_at?->format('Y-m-d') }}</td>
                                     <td><span class="badge bg-secondary">{{ $order->status ?? __('messages.orders.pending') }}</span></td>
-                                    <td class="fw-bold text-gold">${{ number_format($order->total_price ?? 0, 2) }}</td>
-                                    <td class="text-success">- ${{ number_format($order->discount_amount ?? 0, 2) }}
+                                    <td class="fw-bold text-gold">{{ \App\Support\Currency::format($order->total_price ?? 0) }}</td>
+                                    <td class="text-success">- {{ \App\Support\Currency::format($order->discount_amount ?? 0) }}
                                     </td>
                                     <td>{{ $order->coupon?->code ?? '—' }}</td>
                                     <td class="text-end">
@@ -90,9 +90,9 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td class="text-center">{{ $item->quantity }}</td>
-                                        <td class="text-end">${{ number_format($item->price ?? 0, 2) }}</td>
+                                        <td class="text-end">{{ \App\Support\Currency::format($item->price ?? 0) }}</td>
                                         <td class="text-end">
-                                            ${{ number_format(($item->price ?? 0) * ($item->quantity ?? 0), 2) }}
+                                            {{ \App\Support\Currency::format(($item->price ?? 0) * ($item->quantity ?? 0)) }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -102,14 +102,14 @@
                     <div class="d-flex justify-content-between">
                         <div class="text-muted small">
                             {{ __('messages.orders.coupon') }}: {{ $order->coupon?->code ?? '—' }}<br>
-                            {{ __('messages.orders.discount') }}: ${{ number_format($order->discount_amount ?? 0, 2) }}
+                            {{ __('messages.orders.discount') }}: {{ \App\Support\Currency::format($order->discount_amount ?? 0) }}
                         </div>
                         <div class="text-end">
                             <div class="text-muted">{{ __('messages.orders.subtotal') }}:
-                                ${{ number_format($order->total_before_discount ?? ($order->total_price ?? 0), 2) }}
+                                {{ \App\Support\Currency::format($order->total_before_discount ?? ($order->total_price ?? 0)) }}
                             </div>
                             <div class="fw-bold text-gold fs-5">{{ __('messages.orders.total') }}:
-                                ${{ number_format($order->total_price ?? 0, 2) }}</div>
+                                {{ \App\Support\Currency::format($order->total_price ?? 0) }}</div>
                         </div>
                     </div>
                 </div>

@@ -60,23 +60,23 @@
                         <tr>
                             <td>{{ $itemTitle }}</td>
                             <td>{{ $item['quantity'] }}</td>
-                            <td>${{ number_format($item['price'], 2) }}</td>
-                            <td>${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                            <td>{{ \App\Support\Currency::format($item['price']) }}</td>
+                            <td>{{ \App\Support\Currency::format($item['price'] * $item['quantity']) }}</td>
                         </tr>
                     @endforeach
                     <tr class="table-warning text-dark fw-bold">
                         <td colspan="3" class="text-end">{{ __('messages.cart.subtotal') }}:</td>
-                        <td>${{ number_format($total, 2) }}</td>
+                        <td>{{ \App\Support\Currency::format($total) }}</td>
                     </tr>
                     @if(!empty($applied))
                         <tr class="table-warning text-dark fw-bold">
                             <td colspan="3" class="text-end">{{ __('messages.cart.discount') }} ({{ $applied['code'] }}):</td>
-                            <td>- ${{ number_format($discount, 2) }}</td>
+                            <td>- {{ \App\Support\Currency::format($discount) }}</td>
                         </tr>
                     @endif
                     <tr class="table-warning text-dark fw-bold">
                         <td colspan="3" class="text-end">{{ __('messages.checkout.total_to_pay') }}:</td>
-                        <td>${{ number_format($totalAfter ?? $total, 2) }}</td>
+                        <td>{{ \App\Support\Currency::format($totalAfter ?? $total) }}</td>
                     </tr>
                     </tbody>
                 </table>

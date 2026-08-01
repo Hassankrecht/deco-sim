@@ -103,7 +103,7 @@
                                 {{ __('messages.products.category_label') }}: {{ $item->category->name_localized ?? __('messages.common.na') }}
                             </p>
 
-                            <p class="fw-bold text-gold">${{ number_format($item->price, 2) }}</p>
+                            <p class="fw-bold text-gold">{{ \App\Support\Currency::format($item->price) }}</p>
 
                             <a href="{{ route('products.show', $item->id) }}" class="btn btn-gold w-100 fw-bold">
                                 {{ __('messages.products.view_details') }}

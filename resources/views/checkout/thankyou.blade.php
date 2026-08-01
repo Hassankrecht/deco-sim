@@ -22,7 +22,7 @@
                 <h2 class="akg-section-head mb-3">{{ __('messages.checkout.order_number', ['id' => $order->id]) }}</h2>
                 <p><strong>{{ __('messages.checkout.name_label') }}:</strong> {{ $order->name }}</p>
                 <p><strong>{{ __('messages.checkout.email_label') }}:</strong> {{ $order->email }}</p>
-                <p><strong>{{ __('messages.checkout.total_label') }}:</strong> ${{ number_format($order->total_price, 2) }}</p>
+                <p><strong>{{ __('messages.checkout.total_label') }}:</strong> {{ \App\Support\Currency::format($order->total_price) }}</p>
 
                 <table class="table table-dark table-striped mt-4">
                     <thead class="table-warning text-dark">
@@ -47,8 +47,8 @@
                             <tr>
                                 <td>{{ $itemName }}</td>
                                 <td>{{ $item->quantity }}</td>
-                                <td>${{ number_format($item->price, 2) }}</td>
-                                <td>${{ number_format($item->total_price, 2) }}</td>
+                                <td>{{ \App\Support\Currency::format($item->price) }}</td>
+                                <td>{{ \App\Support\Currency::format($item->total_price) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

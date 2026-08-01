@@ -124,10 +124,10 @@
                             </td>
 
                             {{-- PRICE --}}
-                            <td class="text-center">${{ number_format($item['price'], 2) }}</td>
+                            <td class="text-center">{{ \App\Support\Currency::format($item['price']) }}</td>
 
                             {{-- ITEM TOTAL --}}
-                            <td class="fw-bold text-gold text-center item-total" data-id="{{ $id }}">${{ number_format($itemTotal, 2) }}</td>
+                            <td class="fw-bold text-gold text-center item-total" data-id="{{ $id }}">{{ \App\Support\Currency::format($itemTotal) }}</td>
 
                             {{-- REMOVE --}}
                             <td class="text-center">
@@ -161,7 +161,7 @@
             @if(!empty($appliedCoupon))
                 <div class="d-flex justify-content-between text-success mb-2">
                     <span>{{ __('messages.cart.coupon_applied', ['code' => $appliedCoupon['code']]) }}</span>
-                    <span>- ${{ number_format($discount, 2) }}</span>
+                    <span>- {{ \App\Support\Currency::format($discount) }}</span>
                 </div>
                 <form method="POST" action="{{ route('coupon.remove') }}" class="mb-2">
                     @csrf
@@ -171,12 +171,12 @@
 
             <div class="d-flex justify-content-between mb-2">
                 <span>{{ __('messages.cart.subtotal') }}:</span>
-                <span class="gold-text fw-bold" id="grandTotal">${{ number_format($subtotal ?? $grandTotal, 2) }}</span>
+                <span class="gold-text fw-bold" id="grandTotal">{{ \App\Support\Currency::format($subtotal ?? $grandTotal) }}</span>
             </div>
             @if(!empty($appliedCoupon))
                 <div class="d-flex justify-content-between mb-2">
                     <span>{{ __('messages.cart.discount') }}:</span>
-                    <span class="text-success fw-bold" id="discountAmount">- ${{ number_format($discount, 2) }}</span>
+                    <span class="text-success fw-bold" id="discountAmount">- {{ \App\Support\Currency::format($discount) }}</span>
                 </div>
             @endif
 
@@ -184,7 +184,7 @@
 
             <div class="d-flex justify-content-between fs-4 mb-3">
                 <span class="fw-bold">{{ __('messages.cart.total') }}:</span>
-                <span class="gold-text fw-bold" id="totalAfter">${{ number_format($totalAfter ?? $grandTotal, 2) }}</span>
+                <span class="gold-text fw-bold" id="totalAfter">{{ \App\Support\Currency::format($totalAfter ?? $grandTotal) }}</span>
             </div>
 
             <a href="{{ route('checkout.index') }}" class="btn btn-gold fw-semibold w-100 py-2">

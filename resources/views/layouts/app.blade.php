@@ -227,7 +227,7 @@
                                         <span>{{ __('messages.cart.dropdown_items') }}:</span> <span class="fw-bold cart-count">{{ $cartCount }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between mt-2">
-                                        <span>{{ __('messages.cart.dropdown_total') }}:</span> <span class="fw-bold cart-total">${{ number_format($cartTotal, 2) }}</span>
+                                        <span>{{ __('messages.cart.dropdown_total') }}:</span> <span class="fw-bold cart-total">{{ \App\Support\Currency::format($cartTotal) }}</span>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -604,8 +604,8 @@
                         <span class="fw-bold text-gold">{{ $p->code }}</span>
                         <span class="badge bg-dark text-light">{{ $p->generated_for }}</span>
                     </div>
-                    <div class="promo-meta">Spend ${{ number_format($p->min_total ?? 0, 0) }} get
-                        {{ $p->type === 'percent' ? $p->value . '% off' : '$' . number_format($p->value, 2) . ' off' }}</div>
+                    <div class="promo-meta">Spend {{ \App\Support\Currency::format($p->min_total ?? 0) }} get
+                        {{ $p->type === 'percent' ? $p->value . '% off' : \App\Support\Currency::format($p->value) . ' off' }}</div>
                     @if ($p->expiration_date)
                         <div class="promo-meta">Ends {{ \Carbon\Carbon::parse($p->expiration_date)->format('Y-m-d') }}
                         </div>
@@ -648,9 +648,9 @@
                                         <span>{{ $c->code }}</span>
                                     </div>
                                     <div class="text-end small">
-                                        <div>{{ $c->type === 'percent' ? $c->value . '% OFF' : '$' . $c->value . ' OFF' }}</div>
+                                        <div>{{ $c->type === 'percent' ? $c->value . '% OFF' : \App\Support\Currency::format($c->value) . ' OFF' }}</div>
                                         @if ($c->min_total)
-                                            <div class="text-muted">Min ${{ number_format($c->min_total, 2) }}</div>
+                                            <div class="text-muted">Min {{ \App\Support\Currency::format($c->min_total) }}</div>
                                         @endif
                                     </div>
                                 </div>

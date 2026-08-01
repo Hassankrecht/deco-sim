@@ -1102,7 +1102,7 @@
                                                 {{ Str::limit($product->description_localized, 55) }}
                                             </p>
                                             <span class="akg-product-price">
-                                                ${{ $product->price }}
+                                                {{ \App\Support\Currency::format($product->price) }}
                                             </span>
                                         </div>
 

@@ -27,14 +27,14 @@ Below are your details:
 - **Phone:** {{ $order->phone_number }}
 - **Address:** {{ $order->address }}, {{ $order->town }}, {{ $order->country }}
 - **Zip Code:** {{ $order->zipcode }}
-- **Total:** **${{ number_format($order->total_price, 2) }}**
+- **Total:** **{{ \App\Support\Currency::format($order->total_price) }}**
 - **Status:** {{ ucfirst($order->status ?? 'Pending') }}
 
 ---
 
 ### 🛒 Items
 @foreach ($order->items as $item)
-- {{ $item->name }} (x{{ $item->quantity }}) — ${{ number_format($item->total_price, 2) }}
+- {{ $item->name }} (x{{ $item->quantity }}) — {{ \App\Support\Currency::format($item->total_price) }}
 @endforeach
 
 ---

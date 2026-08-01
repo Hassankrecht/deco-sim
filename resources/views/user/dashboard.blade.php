@@ -58,7 +58,7 @@
                                 <td>{{ $c->type }}</td>
                                 <td class="fg-strong">{{ $c->value }}</td>
                                 <td class="fg-strong">{{ $c->used_count }} / {{ $c->usage_limit > 0 ? $c->usage_limit : '∞' }}</td>
-                                <td>{{ $c->min_total ? '$'.number_format($c->min_total, 2) : '—' }}</td>
+                                <td>{{ $c->min_total ? \App\Support\Currency::format($c->min_total) : '—' }}</td>
                                 <td>{{ $c->starts_at ? \Carbon\Carbon::parse($c->starts_at)->format('Y-m-d') : '—' }}</td>
                                 <td>{{ $c->expiration_date ? \Carbon\Carbon::parse($c->expiration_date)->format('Y-m-d') : '—' }}</td>
                                 <td>

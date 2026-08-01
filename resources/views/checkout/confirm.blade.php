@@ -50,23 +50,23 @@
                             <tr>
                                 <td>{{ $item['title'] ?? $item['name'] }}</td>
                                 <td>{{ $item['quantity'] }}</td>
-                                <td>${{ number_format($item['price'], 2) }}</td>
-                                <td>${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                <td>{{ \App\Support\Currency::format($item['price']) }}</td>
+                                <td>{{ \App\Support\Currency::format($item['price'] * $item['quantity']) }}</td>
                             </tr>
                         @endforeach
                         <tr class="table-warning text-dark fw-bold">
                             <td colspan="3" class="text-end">Subtotal:</td>
-                            <td>${{ number_format($total, 2) }}</td>
+                            <td>{{ \App\Support\Currency::format($total) }}</td>
                         </tr>
                         @if(!empty($applied))
                             <tr class="table-warning text-dark fw-bold">
                                 <td colspan="3" class="text-end">Discount ({{ $applied['code'] }}):</td>
-                                <td>- ${{ number_format($discount, 2) }}</td>
+                                <td>- {{ \App\Support\Currency::format($discount) }}</td>
                             </tr>
                         @endif
                         <tr class="table-warning text-dark fw-bold">
                             <td colspan="3" class="text-end">Total to pay:</td>
-                            <td>${{ number_format($totalAfter ?? $total, 2) }}</td>
+                            <td>{{ \App\Support\Currency::format($totalAfter ?? $total) }}</td>
                         </tr>
                     </tbody>
                 </table>

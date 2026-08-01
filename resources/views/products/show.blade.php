@@ -79,7 +79,7 @@
                     <span class="text-warning fw-semibold"><i class="fa fa-award me-1"></i> {{ __('messages.products.trust_materials') }}</span>
                 </div>
 
-                <h4 class="text-light mb-1">{{ __('messages.product_show.starting_from') ?? 'Starting from' }} ${{ number_format($product->price, 2) }}</h4>
+                <h4 class="text-light mb-1">{{ __('messages.product_show.starting_from') ?? 'Starting from' }} {{ \App\Support\Currency::format($product->price) }}</h4>
                 <p class="text-muted mb-3">{{ __('messages.product_show.price_note') ?? 'Price applies to the displayed standard size and materials.' }}</p>
 
                 <p class="text-muted">{{ $product->description_localized }}</p>
@@ -121,7 +121,7 @@
                         <strong>{{ __('messages.product_show.sku_label') }}:</strong> {{ $product->id }}
                     </li>
                     <li class="list-group-item bg-dark text-light border-secondary">
-                        <strong>{{ __('messages.product_show.price_label') }}:</strong> ${{ number_format($product->price, 2) }}
+                        <strong>{{ __('messages.product_show.price_label') }}:</strong> {{ \App\Support\Currency::format($product->price) }}
                     </li>
                 </ul>
 
