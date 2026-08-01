@@ -98,8 +98,7 @@
 
     <div class="footer">
         © {{ date('Y') }} Deco Sim — All Rights Reserved<br>
-        📞 +420 777 555 333 • ✉️ support@alikrechtgroup.com<br>
-        🌐 <a href="https://alikrechtgroup.com" style="color:#d4af37;">alikrechtgroup.com</a>
+        📞 +244 972 100 585 • ✉️ Decosim2023@gmail.com
     </div>
 </body>
 </html>

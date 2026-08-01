@@ -32,17 +32,15 @@
                     <div class="akg-card h-100">
                         <h5 class="text-gold mb-3">{{ __('messages.contact_page.quick_contacts') }}</h5>
                         <p class="mb-2"><i class="fa fa-phone me-2 text-gold"></i><a class="text-light"
-                            href="tel:+96178768725">{{ __('messages.contact_page.phone_label') }}: +961 78768725</a></p>
+                            href="tel:+244972100585">{{ __('messages.contact_page.phone_label') }}: +244 972 100 585</a></p>
                         <p class="mb-2"><i class="fab fa-whatsapp me-2 text-gold"></i><a class="text-light"
-                            href="https://wa.me/96178768725" target="_blank" rel="noopener">{{ __('messages.contact_page.whatsapp_available') }}</a></p>
+                            href="https://wa.me/244972100585" target="_blank" rel="noopener">{{ __('messages.contact_page.whatsapp_available') }}</a></p>
                         <p class="mb-2"><i class="fa fa-envelope-open me-2 text-gold"></i><a class="text-light"
-                            href="mailto:alikrechtgroup@gmail.com">alikrechtgroup@gmail.com</a></p>
+                            href="mailto:Decosim2023@gmail.com">Decosim2023@gmail.com</a></p>
                         <p class="small text-muted mb-0">{{ __('messages.contact_page.privacy_note') }}</p>
 
                         <div class="mt-4">
-                            <iframe class="rounded w-100" height="250"
-                                src="https://www.google.com/maps?q=67QM+45X%20Ain%20Baal&output=embed"
-                                style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <p class="text-muted small">Benfica, Rua Dona Xepa, Angola</p>
                         </div>
                     </div>
                 </div>

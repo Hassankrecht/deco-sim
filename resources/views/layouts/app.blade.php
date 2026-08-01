@@ -325,7 +325,7 @@
                     rel="noopener" aria-label="TikTok">
                     <i class="fab fa-tiktok"></i>
                 </a>
-                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://wa.me/96178768725"
+                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://wa.me/244972100585"
                     target="_blank" rel="noopener" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
                 </a>

@@ -36,9 +36,9 @@
                         <h2 class="h4 text-gold mt-4">Data Deletion</h2>
                         <p class="text-light">
                             Users can request deletion of their account and personal data by contacting us at
-                            <a href="mailto:alikrechtgroup@gmail.com" class="text-gold">alikrechtgroup@gmail.com</a>
+                            <a href="mailto:Decosim2023@gmail.com" class="text-gold">Decosim2023@gmail.com</a>
                             or by WhatsApp/phone at
-                            <a href="tel:+96178768725" class="text-gold">+961 78 768 725</a>.
+                            <a href="tel:+244972100585" class="text-gold">+244 972 100 585</a>.
                             Please include the email address used for the account. We will delete the user account and related
                             personal data from our system.
                         </p>
@@ -46,8 +46,8 @@
                         <h2 class="h4 text-gold mt-4">Contact</h2>
                         <p class="text-light mb-0">
                             Deco Sim<br>
-                            Email: <a href="mailto:alikrechtgroup@gmail.com" class="text-gold">alikrechtgroup@gmail.com</a><br>
-                            Phone/WhatsApp: <a href="tel:+96178768725" class="text-gold">+961 78 768 725</a>
+                            Email: <a href="mailto:Decosim2023@gmail.com" class="text-gold">Decosim2023@gmail.com</a><br>
+                            Phone/WhatsApp: <a href="tel:+244972100585" class="text-gold">+244 972 100 585</a>
                         </p>
                     </div>
                 </div>

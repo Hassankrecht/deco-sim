@@ -938,13 +938,13 @@
             <div class="row justify-content-center mb-4">
                 <div class="col-md-4">
                     <a class="akg-quick-contact d-inline-flex align-items-center justify-content-center"
-                        href="tel:+96178768725">
-                        <i class="fa fa-phone me-2"></i> +961 78768725
+                        href="tel:+244972100585">
+                        <i class="fa fa-phone me-2"></i> +244 972 100 585
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a class="akg-quick-contact d-inline-flex align-items-center justify-content-center"
-                        href="https://wa.me/96178768725" target="_blank" rel="noopener">
+                        href="https://wa.me/244972100585" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp me-2"></i> WhatsApp available
                     </a>
                 </div>

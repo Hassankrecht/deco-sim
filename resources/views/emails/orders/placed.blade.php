@@ -58,8 +58,7 @@ Please keep it for your records.
 
 <div style="background-color:#111; color:#d4af37; padding:15px; border-radius:8px; text-align:center; margin-top:30px;">
     <strong>Deco Sim</strong><br>
-    123 Business Street, Prague, Czech Republic<br>
-    📞 +420 777 555 333 | ✉️ support@alikrechtgroup.com<br>
-    🌐 <a href="https://alikrechtgroup.com" style="color:#d4af37;">alikrechtgroup.com</a>
+    Benfica, Rua Dona Xepa, Angola<br>
+    📞 +244 972 100 585 | ✉️ Decosim2023@gmail.com
 </div>
 @endcomponent
