@@ -99,6 +99,27 @@
         </div>
     </div>
 
+    <div class="container-xxl pb-5">
+        <div class="container akg-newcard">
+            <div class="text-center mb-4">
+                <h5 class="akg-section-label">{{ __('messages.contact_page.location') }}</h5>
+                <h2 class="akg-section-head">{{ __('messages.contact_page.find_us') }}</h2>
+            </div>
+            <div class="ratio ratio-21x9">
+                <iframe
+                    src="https://www.google.com/maps?q=-8.9379167,13.1663056&z=17&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Deco Sim location — Benfica, Rua Dona Xepa, Angola">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('contactForm');

@@ -1,6 +1,6 @@
 @component('mail::message')
 <div style="text-align:center; margin-bottom:20px;">
-    <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Deco Sim Logo" width="100">
+    <img src="{{ asset('assets/img/deco-sim-logo-email.jpg') }}" alt="Deco Sim logo" width="100">
     <h2 style="color:#d4af37; margin-top:10px;">Deco Sim</h2>
 </div>
 

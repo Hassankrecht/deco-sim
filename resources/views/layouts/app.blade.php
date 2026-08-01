@@ -10,7 +10,7 @@
         <meta name="description" content="@yield('meta_description', config('app.name', __('messages.meta.site_name')))">
         <meta property="og:title" content="@yield('og_title', View::getSection('title') ?? config('app.name', __('messages.meta.site_name')))">
         <meta property="og:description" content="@yield('og_description', View::getSection('meta_description') ?? config('app.name', __('messages.meta.site_name')))">
-        <meta property="og:image" content="@yield('og_image', asset('assets/img/ChatGPT Image Nov 7, 2025, 11_50_19 AM.png'))">
+        <meta property="og:image" content="@yield('og_image', asset('assets/img/deco-sim-social.jpg'))">
         <meta property="og:type" content="website">
 
         <!-- Canonical URL -->
@@ -28,7 +28,7 @@
             "@type": "Organization",
             "name": "{{ __('messages.meta.site_name') }}",
             "url": "{{ url('/') }}",
-            "logo": "{{ asset('assets/img/ChatGPT Image Nov 7, 2025, 11_50_19 AM.png') }}",
+            "logo": "{{ asset('assets/img/deco-sim-logo.jpg') }}",
             "contactPoint": [{
                 "@type": "ContactPoint",
                 "telephone": "+971-50-000-0000",
@@ -43,7 +43,7 @@
         </script>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('favicon-deco-sim.png') }}" type="image/png">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -154,7 +154,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand d-flex align-items-center flex-shrink-0 me-lg-4" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/ChatGPT Image Nov 16, 2025, 09_51_06 AM.png') }}" alt="Logo"
+                <img src="{{ asset('assets/img/deco-sim-logo.jpg') }}" alt="Deco Sim logo"
                     class="akg-logo">
                 <span class="akg-brand-text ms-2">{{ config('app.name', 'Deco Sim') }}</span>
             </a>

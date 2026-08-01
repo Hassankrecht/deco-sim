@@ -60,7 +60,7 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ public_path('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Deco Sim Logo">
+        <img src="{{ public_path('assets/img/deco-sim-logo-pdf.jpg') }}" alt="Deco Sim logo">
         <h1>Deco Sim</h1>
         <p>High Quality Doors & Professional Solutions</p>
     </div>

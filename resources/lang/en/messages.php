@@ -190,6 +190,8 @@ return [
         'privacy_note' => 'We keep your details private and never share them.',
         'whatsapp_available' => 'WhatsApp available',
         'phone_label' => 'Phone',
+        'location' => 'Location',
+        'find_us' => 'Find Us',
     ],
     'cart' => [
         'hero_title' => 'Your Cart',

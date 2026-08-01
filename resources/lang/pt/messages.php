@@ -174,6 +174,8 @@ return [
         'privacy_note' => 'Mantemos seus dados em sigilo e nunca os compartilhamos.',
         'whatsapp_available' => 'WhatsApp disponível',
         'phone_label' => 'Telefone',
+        'location' => 'Localização',
+        'find_us' => 'Encontre-nos',
     ],
     'cart' => [
         'hero_title' => 'Seu Carrinho',
