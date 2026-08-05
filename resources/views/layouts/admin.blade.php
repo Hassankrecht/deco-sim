@@ -167,8 +167,8 @@
 
     <div class="sidebar">
         <div class="px-4 mb-4">
-            <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" style="height:46px"
-                alt="">
+            <img src="{{ asset('assets/img/deco-sim-logo.jpg') }}" style="height:46px"
+                alt="Deco Sim">
             <div class="small text-muted mt-2">Deco Sim</div>
         </div>
         <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i

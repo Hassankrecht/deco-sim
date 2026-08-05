@@ -178,7 +178,7 @@ class OrderApiController extends Controller
             throw ValidationException::withMessages(['coupon_code' => 'Coupon not found.']);
         }
 
-        $now = Carbon::now('Asia/Beirut');
+        $now = Carbon::now('Africa/Luanda');
 
         $isManualPublicCoupon = !$coupon->user_id && in_array(strtolower((string) $coupon->generated_for), ['manual', 'manuel'], true);
         $isUserCoupon = $coupon->user_id && (int) $coupon->user_id === $userId;
@@ -191,11 +191,11 @@ class OrderApiController extends Controller
             throw ValidationException::withMessages(['coupon_code' => 'Coupon is inactive.']);
         }
 
-        if ($coupon->starts_at && $now->lt(Carbon::parse($coupon->starts_at, 'Asia/Beirut'))) {
+        if ($coupon->starts_at && $now->lt(Carbon::parse($coupon->starts_at, 'Africa/Luanda'))) {
             throw ValidationException::withMessages(['coupon_code' => 'Coupon not started yet.']);
         }
 
-        if ($coupon->expiration_date && $now->gte(Carbon::parse($coupon->expiration_date, 'Asia/Beirut'))) {
+        if ($coupon->expiration_date && $now->gte(Carbon::parse($coupon->expiration_date, 'Africa/Luanda'))) {
             throw ValidationException::withMessages(['coupon_code' => 'Coupon expired.']);
         }
 

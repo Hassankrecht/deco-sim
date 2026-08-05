@@ -15,7 +15,7 @@ class CouponApiController extends Controller
 {
     public function index(Request $request)
     {
-        $now = Carbon::now('Asia/Beirut')->format('Y-m-d H:i:s');
+        $now = Carbon::now('Africa/Luanda')->format('Y-m-d H:i:s');
         $showAll = $request->query('scope') === 'all';
         $user = $this->resolveBearerUser($request);
 

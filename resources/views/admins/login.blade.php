@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="login-box text-center">
-    <img src="{{ asset('assets/img/ChatGPT Image Nov 3, 2025, 08_00_27 AM.png') }}" alt="Logo" style="height:60px" class="mb-3">
+    <img src="{{ asset('assets/img/deco-sim-logo.jpg') }}" alt="Deco Sim" style="height:60px" class="mb-3">
     <h4 class="mb-3">Admin Panel</h4>
     <p class="text-muted small mb-4">Sign in to manage products, projects, orders.</p>
 

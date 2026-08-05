@@ -11,9 +11,9 @@ class CouponResource extends JsonResource
 
     public function toArray($request)
     {
-        $now = Carbon::now('Asia/Beirut');
-        $startsAt = $this->starts_at ? Carbon::parse($this->starts_at, 'Asia/Beirut') : null;
-        $expiresAt = $this->expiration_date ? Carbon::parse($this->expiration_date, 'Asia/Beirut') : null;
+        $now = Carbon::now('Africa/Luanda');
+        $startsAt = $this->starts_at ? Carbon::parse($this->starts_at, 'Africa/Luanda') : null;
+        $expiresAt = $this->expiration_date ? Carbon::parse($this->expiration_date, 'Africa/Luanda') : null;
         $isInactive = !(bool) $this->status;
         $isNotStarted = $startsAt && $now->lt($startsAt);
         $isExpired = $expiresAt && $now->gte($expiresAt);
