@@ -48,7 +48,7 @@ class OrderApiController extends Controller
             'discount' => ['nullable', 'numeric', 'min:0'],
             'coupon_code' => ['nullable', 'string', 'max:100'],
             'customer_name' => ['required', 'string', 'max:255'],
-            'customer_phone' => ['required', 'string', 'regex:/^\+961\d{8}$/'],
+            'customer_phone' => ['required', 'string', 'regex:/^\+244\d{9}$/'],
             'delivery_address' => ['required', 'string', 'max:500'],
             'street_address' => ['nullable', 'string', 'max:500'],
             'city' => ['nullable', 'string', 'max:100'],
