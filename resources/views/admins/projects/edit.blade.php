@@ -49,7 +49,7 @@
 
                             {{-- Title --}}
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">Title</label>
+                                <label class="form-label fw-semibold">Title (Português)</label>
                                 <input type="text" name="title" class="form-control"
                                        value="{{ $project->title }}" required>
                             </div>
@@ -116,28 +116,32 @@
 
                         {{-- Description --}}
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Description</label>
+                            <label class="form-label fw-semibold">Description (Português)</label>
                             <textarea name="description" rows="6" class="form-control">{{ $project->description }}</textarea>
                         </div>
 
                         {{-- Translations --}}
                         <div class="card border" style="background: #f8f9fa;">
                             <div class="card-body">
-                            <h6 class="fw-bold mb-3" style="color: #c7954b;">Translations</h6>
-                            <div class="row g-3">
-                                @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-                                    @continue($locale === config('app.locale'))
-                                    @php $t = $project->translations->firstWhere('locale', $locale); @endphp
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-semibold">Title ({{ strtoupper($locale) }})</label>
+                            <h6 class="fw-bold mb-3" style="color: #c7954b;">English (optional)</h6>
+                            @php
+                                $locales = config('app.admin_content_locales', ['pt', 'en']);
+                                $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                            @endphp
+                            @foreach ($locales as $locale)
+                                @continue($locale === $primaryLocale)
+                                @php $t = $project->translations->firstWhere('locale', $locale); @endphp
+                                <div class="border rounded p-3 mb-3 bg-white">
+                                    <div class="mb-2">
+                                        <label class="form-label small mb-1">Title ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
                                         <input type="text" name="translations[{{ $locale }}][title]" class="form-control" value="{{ old('translations.'.$locale.'.title', $t->title ?? '') }}">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-semibold">Description ({{ strtoupper($locale) }})</label>
-                                        <textarea name="translations[{{ $locale }}][description]" rows="2" class="form-control">{{ old('translations.'.$locale.'.description', $t->description ?? '') }}</textarea>
+                                    <div class="mb-0">
+                                        <label class="form-label small mb-1">Description ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
+                                        <textarea name="translations[{{ $locale }}][description]" rows="3" class="form-control">{{ old('translations.'.$locale.'.description', $t->description ?? '') }}</textarea>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
                             </div>
                         </div>
 
@@ -291,14 +295,14 @@
             <div class="modal-body">
                 <p class="text-muted small">Parent categories will be available in the category dropdown.</p>
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name (Português)</label>
                     <input type="text" id="parentCatName" class="form-control" placeholder="e.g., Carpentry">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-                        @continue($locale === config('app.locale'))
-                        <div class="col-md-6">
-                            <label class="form-label">Name ({{ strtoupper($locale) }})</label>
+                    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+                        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
+                        <div class="col-12">
+                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
                             <input type="text" id="parentCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
@@ -332,14 +336,14 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name (Português)</label>
                     <input type="text" id="childCatName" class="form-control" placeholder="e.g., Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-                        @continue($locale === config('app.locale'))
-                        <div class="col-md-6">
-                            <label class="form-label">Name ({{ strtoupper($locale) }})</label>
+                    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+                        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
+                        <div class="col-12">
+                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
                             <input type="text" id="childCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
@@ -364,8 +368,8 @@ function saveParentCategory() {
     }
     
     const translations = {};
-    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-        @continue($locale === config('app.locale'))
+    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
         translations['{{ $locale }}'] = {
             name: document.getElementById('parentCatName_{{ $locale }}').value || name
         };
@@ -403,8 +407,8 @@ function saveChildCategory() {
     }
     
     const translations = {};
-    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-        @continue($locale === config('app.locale'))
+    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
         translations['{{ $locale }}'] = {
             name: document.getElementById('childCatName_{{ $locale }}').value || name
         };

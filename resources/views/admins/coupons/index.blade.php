@@ -286,8 +286,8 @@
                                     </span>
                                 </td>
                                 <td>{{ ucfirst($coupon->type) }}</td>
-                                <td>{{ $coupon->type === 'percent' ? $coupon->value . '%' : '$' . number_format($coupon->value, 2) }}</td>
-                                <td class="small">{{ $coupon->min_total ? '$' . number_format($coupon->min_total, 2) : '—' }}</td>
+                                <td>{{ $coupon->type === 'percent' ? $coupon->value . '%' : \App\Support\Currency::format($coupon->value) }}</td>
+                                <td class="small">{{ $coupon->min_total ? \App\Support\Currency::format($coupon->min_total) : '—' }}</td>
                                 <td>
                                     @if($coupon->user)
                                         #{{ $coupon->user->id }} — {{ $coupon->user->name }}

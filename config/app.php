@@ -91,6 +91,15 @@ return [
     // Frontend locales for public language selector
     'frontend_locales' => ['pt', 'en'],
 
+    // Admin content-entry locales for Dashboard forms
+    'admin_content_locales' => ['pt', 'en'],
+
+    // Primary admin content locale (default tab in Dashboard)
+    'admin_primary_content_locale' => 'pt',
+
+    // Dashboard interface locale (separate from content locales)
+    'admin_locale' => 'en',
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

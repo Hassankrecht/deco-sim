@@ -74,36 +74,34 @@
 
                     {{-- Title --}}
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Title</label>
+                        <label class="form-label fw-semibold">Title (Português)</label>
                         <input type="text" name="title" class="form-control"
                             value="{{ old('title') }}" required>
                     </div>
 
                     {{-- Description --}}
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Description</label>
+                        <label class="form-label fw-semibold">Description (Português)</label>
                         <textarea name="description" rows="4" class="form-control">{{ old('description') }}</textarea>
                     </div>
 
-                    {{-- Translations --}}
+                    {{-- English (optional) --}}
                     <div class="mb-4">
-                        <h5 class="fw-bold mb-3" style="color: #c7954b;">Translations</h5>
-                        @foreach (config('app.frontend_locales', ['pt', 'en']) as $locale)
-                            @continue($locale === config('app.locale'))
+                        <h5 class="fw-bold mb-3" style="color: #c7954b;">English (optional)</h5>
+                        @php
+                            $locales = config('app.admin_content_locales', ['pt', 'en']);
+                            $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                        @endphp
+                        @foreach ($locales as $locale)
+                            @continue($locale === $primaryLocale)
                             <div class="border rounded p-3 mb-3 bg-white">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="fw-semibold text-uppercase">{{ $locale }}</span>
-                                    @if ($locale === config('app.locale'))
-                                        <small class="text-muted">Fallback language</small>
-                                    @endif
-                                </div>
                                 <div class="mb-2">
-                                    <label class="form-label small mb-1">Title ({{ $locale }})</label>
+                                    <label class="form-label small mb-1">Title ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
                                     <input type="text" name="translations[{{ $locale }}][title]" class="form-control"
                                         value="{{ old('translations.' . $locale . '.title') }}">
                                 </div>
                                 <div class="mb-0">
-                                    <label class="form-label small mb-1">Description ({{ $locale }})</label>
+                                    <label class="form-label small mb-1">Description ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
                                     <textarea name="translations[{{ $locale }}][description]" rows="3" class="form-control">{{ old('translations.' . $locale . '.description') }}</textarea>
                                 </div>
                             </div>
@@ -124,21 +122,34 @@
                         <div id="components-list">
                             @php
                                 $components = old('components', []);
-                                $locales = config('app.frontend_locales', ['pt', 'en']);
                             @endphp
                             @foreach ($components as $i => $component)
-                                <div class="component-row mb-2 d-flex gap-2 flex-wrap">
-                                    @foreach($locales as $locale)
-                                        <div class="d-flex flex-column">
-                                            <label class="small mb-1">Name ({{ strtoupper($locale) }})</label>
-                                            <input type="text" name="components[{{ $i }}][name_translations][{{ $locale }}]" value="{{ $component['name_translations'][$locale] ?? '' }}" placeholder="Name ({{ strtoupper($locale) }})" class="form-control" required>
+                                <div class="component-row mb-3 p-3 border rounded bg-white">
+                                    <div class="mb-2">
+                                        <label class="form-label small mb-1">Name (Português)</label>
+                                        <input type="text" name="components[{{ $i }}][name_translations][pt]" value="{{ $component['name_translations']['pt'] ?? '' }}" class="form-control" required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label small mb-1">Name (English) <span class="text-muted">(optional)</span></label>
+                                        <input type="text" name="components[{{ $i }}][name_translations][en]" value="{{ $component['name_translations']['en'] ?? '' }}" class="form-control">
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-md-3">
+                                            <input type="text" name="components[{{ $i }}][width]" value="{{ $component['width'] ?? '' }}" placeholder="Width" class="form-control">
                                         </div>
-                                    @endforeach
-                                    <input type="text" name="components[{{ $i }}][width]" value="{{ $component['width'] ?? '' }}" placeholder="Width" class="form-control">
-                                    <input type="text" name="components[{{ $i }}][length]" value="{{ $component['length'] ?? '' }}" placeholder="Length" class="form-control">
-                                    <input type="text" name="components[{{ $i }}][height]" value="{{ $component['height'] ?? '' }}" placeholder="Height" class="form-control">
-                                    <input type="text" name="components[{{ $i }}][material]" value="{{ $component['material'] ?? '' }}" placeholder="Material" class="form-control">
-                                    <button type="button" class="btn btn-danger btn-remove-component align-self-end">Remove</button>
+                                        <div class="col-md-3">
+                                            <input type="text" name="components[{{ $i }}][length]" value="{{ $component['length'] ?? '' }}" placeholder="Length" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="components[{{ $i }}][height]" value="{{ $component['height'] ?? '' }}" placeholder="Height" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="components[{{ $i }}][material]" value="{{ $component['material'] ?? '' }}" placeholder="Material" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 text-end">
+                                        <button type="button" class="btn btn-danger btn-sm btn-remove-component">Remove</button>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -188,14 +199,14 @@
             <div class="modal-body">
                 <p class="text-muted small">Parent categories organize your product categories.</p>
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name (Português)</label>
                     <input type="text" id="parentCatName" class="form-control" placeholder="e.g., Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-                        @continue($locale === config('app.locale'))
-                        <div class="col-md-6">
-                            <label class="form-label">Name ({{ strtoupper($locale) }})</label>
+                    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+                        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
+                        <div class="col-12">
+                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
                             <input type="text" id="parentCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
@@ -229,14 +240,14 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name (Português)</label>
                     <input type="text" id="childCatName" class="form-control" placeholder="e.g., Sliding Doors">
                 </div>
                 <div class="row g-2">
-                    @foreach(config('app.frontend_locales', ['pt', 'en']) as $locale)
-                        @continue($locale === config('app.locale'))
-                        <div class="col-md-6">
-                            <label class="form-label">Name ({{ strtoupper($locale) }})</label>
+                    @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
+                        @continue($locale === config('app.admin_primary_content_locale', 'pt'))
+                        <div class="col-12">
+                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
                             <input type="text" id="childCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
@@ -253,31 +264,44 @@
 
 @push('scripts')
 <script>
-// Dynamic add/remove for product components (multilingual)
+// Dynamic add/remove for product components (Portuguese primary, English optional)
 document.getElementById('add-component').onclick = function() {
     var list = document.getElementById('components-list');
     var index = list.children.length;
-    var locales = @json(config('app.frontend_locales', ['pt', 'en']));
     var row = document.createElement('div');
-    row.className = 'component-row mb-2 d-flex gap-2 flex-wrap';
-    var html = '';
-    locales.forEach(function(locale) {
-        html += '<div class="d-flex flex-column">';
-        html += `<label class=\"small mb-1\">Name (${locale.toUpperCase()})</label>`;
-        html += `<input type=\"text\" name=\"components[${index}][name_translations][${locale}]\" placeholder=\"Name (${locale.toUpperCase()})\" class=\"form-control\" required>`;
-        html += '</div>';
-    });
-    html += `<input type="text" name="components[${index}][width]" placeholder="Width" class="form-control">`;
-    html += `<input type="text" name="components[${index}][length]" placeholder="Length" class="form-control">`;
-    html += `<input type="text" name="components[${index}][height]" placeholder="Height" class="form-control">`;
-    html += `<input type="text" name="components[${index}][material]" placeholder="Material" class="form-control">`;
-    html += `<button type="button" class="btn btn-danger btn-remove-component align-self-end">Remove</button>`;
-    row.innerHTML = html;
+    row.className = 'component-row mb-3 p-3 border rounded bg-white';
+    row.innerHTML = `
+        <div class="mb-2">
+            <label class="form-label small mb-1">Name (Português)</label>
+            <input type="text" name="components[${index}][name_translations][pt]" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label class="form-label small mb-1">Name (English) <span class="text-muted">(optional)</span></label>
+            <input type="text" name="components[${index}][name_translations][en]" class="form-control">
+        </div>
+        <div class="row g-2">
+            <div class="col-md-3">
+                <input type="text" name="components[${index}][width]" placeholder="Width" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="components[${index}][length]" placeholder="Length" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="components[${index}][height]" placeholder="Height" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="components[${index}][material]" placeholder="Material" class="form-control">
+            </div>
+        </div>
+        <div class="mt-2 text-end">
+            <button type="button" class="btn btn-danger btn-sm btn-remove-component">Remove</button>
+        </div>
+    `;
     list.appendChild(row);
 };
 document.addEventListener('click', function(e) {
     if(e.target.classList.contains('btn-remove-component')) {
-        e.target.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     }
 });
 </script>

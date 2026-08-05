@@ -98,7 +98,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $user->checkouts_count ?? 0 }}</td>
-                                <td>${{ number_format($user->paid_total ?? 0, 2) }}</td>
+                                <td>{{ \App\Support\Currency::format($user->paid_total ?? 0) }}</td>
                                 <td class="text-muted small">{{ optional($user->created_at)->format('Y-m-d H:i') }}</td>
                             </tr>
                         @empty

@@ -39,7 +39,7 @@
                                         </td>
                                         <td>{{ $food->category_id }}</td>
                                         <td>{{ $food->description }}</td>
-                                        <td>${{ $food->price }}</td>
+                                        <td>{{ \App\Support\Currency::format($food->price) }}</td>
                                         <td>
                                             <button class="btn btn-warning"><a
                                                     href="{{ route('admin.foods.edit', $food->id) }}"

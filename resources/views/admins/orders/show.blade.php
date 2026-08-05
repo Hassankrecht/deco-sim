@@ -89,15 +89,15 @@
             @endphp
             <div class="d-flex justify-content-between small text-muted mt-2">
                 <span>Subtotal</span>
-                <span>${{ number_format($subtotal, 2) }}</span>
+                <span>{{ \App\Support\Currency::format($subtotal) }}</span>
             </div>
             <div class="d-flex justify-content-between small text-muted">
                 <span>Discount</span>
-                <span>${{ number_format($order->discount_amount ?? 0, 2) }} {{ $order->coupon?->code ? "({$order->coupon->code})" : '' }}</span>
+                <span>{{ \App\Support\Currency::format($order->discount_amount ?? 0) }} {{ $order->coupon?->code ? "({$order->coupon->code})" : '' }}</span>
             </div>
             <div class="d-flex justify-content-between fw-bold fs-6">
                 <span>Net total</span>
-                <span>${{ number_format($order->total_price, 2) }}</span>
+                <span>{{ \App\Support\Currency::format($order->total_price) }}</span>
             </div>
         </div>
 
@@ -118,7 +118,7 @@
             </div>
             <div class="d-flex justify-content-between small text-muted">
                 <span>Recorded amount</span>
-                <span>${{ number_format($order->refund_amount ?? 0,2) }}</span>
+                <span>{{ \App\Support\Currency::format($order->refund_amount ?? 0) }}</span>
             </div>
             @if(in_array($order->status, ['Paid','Cancelled']) && !empty($order->paid_at))
                 <form action="{{ route('admin.orders.refund', $order) }}" method="POST" class="mt-3 d-flex gap-2 align-items-end flex-wrap">
@@ -151,8 +151,8 @@
                             <tr>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->quantity }}</td>
-                                <td>${{ number_format($item->price, 2) }}</td>
-                                <td>${{ number_format($item->total_price, 2) }}</td>
+                                <td>{{ \App\Support\Currency::format($item->price) }}</td>
+                                <td>{{ \App\Support\Currency::format($item->total_price) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

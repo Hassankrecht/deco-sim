@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <div class="text-muted small">Net revenue</div>
-                    <div class="fs-4 fw-bold text-gold">${{ number_format($netRevenue ?? 0, 2) }}</div>
+                    <div class="fs-4 fw-bold text-gold">{{ \App\Support\Currency::format($netRevenue ?? 0) }}</div>
                     <div class="small text-muted">Paid orders only</div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div>
                     <div class="text-muted small">AOV (avg order)</div>
-                    <div class="fs-4 fw-bold text-gold">${{ number_format($aov ?? 0, 2) }}</div>
+                    <div class="fs-4 fw-bold text-gold">{{ \App\Support\Currency::format($aov ?? 0) }}</div>
                     <div class="small text-muted">With coupon {{ $ordersWithCouponCount ?? 0 }} / Without {{ $ordersWithoutCouponCount ?? 0 }}</div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                         <td>#{{ $o->id }}</td>
                         <td>{{ $o->name }}</td>
                         <td>{{ $o->status }}</td>
-                        <td>${{ number_format($o->total_price,2) }}</td>
+                        <td>{{ \App\Support\Currency::format($o->total_price) }}</td>
                         <td>{{ \Carbon\Carbon::parse($o->created_at)->format('Y-m-d H:i') }}</td>
                     </tr>
                 @endforeach

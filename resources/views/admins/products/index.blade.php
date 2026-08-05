@@ -222,18 +222,20 @@
 
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label class="form-label">Name (EN)</label>
+                                        <label class="form-label">Name (Português)</label>
                                         <input type="text" name="name" class="form-control" placeholder="Category name" required>
                                     </div>
-                                    <div class="row g-2">
-                                        @foreach(config('app.supported_locales', []) as $locale)
-                                            @continue($locale === config('app.locale'))
-                                            <div class="col-md-6">
-                                                <label class="form-label">Name ({{ strtoupper($locale) }})</label>
-                                                <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                    @php
+                                        $locales = config('app.admin_content_locales', ['pt', 'en']);
+                                        $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                                    @endphp
+                                    @foreach ($locales as $locale)
+                                        @if ($locale === $primaryLocale) @continue @endif
+                                        <div class="mb-3">
+                                            <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                            <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
+                                        </div>
+                                    @endforeach
                                     <div class="mt-3">
                                         <label class="form-label">Order (optional)</label>
                                         <input type="number" name="order" class="form-control" value="0">
@@ -271,18 +273,20 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Name (EN)</label>
+                                        <label class="form-label">Name (Português)</label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
-                                    <div class="row g-2">
-                                        @foreach(config('app.supported_locales', []) as $locale)
-                                            @continue($locale === config('app.locale'))
-                                            <div class="col-md-6">
-                                                <label class="form-label">Name ({{ strtoupper($locale) }})</label>
-                                                <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                    @php
+                                        $locales = config('app.admin_content_locales', ['pt', 'en']);
+                                        $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                                    @endphp
+                                    @foreach ($locales as $locale)
+                                        @if ($locale === $primaryLocale) @continue @endif
+                                        <div class="mb-3">
+                                            <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                            <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
+                                        </div>
+                                    @endforeach
                                     <div class="mt-3">
                                         <label class="form-label">Order (optional)</label>
                                         <input type="number" name="order" class="form-control" value="0">
@@ -314,20 +318,22 @@
 
                                     <div class="modal-body">
                                         <div class="mb-3">
-                                            <label class="form-label">Name (EN)</label>
+                                            <label class="form-label">Name (Português)</label>
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ $parent->name }}" required>
                                         </div>
-                                        <div class="row g-2 mt-2">
-                                            @foreach(config('app.supported_locales', []) as $locale)
-                                                @continue($locale === config('app.locale'))
-                                                @php $tr = $parent->translations->firstWhere('locale',$locale); @endphp
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Name ({{ strtoupper($locale) }})</label>
-                                                    <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                        @php
+                                            $locales = config('app.admin_content_locales', ['pt', 'en']);
+                                            $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                                        @endphp
+                                        @foreach ($locales as $locale)
+                                            @if ($locale === $primaryLocale) @continue @endif
+                                            @php $tr = $parent->translations->firstWhere('locale',$locale); @endphp
+                                            <div class="mb-3">
+                                                <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                                <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
+                                            </div>
+                                        @endforeach
                                         <div class="mt-3">
                                             <label class="form-label">Order</label>
                                             <input type="number" name="order" class="form-control" value="{{ $parent->order ?? 0 }}">
@@ -369,19 +375,21 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Name (EN)</label>
+                                                <label class="form-label">Name (Português)</label>
                                                 <input type="text" name="name" class="form-control" value="{{ $child->name }}" required>
                                             </div>
-                                            <div class="row g-2">
-                                                @foreach(config('app.supported_locales', []) as $locale)
-                                                    @continue($locale === config('app.locale'))
-                                                    @php $tr = $child->translations->firstWhere('locale',$locale); @endphp
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Name ({{ strtoupper($locale) }})</label>
-                                                        <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                            @php
+                                                $locales = config('app.admin_content_locales', ['pt', 'en']);
+                                                $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                                            @endphp
+                                            @foreach ($locales as $locale)
+                                                @if ($locale === $primaryLocale) @continue @endif
+                                                @php $tr = $child->translations->firstWhere('locale',$locale); @endphp
+                                                <div class="mb-3">
+                                                    <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                                    <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
+                                                </div>
+                                            @endforeach
                                             <div class="mt-3">
                                                 <label class="form-label">Order</label>
                                                 <input type="number" name="order" class="form-control" value="{{ $child->order ?? 0 }}">
@@ -449,7 +457,7 @@
 
                                 <td>{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</td>
 
-                                <td>${{ number_format($item->price, 2) }}</td>
+                                <td>{{ \App\Support\Currency::format($item->price) }}</td>
 
                                 <td>
                                     <div class="d-flex gap-2">

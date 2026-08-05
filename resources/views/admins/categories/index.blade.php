@@ -25,8 +25,8 @@
             @endif
 
             @php
-                $fallback = config('app.locale', 'en');
-                $locales = config('app.supported_locales', [$fallback]);
+                $primaryLocale = config('app.admin_primary_content_locale', 'pt');
+                $locales = config('app.admin_content_locales', ['pt', 'en']);
                 $parentOptions = $categories->whereNull('parent_id');
             @endphp
 
@@ -35,7 +35,7 @@
                 <form action="{{ route('admin.categories.store') }}" method="POST" class="row g-3">
                     @csrf
                     <div class="col-md-4">
-                        <label class="form-label">Name ({{ strtoupper($fallback) }})</label>
+                        <label class="form-label">Name ({{ $primaryLocale === 'pt' ? 'Português' : strtoupper($primaryLocale) }})</label>
                         <input type="text" name="name" class="form-control" required>
                     </div>
                     <div class="col-md-4">
@@ -53,9 +53,9 @@
                     </div>
 
                     @foreach ($locales as $locale)
-                        @continue($locale === $fallback)
-                        <div class="col-md-3">
-                            <label class="form-label">Name ({{ strtoupper($locale) }})</label>
+                        @if ($locale === $primaryLocale) @continue @endif
+                        <div class="col-md-12">
+                            <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
                             <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
                         </div>
                     @endforeach
@@ -117,7 +117,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Name ({{ strtoupper($fallback) }})</label>
+                                <label class="form-label">Name ({{ $primaryLocale === 'pt' ? 'Português' : strtoupper($primaryLocale) }})</label>
                                 <input type="text" name="name" class="form-control" value="{{ $category->name }}" required>
                             </div>
                             <div class="mb-3">
@@ -134,16 +134,14 @@
                                 <input type="number" name="order" class="form-control" value="{{ $category->order ?? 0 }}">
                             </div>
 
-                            <div class="row g-2">
-                                @foreach ($locales as $locale)
-                                    @continue($locale === $fallback)
-                                    @php $tr = $category->translations->firstWhere('locale', $locale); @endphp
-                                    <div class="col-md-6">
-                                        <label class="form-label">Name ({{ strtoupper($locale) }})</label>
-                                        <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
-                                    </div>
-                                @endforeach
-                            </div>
+                            @foreach ($locales as $locale)
+                                @if ($locale === $primaryLocale) @continue @endif
+                                @php $tr = $category->translations->firstWhere('locale', $locale); @endphp
+                                <div class="mb-3">
+                                    <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                    <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
+                                </div>
+                            @endforeach
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

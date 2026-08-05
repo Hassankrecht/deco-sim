@@ -126,13 +126,13 @@
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
             <div class="text-muted small">Discount total</div>
-            <div class="fw-bold fs-5 text-gold">${{ number_format($discountSum ?? 0, 2) }}</div>
+            <div class="fw-bold fs-5 text-gold">{{ \App\Support\Currency::format($discountSum ?? 0) }}</div>
         </div>
     </div>
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
             <div class="text-muted small">Total amount</div>
-            <div class="fw-bold fs-5 text-gold">${{ number_format($totalAmount ?? 0, 2) }}</div>
+            <div class="fw-bold fs-5 text-gold">{{ \App\Support\Currency::format($totalAmount ?? 0) }}</div>
         </div>
     </div>
     @foreach($statuses as $s)
@@ -316,7 +316,7 @@
                         <td>{{ $order->name }}</td>
                         <td><span class="badge bg-{{ $statusColor }}">{{ $order->status }}</span></td>
                         <td><span class="badge bg-dark text-gold">{{ $order->source_platform ?: 'unknown' }}</span></td>
-                        <td><strong>${{ number_format($order->total_price, 2) }}</strong></td>
+                        <td><strong>{{ \App\Support\Currency::format($order->total_price) }}</strong></td>
                         <td>{{ $order->created_at->format('Y-m-d H:i') }}</td>
                         <td onclick="event.stopPropagation();">
                             <div class="dropdown">
@@ -367,10 +367,10 @@
                                         <h6 class="text-gold mb-2"><i class="bi bi-cash-coin me-2"></i>Payment Details</h6>
                                         <dl class="row mb-0 small">
                                             <dt class="col-sm-4">Total:</dt>
-                                            <dd class="col-sm-8"><strong class="text-success">${{ number_format($order->total_price, 2) }}</strong></dd>
+                                            <dd class="col-sm-8"><strong class="text-success">{{ \App\Support\Currency::format($order->total_price) }}</strong></dd>
                                             
                                             <dt class="col-sm-4">Discount:</dt>
-                                            <dd class="col-sm-8"><span class="text-danger">${{ number_format($order->discount_amount ?? 0, 2) }}</span></dd>
+                                            <dd class="col-sm-8"><span class="text-danger">{{ \App\Support\Currency::format($order->discount_amount ?? 0) }}</span></dd>
                                             
                                             <dt class="col-sm-4">Coupon:</dt>
                                             <dd class="col-sm-8">{{ $order->coupon?->code ?? '—' }}</dd>

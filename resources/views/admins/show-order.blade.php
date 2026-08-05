@@ -36,7 +36,7 @@
                                         <td>{{ $order->zipcode }}</td>
                                         <td>{{ $order->phone_number }}</td>
                                         <td>{{ $order->address }}</td>
-                                        <td>${{ $order->total_price }}</td>
+                                        <td>{{ \App\Support\Currency::format($order->total_price) }}</td>
 
                                         <td>{{ $order->status }}</td>
 

@@ -31,9 +31,9 @@
             "logo": "{{ asset('assets/img/deco-sim-logo.jpg') }}",
             "contactPoint": [{
                 "@type": "ContactPoint",
-                "telephone": "+971-50-000-0000",
+                "telephone": "+244 972 100 585",
                 "contactType": "{{ __('messages.meta.contact_type') }}",
-                "areaServed": "AE"
+                "areaServed": "AO"
             }],
             "sameAs": [
                 "https://www.facebook.com/people/Ali-Krecht-Group/61586371040723/",

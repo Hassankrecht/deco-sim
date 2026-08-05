@@ -117,7 +117,7 @@ class AdminProductController extends Controller
 
     // Sync translations for admin content locales
     $translations = $request->input('translations', []);
-    $locales = config('app.frontend_locales', ['pt', 'en']);
+    $locales = config('app.admin_content_locales', ['pt', 'en']);
 
     foreach ($locales as $locale) {
         $title = $translations[$locale]['title'] ?? $validated['title'];
@@ -155,7 +155,7 @@ class AdminProductController extends Controller
             $translations = isset($component['name_translations']) ? array_filter($component['name_translations']) : [];
             if (!empty($translations)) {
                 // Use the current app locale, or the first available translation as fallback for 'name'
-                $name = $translations[app()->getLocale()] ?? collect($translations)->first();
+                $name = $translations['pt'] ?? ($translations['en'] ?? collect($translations)->first());
                 $product->productComponents()->create([
                     'name' => $name,
                     'name_translations' => $translations,
@@ -202,7 +202,7 @@ class AdminProductController extends Controller
 
     // Update translations based on submitted locales
     $translations = $request->input('translations', []);
-    $locales = config('app.frontend_locales', ['pt', 'en']);
+    $locales = config('app.admin_content_locales', ['pt', 'en']);
 
     foreach ($locales as $locale) {
         $title = $translations[$locale]['title'] ?? $validated['title'];
@@ -234,7 +234,7 @@ class AdminProductController extends Controller
         foreach ($request->components as $component) {
             $translations = isset($component['name_translations']) ? array_filter($component['name_translations']) : [];
             if (!empty($translations)) {
-                $name = $translations[app()->getLocale()] ?? collect($translations)->first();
+                $name = $translations['pt'] ?? ($translations['en'] ?? collect($translations)->first());
                 $product->productComponents()->create([
                     'name' => $name,
                     'name_translations' => $translations,
