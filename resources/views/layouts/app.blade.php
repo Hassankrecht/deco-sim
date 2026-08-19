@@ -36,8 +36,9 @@
                 "areaServed": "AO"
             }],
             "sameAs": [
-                "https://www.facebook.com/people/Ali-Krecht-Group/61586371040723/",
-                "https://www.instagram.com/krechtgroup/"
+                "https://www.facebook.com/profile.php?id=61593072766971",
+                "https://www.instagram.com/decosim1/",
+                "https://www.tiktok.com/@decosim685"
             ]
         }
         </script>
@@ -305,16 +306,16 @@
                 <a href="{{ route('contact') }}">{{ __('messages.nav.contact') }}</a>
             </div>
             <div class="akg-footer-social d-flex justify-content-center gap-3">
-                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.facebook.com/people/Ali-Krecht-Group/61586371040723/" target="_blank"
-                    rel="noopener" aria-label="Facebook">
+                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.facebook.com/profile.php?id=61593072766971" target="_blank"
+                    rel="noopener noreferrer" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.instagram.com/krechtgroup/"
-                    target="_blank" rel="noopener" aria-label="Instagram">
+                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.instagram.com/decosim1/"
+                    target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.tiktok.com/@alikrechtgroup" target="_blank"
-                    rel="noopener" aria-label="TikTok">
+                <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://www.tiktok.com/@decosim685" target="_blank"
+                    rel="noopener noreferrer" aria-label="TikTok">
                     <i class="fab fa-tiktok"></i>
                 </a>
                 <a class="btn btn-outline-gold btn-sm rounded-circle" href="https://wa.me/244972100585"
