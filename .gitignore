@@ -29,11 +29,11 @@ __test_statuses.php
 # Reports and markdown
 # Reports and markdown
 reports/
-!README.md
 
-# Storage except .gitignore
+# Storage except .gitignore and the public upload root's .gitignore
 storage/*
 !storage/.gitignore
+!storage/app/public/.gitignore
 # Ignore reports directory
 reports/
 # Laravel
@@ -42,6 +42,9 @@ reports/
 .env
 /storage/*
 !/storage/.gitignore
+!storage/app/
+!storage/app/public/
+!storage/app/public/.gitignore
 /storage/*.key
 /bootstrap/cache/
 
@@ -63,18 +66,24 @@ _ide_helper.php
 
 # Test & docs
 tests/
-*.md
 API_DOCUMENTATION.md
 DEPLOYMENT_READY.md
+00_START_HERE_UPLOAD_ANALYSIS_INDEX.md
+CRITICAL_UPLOAD_FIXES_NEEDED.md
+UPLOAD_ANALYSIS_SUMMARY.md
+UPLOAD_ARCHITECTURE_DIAGRAM.md
+UPLOAD_PATHS_ANALYSIS.md
+UPLOAD_QUICK_START.md
+UPLOAD_SYSTEM_COMPLETE_ANALYSIS.md
+UPLOAD_VISUAL_REFERENCE.md
 
 # Node & frontend build
 node_modules/
-package-lock.json
-vite.config.js
 
 # Public large media folders
 /public/img/
 /public/image/
+/public/storage
 /public/assets/img/
 /public/assets/gallery/
 /public/assets/banner/
