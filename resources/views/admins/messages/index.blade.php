@@ -4,8 +4,8 @@
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-                <h5 class="mb-1 text-gold"><i class="bi bi-envelope me-2"></i>Contact Messages</h5>
-                <p class="text-muted small mb-0">View and manage contact form submissions.</p>
+                <h5 class="mb-1 text-gold"><i class="bi bi-envelope me-2"></i>{{ __('admin.contact_messages') }}</h5>
+                <p class="text-muted small mb-0">{{ __('admin.contact_messages_subtitle') }}</p>
             </div>
         </div>
 
@@ -18,12 +18,12 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-dark">
                         <tr>
-                            <th style="width: 200px;">Sender</th>
-                            <th style="width: 200px;">Email</th>
-                            <th>Subject</th>
-                            <th style="width: 150px;">Date</th>
-                            <th style="width: 100px;">Status</th>
-                            <th style="width: 150px;" class="text-end">Actions</th>
+                            <th style="width: 200px;">{{ __('admin.sender') }}</th>
+                            <th style="width: 200px;">{{ __('admin.email') }}</th>
+                            <th>{{ __('admin.subject') }}</th>
+                            <th style="width: 150px;">{{ __('admin.date') }}</th>
+                            <th style="width: 100px;">{{ __('admin.status') }}</th>
+                            <th style="width: 150px;" class="text-end">{{ __('admin.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,20 +46,20 @@
                                 </td>
                                 <td>
                                     @if($message->is_read)
-                                        <span class="badge bg-secondary">Read</span>
+                                        <span class="badge bg-secondary">{{ __('admin.read') }}</span>
                                     @else
-                                        <span class="badge bg-warning text-dark">Unread</span>
+                                        <span class="badge bg-warning text-dark">{{ __('admin.unread') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-end">
                                     <div class="dropdown">
                                         <button class="btn btn-sm btn-outline-gold dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                            Actions
+                                            {{ __('admin.actions') }}
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <a href="{{ route('admin.messages.show', $message) }}" class="dropdown-item">
-                                                    <i class="bi bi-eye me-2"></i>View
+                                                    <i class="bi bi-eye me-2"></i>{{ __('admin.view') }}
                                                 </a>
                                             </li>
                                             @if($message->is_read)
@@ -67,7 +67,7 @@
                                                     <form action="{{ route('admin.messages.mark-unread', $message) }}" method="POST">
                                                         @csrf
                                                         <button class="dropdown-item" type="submit">
-                                                            <i class="bi bi-envelope me-2"></i>Mark Unread
+                                                            <i class="bi bi-envelope me-2"></i>{{ __('admin.mark_unread') }}
                                                         </button>
                                                     </form>
                                                 </li>
@@ -76,18 +76,18 @@
                                                     <form action="{{ route('admin.messages.mark-read', $message) }}" method="POST">
                                                         @csrf
                                                         <button class="dropdown-item" type="submit">
-                                                            <i class="bi bi-check2 me-2"></i>Mark Read
+                                                            <i class="bi bi-check2 me-2"></i>{{ __('admin.mark_read') }}
                                                         </button>
                                                     </form>
                                                 </li>
                                             @endif
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
-                                                <form action="{{ route('admin.messages.destroy', $message) }}" method="POST" onsubmit="return confirm('Delete this message?');">
+                                                <form action="{{ route('admin.messages.destroy', $message) }}" method="POST" onsubmit="return confirm('{{ __('admin.delete_message_confirm') }}');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="dropdown-item text-danger" type="submit">
-                                                        <i class="bi bi-trash me-2"></i>Delete
+                                                        <i class="bi bi-trash me-2"></i>{{ __('admin.delete') }}
                                                     </button>
                                                 </form>
                                             </li>
@@ -97,7 +97,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center text-muted">No messages found.</td>
+                                <td colspan="6" class="text-center text-muted">{{ __('admin.no_messages_found') }}</td>
                             </tr>
                         @endforelse
                     </tbody>

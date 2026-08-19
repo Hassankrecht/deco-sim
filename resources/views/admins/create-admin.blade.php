@@ -20,25 +20,25 @@
 
         <div class="d-flex align-items-center justify-content-between mb-4">
           <h5 class="card-title mb-0 d-flex align-items-center gap-2">
-            <i class="bi bi-person-gear"></i> Create Admin
+            <i class="bi bi-person-gear"></i> {{ __('admin.create_admin') }}
           </h5>
-          <a href="{{ route('admin.admin-users.index') }}" class="btn btn-sm btn-outline-dark">Back</a>
+          <a href="{{ route('admin.admin-users.index') }}" class="btn btn-sm btn-outline-dark">{{ __('admin.back') }}</a>
         </div>
         <form method="POST" action="{{ route('admin.admin-users.store') }}" enctype="multipart/form-data">
           @csrf
           <div class="form-outline mb-3">
-            <label class="form-label small text-muted">Email</label>
+            <label class="form-label small text-muted">{{ __('admin.email') }}</label>
             <input type="email" name="email" class="form-control" placeholder="admin@example.com" required />
           </div>
           <div class="form-outline mb-3">
-            <label class="form-label small text-muted">Username</label>
-            <input type="text" name="name" class="form-control" placeholder="Admin name" required />
+            <label class="form-label small text-muted">{{ __('admin.username') }}</label>
+            <input type="text" name="name" class="form-control" placeholder="{{ __('admin.placeholder_username') }}" required />
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label small text-muted">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password" required />
+            <label class="form-label small text-muted">{{ __('admin.password') }}</label>
+            <input type="password" name="password" class="form-control" placeholder="{{ __('admin.password') }}" required />
           </div>
-          <button type="submit" class="btn btn-gold w-100 fw-semibold">Create Admin</button>
+          <button type="submit" class="btn btn-gold w-100 fw-semibold">{{ __('admin.create_admin') }}</button>
         </form>
       </div>
     </div>

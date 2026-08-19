@@ -4,8 +4,8 @@
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-                <h5 class="mb-1 text-gold"><i class="bi bi-phone me-2"></i>App Home Settings</h5>
-                <p class="text-muted small mb-0">Flutter app home screen only. Website home settings are separate.</p>
+                <h5 class="mb-1 text-gold"><i class="bi bi-phone me-2"></i>{{ __('admin.app_home_settings') }}</h5>
+                <p class="text-muted small mb-0">{{ __('admin.app_home_settings_subtitle') }}</p>
             </div>
         </div>
 
@@ -68,17 +68,17 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="h-100 rounded-3 border p-3">
-                        <h6 class="text-gold mb-3">Current API values</h6>
-                        <div class="small text-muted mb-2">Theme mode</div>
+                        <h6 class="text-gold mb-3">{{ __('admin.current_api_values') }}</h6>
+                        <div class="small text-muted mb-2">{{ __('admin.theme_mode') }}</div>
                         <div class="mb-3">{{ ucfirst($settings->theme_mode ?? 'auto') }}</div>
-                        <div class="small text-muted mb-2">Visible sections</div>
+                        <div class="small text-muted mb-2">{{ __('admin.visible_sections') }}</div>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-dark text-gold">Popular: {{ $settings->show_popular_products ? 'on' : 'off' }}</span>
-                            <span class="badge bg-dark text-gold">Categories: {{ $settings->show_categories ? 'on' : 'off' }}</span>
-                            <span class="badge bg-dark text-gold">Coupons: {{ $settings->show_coupons ? 'on' : 'off' }}</span>
+                            <span class="badge bg-dark text-gold">{{ __('admin.popular') }}: {{ $settings->show_popular_products ? __('admin.on') : __('admin.off') }}</span>
+                            <span class="badge bg-dark text-gold">{{ __('admin.categories') }}: {{ $settings->show_categories ? __('admin.on') : __('admin.off') }}</span>
+                            <span class="badge bg-dark text-gold">{{ __('admin.coupons') }}: {{ $settings->show_coupons ? __('admin.on') : __('admin.off') }}</span>
                         </div>
                         <hr>
-                        <div class="small text-muted mb-2">Endpoint</div>
+                        <div class="small text-muted mb-2">{{ __('admin.endpoint') }}</div>
                         <code class="small">GET /api/app-home-settings</code>
                     </div>
                 </div>
@@ -91,20 +91,20 @@
             <div class="row g-3">
                 <div class="col-lg-6">
                     <div class="card card-dark p-3 h-100">
-                        <h6 class="text-gold mb-3">Hero</h6>
+                        <h6 class="text-gold mb-3">{{ __('admin.hero') }}</h6>
                         <div class="mb-3">
-                            <label class="form-label">Title</label>
+                            <label class="form-label">{{ __('admin.title') }}</label>
                             <input type="text" name="hero_title" class="form-control"
                                 value="{{ old('hero_title', $settings->hero_title) }}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Subtitle</label>
+                            <label class="form-label">{{ __('admin.subtitle') }}</label>
                             <textarea name="hero_subtitle" class="form-control" rows="3">{{ old('hero_subtitle', $settings->hero_subtitle) }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Media type</label>
+                            <label class="form-label">{{ __('admin.media_type') }}</label>
                             <select name="hero_media_type" class="form-select">
-                                @foreach (['image' => 'Image', 'video' => 'Video', 'gallery' => 'Gallery'] as $value => $label)
+                                @foreach (['image' => __('admin.image'), 'video' => __('admin.video'), 'gallery' => __('admin.gallery')] as $value => $label)
                                     <option value="{{ $value }}" {{ old('hero_media_type', $settings->hero_media_type) === $value ? 'selected' : '' }}>
                                         {{ $label }}
                                     </option>
@@ -112,14 +112,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Hero image fit</label>
+                            <label class="form-label">{{ __('admin.hero_image_fit') }}</label>
                             <select name="hero_image_fit" class="form-select">
                                 @foreach ([
-                                    'contain' => 'Contain - show full image, no crop',
-                                    'cover' => 'Cover - fill box, may crop',
-                                    'fill' => 'Fill - stretch to box',
-                                    'fitWidth' => 'Fit width',
-                                    'fitHeight' => 'Fit height',
+                                    'contain' => __('admin.contain'),
+                                    'cover' => __('admin.cover'),
+                                    'fill' => __('admin.fill'),
+                                    'fitWidth' => __('admin.fit_width'),
+                                    'fitHeight' => __('admin.fit_height'),
                                 ] as $value => $label)
                                     <option value="{{ $value }}" {{ $heroImageFit === $value ? 'selected' : '' }}>
                                         {{ $label }}
@@ -128,22 +128,22 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Hero image</label>
+                            <label class="form-label">{{ __('admin.hero_image') }}</label>
                             <input type="file" name="hero_image" class="form-control" accept="image/*">
                             @if ($heroImage)
-                                <div class="small text-muted mt-1">Current: {{ $settings->hero_image_path }}</div>
+                                <div class="small text-muted mt-1">{{ __('admin.current') }}: {{ $settings->hero_image_path }}</div>
                             @endif
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Hero video URL</label>
+                            <label class="form-label">{{ __('admin.hero_video_url') }}</label>
                             <input type="url" name="hero_video_url" class="form-control"
                                 value="{{ old('hero_video_url', $settings->hero_video_url) }}">
                         </div>
                         <div>
-                            <label class="form-label">Hero gallery</label>
+                            <label class="form-label">{{ __('admin.hero_gallery') }}</label>
                             <input type="file" name="hero_gallery[]" class="form-control" accept="image/*" multiple>
                             @if ($gallery->isNotEmpty())
-                                <div class="small text-muted mt-1">Current gallery images: {{ $gallery->count() }}</div>
+                                <div class="small text-muted mt-1">{{ __('admin.current_gallery_images') }}: {{ $gallery->count() }}</div>
                             @endif
                         </div>
                     </div>
@@ -151,28 +151,28 @@
 
                 <div class="col-lg-6">
                     <div class="card card-dark p-3 h-100">
-                        <h6 class="text-gold mb-3">Banner</h6>
+                        <h6 class="text-gold mb-3">{{ __('admin.banner') }}</h6>
                         <div class="form-check mb-3">
                             <input type="hidden" name="banner_enabled" value="0">
                             <input class="form-check-input" type="checkbox" name="banner_enabled" value="1"
                                 id="bannerEnabled" {{ old('banner_enabled', $settings->banner_enabled) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="bannerEnabled">Show banner</label>
+                            <label class="form-check-label" for="bannerEnabled">{{ __('admin.show_banner') }}</label>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Banner text</label>
+                            <label class="form-label">{{ __('admin.banner_text') }}</label>
                             <input type="text" name="banner_text" class="form-control"
                                 value="{{ old('banner_text', $settings->banner_text) }}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Banner link</label>
+                            <label class="form-label">{{ __('admin.banner_link') }}</label>
                             <input type="text" name="banner_link" class="form-control"
                                 value="{{ old('banner_link', $settings->banner_link) }}">
                         </div>
                         <div>
-                            <label class="form-label">Banner image</label>
+                            <label class="form-label">{{ __('admin.banner_image') }}</label>
                             <input type="file" name="banner_image" class="form-control" accept="image/*">
                             @if ($bannerImage)
-                                <div class="small text-muted mt-1">Current: {{ $settings->banner_image_path }}</div>
+                                <div class="small text-muted mt-1">{{ __('admin.current') }}: {{ $settings->banner_image_path }}</div>
                             @endif
                         </div>
                     </div>
@@ -180,11 +180,11 @@
 
                 <div class="col-lg-6">
                     <div class="card card-dark p-3 h-100">
-                        <h6 class="text-gold mb-3">Theme</h6>
+                        <h6 class="text-gold mb-3">{{ __('admin.theme') }}</h6>
                         <div class="mb-3">
-                            <label class="form-label">Mode</label>
+                            <label class="form-label">{{ __('admin.mode') }}</label>
                             <select name="theme_mode" class="form-select">
-                                @foreach (['auto' => 'Auto', 'light' => 'Light', 'dark' => 'Dark'] as $value => $label)
+                                @foreach (['auto' => __('admin.auto'), 'light' => __('admin.light'), 'dark' => __('admin.dark')] as $value => $label)
                                     <option value="{{ $value }}" {{ old('theme_mode', $settings->theme_mode) === $value ? 'selected' : '' }}>
                                         {{ $label }}
                                     </option>
@@ -193,11 +193,11 @@
                         </div>
                         <div class="row g-3">
                             @foreach ([
-                                'primary_color' => 'Primary color',
-                                'secondary_color' => 'Secondary color',
-                                'button_color' => 'Button color',
-                                'text_color' => 'Text color',
-                                'overlay_color' => 'Overlay color',
+                                'primary_color' => __('admin.primary_color'),
+                                'secondary_color' => __('admin.secondary_color'),
+                                'button_color' => __('admin.button_color'),
+                                'text_color' => __('admin.text_color'),
+                                'overlay_color' => __('admin.overlay_color'),
                             ] as $field => $label)
                                 <div class="col-sm-6">
                                     <label class="form-label">{{ $label }}</label>
@@ -208,12 +208,12 @@
                         </div>
                         <div class="row g-3 mt-1">
                             <div class="col-sm-6">
-                                <label class="form-label">Font family</label>
+                                <label class="form-label">{{ __('admin.font_family') }}</label>
                                 <input type="text" name="font_family" class="form-control"
                                     value="{{ old('font_family', $settings->font_family) }}">
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label">Font size</label>
+                                <label class="form-label">{{ __('admin.font_size') }}</label>
                                 <input type="number" name="font_size" class="form-control" min="8" max="40"
                                     value="{{ old('font_size', $settings->font_size) }}">
                             </div>
@@ -223,18 +223,18 @@
 
                 <div class="col-lg-6">
                     <div class="card card-dark p-3 h-100">
-                        <h6 class="text-gold mb-3">Opacity and Sections</h6>
+                        <h6 class="text-gold mb-3">{{ __('admin.opacity_and_sections') }}</h6>
                         <div class="form-check mb-3">
                             <input type="hidden" name="overlay_enabled" value="0">
                             <input class="form-check-input" type="checkbox" name="overlay_enabled" value="1"
                                 id="overlayEnabled" {{ old('overlay_enabled', $settings->overlay_enabled) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="overlayEnabled">Enable overlay</label>
+                            <label class="form-check-label" for="overlayEnabled">{{ __('admin.enable_overlay') }}</label>
                         </div>
                         <div class="row g-3">
                             @foreach ([
-                                'overlay_opacity' => 'Overlay opacity',
-                                'banner_opacity' => 'Banner opacity',
-                                'hero_image_opacity' => 'Hero image opacity',
+                                'overlay_opacity' => __('admin.overlay_opacity'),
+                                'banner_opacity' => __('admin.banner_opacity'),
+                                'hero_image_opacity' => __('admin.hero_image_opacity'),
                             ] as $field => $label)
                                 <div class="col-sm-4">
                                     <label class="form-label">{{ $label }}</label>
@@ -246,9 +246,9 @@
                         </div>
                         <hr>
                         @foreach ([
-                            'show_popular_products' => 'Show popular products',
-                            'show_categories' => 'Show categories',
-                            'show_coupons' => 'Show coupons',
+                            'show_popular_products' => __('admin.show_popular_products'),
+                            'show_categories' => __('admin.show_categories'),
+                            'show_coupons' => __('admin.show_coupons'),
                         ] as $field => $label)
                             <div class="form-check mb-2">
                                 <input type="hidden" name="{{ $field }}" value="0">
@@ -262,7 +262,7 @@
             </div>
 
             <div class="mt-4">
-                <button class="btn btn-gold px-4">Save App Settings</button>
+                <button class="btn btn-gold px-4">{{ __('admin.save_app_settings') }}</button>
             </div>
         </form>
     </div>

@@ -1,14 +1,3 @@
-    // ...existing code...
-    'product_show' => [
-        'standard_set_components' => 'Componentes e dimensões do conjunto padrão',
-        'component_name' => 'Componente',
-        'width_label' => 'Largura',
-        'length_label' => 'Comprimento',
-        'height_label' => 'Altura',
-        'material_label' => 'Material',
-        'no_components' => 'Nenhum componente padrão definido para este produto.',
-        'components_disclaimer' => 'Todas as dimensões se aplicam ao preço base. Tamanhos e layouts personalizados disponíveis sob consulta.',
-    ],
 <?php
 
 return [

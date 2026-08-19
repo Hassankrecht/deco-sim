@@ -4,24 +4,24 @@
 <div class="container py-4">
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
     <div>
-        <h5 class="mb-1 text-gold"><i class="bi bi-receipt me-2"></i>Orders Management</h5>
-        <p class="text-muted small mb-0">Manage, filter, and export orders efficiently</p>
+        <h5 class="mb-1 text-gold"><i class="bi bi-receipt me-2"></i>{{ __('admin.orders_management') }}</h5>
+        <p class="text-muted small mb-0">{{ __('admin.orders_management_subtitle') }}</p>
     </div>
     <form class="d-flex flex-wrap align-items-center gap-2" method="GET" action="{{ route('admin.orders.index') }}" id="dateFilterForm">
         <select name="range" class="form-select form-select-sm w-auto" id="rangeSelect" onchange="handleRangeChange()">
-            <option value="daily" {{ request('range')==='daily' ? 'selected' : '' }}>Today</option>
-            <option value="weekly" {{ request('range')==='weekly' ? 'selected' : '' }}>Last 7 days</option>
-            <option value="monthly" {{ request('range')==='monthly' ? 'selected' : '' }}>Last 30 days</option>
-            <option value="3m" {{ request('range')==='3m' ? 'selected' : '' }}>Last 3 months</option>
-            <option value="6m" {{ request('range')==='6m' ? 'selected' : '' }}>Last 6 months</option>
-            <option value="1y" {{ request('range')==='1y' ? 'selected' : '' }}>Last year</option>
-            <option value="custom" {{ request('range')==='custom' ? 'selected' : '' }}>Custom range</option>
+            <option value="daily" {{ request('range')==='daily' ? 'selected' : '' }}>{{ __('admin.today') }}</option>
+            <option value="weekly" {{ request('range')==='weekly' ? 'selected' : '' }}>{{ __('admin.last_7_days') }}</option>
+            <option value="monthly" {{ request('range')==='monthly' ? 'selected' : '' }}>{{ __('admin.last_30_days') }}</option>
+            <option value="3m" {{ request('range')==='3m' ? 'selected' : '' }}>{{ __('admin.last_3_months') }}</option>
+            <option value="6m" {{ request('range')==='6m' ? 'selected' : '' }}>{{ __('admin.last_6_months') }}</option>
+            <option value="1y" {{ request('range')==='1y' ? 'selected' : '' }}>{{ __('admin.last_year') }}</option>
+            <option value="custom" {{ request('range')==='custom' ? 'selected' : '' }}>{{ __('admin.custom_range') }}</option>
         </select>
         <div id="customRange" class="d-flex gap-2 {{ request('range')==='custom' ? '' : 'd-none' }}">
             <input type="date" name="from" id="fromDate" value="{{ request('from', $dateFrom) }}" class="form-control form-control-sm">
-            <span class="text-muted">to</span>
+            <span class="text-muted">{{ __('admin.to') }}</span>
             <input type="date" name="to" id="toDate" value="{{ request('to', $dateTo) }}" class="form-control form-control-sm">
-            <button type="submit" class="btn btn-gold btn-sm">Apply</button>
+            <button type="submit" class="btn btn-gold btn-sm">{{ __('admin.apply') }}</button>
         </div>
         <span class="badge bg-dark text-gold ms-auto">{{ $dateFrom }} → {{ $dateTo }}</span>
     </form>
@@ -29,7 +29,7 @@
 
 <div class="mb-3">
     <a class="btn btn-outline-gold btn-sm" href="{{ route('admin.orders.export', request()->query()) }}">
-        <i class="bi bi-download me-1"></i>Export CSV
+        <i class="bi bi-download me-1"></i>{{ __('admin.export_csv') }}
     </a>
 </div>
 
@@ -48,38 +48,38 @@
         <input type="hidden" name="f_platform" value="{{ $f['platform'] ?? '' }}">
         
         <div class="col-md-3">
-            <label class="form-label small mb-1">Search</label>
-            <input type="text" name="q" value="{{ $search }}" class="form-control form-control-sm" placeholder="ID/Email/Name/Coupon">
+            <label class="form-label small mb-1">{{ __('admin.search') }}</label>
+            <input type="text" name="q" value="{{ $search }}" class="form-control form-control-sm" placeholder="{{ __('admin.search_order_placeholder') }}">
         </div>
         <div class="col-md-3">
-            <label class="form-label small mb-1">Status</label>
+            <label class="form-label small mb-1">{{ __('admin.status') }}</label>
             <select name="status" class="form-select form-select-sm">
-                <option value="">All statuses</option>
+                <option value="">{{ __('admin.all_statuses') }}</option>
                 @foreach($statuses as $status)
                     <option value="{{ $status }}" {{ $filterStatus === $status ? 'selected' : '' }}>{{ $status }}</option>
                 @endforeach
             </select>
         </div>
         <div class="col-md-2">
-            <label class="form-label small mb-1">Coupon</label>
+            <label class="form-label small mb-1">{{ __('admin.coupon') }}</label>
             <select name="has_coupon" class="form-select form-select-sm">
-                <option value="">All orders</option>
-                <option value="with" {{ ($hasCoupon ?? '')==='with' ? 'selected' : '' }}>With coupon</option>
-                <option value="without" {{ ($hasCoupon ?? '')==='without' ? 'selected' : '' }}>Without coupon</option>
+                <option value="">{{ __('admin.all_orders') }}</option>
+                <option value="with" {{ ($hasCoupon ?? '')==='with' ? 'selected' : '' }}>{{ __('admin.with_coupon') }}</option>
+                <option value="without" {{ ($hasCoupon ?? '')==='without' ? 'selected' : '' }}>{{ __('admin.without_coupon') }}</option>
             </select>
         </div>
         <div class="col-md-2">
-            <label class="form-label small mb-1">Sort</label>
+            <label class="form-label small mb-1">{{ __('admin.sort') }}</label>
             <select name="sort" class="form-select form-select-sm">
-                <option value="date_desc" {{ ($sort ?? '')==='date_desc' ? 'selected' : '' }}>Newest</option>
-                <option value="date_asc" {{ ($sort ?? '')==='date_asc' ? 'selected' : '' }}>Oldest</option>
-                <option value="total_desc" {{ ($sort ?? '')==='total_desc' ? 'selected' : '' }}>Total high→low</option>
-                <option value="total_asc" {{ ($sort ?? '')==='total_asc' ? 'selected' : '' }}>Total low→high</option>
+                <option value="date_desc" {{ ($sort ?? '')==='date_desc' ? 'selected' : '' }}>{{ __('admin.newest') }}</option>
+                <option value="date_asc" {{ ($sort ?? '')==='date_asc' ? 'selected' : '' }}>{{ __('admin.oldest') }}</option>
+                <option value="total_desc" {{ ($sort ?? '')==='total_desc' ? 'selected' : '' }}>{{ __('admin.total_high_low') }}</option>
+                <option value="total_asc" {{ ($sort ?? '')==='total_asc' ? 'selected' : '' }}>{{ __('admin.total_low_high') }}</option>
             </select>
         </div>
         <div class="col-md-2 d-flex align-items-end gap-2">
-            <button class="btn btn-sm btn-gold"><i class="bi bi-search"></i> Apply</button>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            <button class="btn btn-sm btn-gold"><i class="bi bi-search"></i> {{ __('admin.apply') }}</button>
+            <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-outline-secondary">{{ __('admin.reset') }}</a>
         </div>
     </form>
     </div>
@@ -87,51 +87,51 @@
 
 @php
     $activeFilters = [];
-    if($search) $activeFilters[] = "Search: {$search}";
-    if($filterStatus) $activeFilters[] = "Status: {$filterStatus}";
-    if($hasCoupon === 'with') $activeFilters[] = "With Coupon";
-    if($hasCoupon === 'without') $activeFilters[] = "Without Coupon";
-    if(!empty($f['platform'])) $activeFilters[] = "Platform: {$f['platform']}";
-    if($dateFrom || $dateTo) $activeFilters[] = "Date Range";
+    if($search) $activeFilters[] = __('admin.search') . ': ' . $search;
+    if($filterStatus) $activeFilters[] = __('admin.status') . ': ' . $filterStatus;
+    if($hasCoupon === 'with') $activeFilters[] = __('admin.with_coupon');
+    if($hasCoupon === 'without') $activeFilters[] = __('admin.without_coupon');
+    if(!empty($f['platform'])) $activeFilters[] = __('admin.platform') . ': ' . $f['platform'];
+    if($dateFrom || $dateTo) $activeFilters[] = __('admin.date_range');
 @endphp
 @if(count($activeFilters) > 0)
 <div class="mb-3 d-flex flex-wrap gap-2">
     @foreach($activeFilters as $filter)
         <span class="badge bg-secondary">{{ $filter }}</span>
     @endforeach
-    <a href="{{ route('admin.orders.index') }}" class="badge bg-danger text-decoration-none">Clear all</a>
+    <a href="{{ route('admin.orders.index') }}" class="badge bg-danger text-decoration-none">{{ __('admin.clear_all') }}</a>
 </div>
 @endif
 
 <div class="row g-3 mb-3">
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
-            <div class="text-muted small">Orders</div>
+            <div class="text-muted small">{{ __('admin.orders') }}</div>
             <div class="fw-bold fs-5 text-gold">{{ $totalOrders }}</div>
         </div>
     </div>
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
-            <div class="text-muted small">Customers</div>
+            <div class="text-muted small">{{ __('admin.customers') }}</div>
             <div class="fw-bold fs-5 text-gold">{{ $customersCount }}</div>
         </div>
     </div>
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
-            <div class="text-muted small">With coupon</div>
+            <div class="text-muted small">{{ __('admin.with_coupon') }}</div>
             <div class="fw-bold fs-5 text-gold">{{ $withCouponCount }}</div>
-            <div class="text-muted small">Distinct coupons: {{ $distinctCoupons }}</div>
+            <div class="text-muted small">{{ __('admin.distinct_coupons') }}: {{ $distinctCoupons }}</div>
         </div>
     </div>
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
-            <div class="text-muted small">Discount total</div>
+            <div class="text-muted small">{{ __('admin.discount_total') }}</div>
             <div class="fw-bold fs-5 text-gold">{{ \App\Support\Currency::format($discountSum ?? 0) }}</div>
         </div>
     </div>
     <div class="col-md-2 col-6">
         <div class="card card-dark p-3 h-100">
-            <div class="text-muted small">Total amount</div>
+            <div class="text-muted small">{{ __('admin.total_amount') }}</div>
             <div class="fw-bold fs-5 text-gold">{{ \App\Support\Currency::format($totalAmount ?? 0) }}</div>
         </div>
     </div>
@@ -161,16 +161,16 @@
 <!-- Bulk Actions Bar -->
 <div id="bulkActionsBar" class="card card-dark p-3 mb-3 d-none">
     <div class="d-flex align-items-center gap-3">
-        <span class="text-gold"><strong id="selectedCount">0</strong> selected</span>
+        <span class="text-gold"><strong id="selectedCount">0</strong> {{ __('admin.selected') }}</span>
         <select id="bulkAction" class="form-select form-select-sm w-auto">
-            <option value="">Choose action...</option>
+            <option value="">{{ __('admin.bulk_action') }}</option>
             @foreach($statuses as $status)
-                <option value="status_{{ $status }}">Change status to: {{ $status }}</option>
+                <option value="status_{{ $status }}">{{ __('admin.status_change') }}: {{ $status }}</option>
             @endforeach
-            <option value="delete">Delete selected</option>
+            <option value="delete">{{ __('admin.delete_selected') }}</option>
         </select>
-        <button type="button" class="btn btn-sm btn-gold" onclick="executeBulkAction()">Apply</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="clearSelection()">Clear</button>
+        <button type="button" class="btn btn-sm btn-gold" onclick="executeBulkAction()">{{ __('admin.apply') }}</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="clearSelection()">{{ __('admin.clear') }}</button>
     </div>
 </div>
 
@@ -237,13 +237,13 @@
                         <input type="checkbox" id="selectAll" class="form-check-input">
                     </th>
                     <th style="width: 35px;"></th>
-                    <th style="width: 80px;">#</th>
-                    <th>Customer
+                    <th style="width: 80px;">{{ __('admin.hash') }}</th>
+                    <th>{{ __('admin.customer') }}
                         @if(!empty($facets['names']))
                         <div class="dropdown d-inline float-end">
                             <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown"><i class="bi bi-funnel"></i></button>
                             <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                <a href="#" class="dropdown-item facet-option" data-field="f_name" data-value="">{{ __('All') }}</a>
+                                <a href="#" class="dropdown-item facet-option" data-field="f_name" data-value="">{{ __('admin.all') }}</a>
                                 @foreach($facets['names'] as $item)
                                     @if($item->value)
                                         <a href="#" class="dropdown-item facet-option" data-field="f_name" data-value="{{ $item->value }}">{{ $item->value }} <span class="text-light">({{ $item->count }})</span></a>
@@ -253,21 +253,21 @@
                         </div>
                         @endif
                     </th>
-                    <th>Status</th>
-                    <th>Platform
+                    <th>{{ __('admin.status') }}</th>
+                    <th>{{ __('admin.platform') }}
                         @if(!empty($facets['platforms']))
                         <div class="dropdown d-inline float-end">
                             <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter platform"><i class="bi bi-funnel"></i></button>
                             <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                <a href="#" class="dropdown-item facet-option" data-field="f_platform" data-value="">{{ __('All') }}</a>
+                                <a href="#" class="dropdown-item facet-option" data-field="f_platform" data-value="">{{ __('admin.all') }}</a>
                                 @foreach($facets['platforms'] as $item)
                                     @php
                                         $platformValue = $item->value ?? 'unknown';
                                         $platformLabel = match($platformValue) {
-                                            'web' => 'Website',
-                                            'android' => 'Android app',
-                                            'ios' => 'iOS app',
-                                            default => 'Unknown',
+                                            'web' => __('admin.website'),
+                                            'android' => __('admin.android_app'),
+                                            'ios' => __('admin.ios_app'),
+                                            default => __('admin.unknown'),
                                         };
                                     @endphp
                                     <a href="#" class="dropdown-item facet-option" data-field="f_platform" data-value="{{ $platformValue }}">{{ $platformLabel }} <span class="text-light">({{ $item->count }})</span></a>
@@ -276,8 +276,8 @@
                         </div>
                         @endif
                     </th>
-                    <th>Total</th>
-                    <th>Created</th>
+                    <th>{{ __('admin.total') }}</th>
+                    <th>{{ __('admin.created') }}</th>
                     <th style="width: 50px;"></th>
                 </tr>
             </thead>
@@ -324,7 +324,7 @@
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ route('admin.orders.show', $order) }}"><i class="bi bi-eye me-2"></i>View</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.orders.show', $order) }}"><i class="bi bi-eye me-2"></i>{{ __('admin.view') }}</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     @foreach($statuses as $status)
                                         <li>
@@ -332,16 +332,16 @@
                                                 @csrf @method('PUT')
                                                 <input type="hidden" name="status" value="{{ $status }}">
                                                 <button type="submit" class="dropdown-item {{ $order->status === $status ? 'active' : '' }}">
-                                                    Status: {{ $status }}
+                                                    {{ __('admin.status') }}: {{ $status }}
                                                 </button>
                                             </form>
                                         </li>
                                     @endforeach
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('Delete order #{{ $order->id }}?');">
+                                        <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('{{ __('admin.delete_order_confirm') }}');">
                                             @csrf @method('DELETE')
-                                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i>Delete</button>
+                                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i>{{ __('admin.delete') }}</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -354,25 +354,25 @@
                             <div class="p-3 bg-dark rounded">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <h6 class="text-gold mb-2"><i class="bi bi-person-fill me-2"></i>Customer Details</h6>
+                                        <h6 class="text-gold mb-2"><i class="bi bi-person-fill me-2"></i>{{ __('admin.customer_details') }}</h6>
                                         <dl class="row mb-0 small">
-                                            <dt class="col-sm-4">Email:</dt>
+                                            <dt class="col-sm-4">{{ __('admin.email') }}:</dt>
                                             <dd class="col-sm-8">{{ $order->email }}</dd>
                                             
-                                            <dt class="col-sm-4">Phone:</dt>
+                                            <dt class="col-sm-4">{{ __('admin.phone') }}:</dt>
                                             <dd class="col-sm-8">{{ $order->phone_number ?? '—' }}</dd>
                                         </dl>
                                     </div>
                                     <div class="col-md-6">
-                                        <h6 class="text-gold mb-2"><i class="bi bi-cash-coin me-2"></i>Payment Details</h6>
+                                        <h6 class="text-gold mb-2"><i class="bi bi-cash-coin me-2"></i>{{ __('admin.payment_details') }}</h6>
                                         <dl class="row mb-0 small">
-                                            <dt class="col-sm-4">Total:</dt>
+                                            <dt class="col-sm-4">{{ __('admin.total') }}:</dt>
                                             <dd class="col-sm-8"><strong class="text-success">{{ \App\Support\Currency::format($order->total_price) }}</strong></dd>
                                             
-                                            <dt class="col-sm-4">Discount:</dt>
+                                            <dt class="col-sm-4">{{ __('admin.discount') }}:</dt>
                                             <dd class="col-sm-8"><span class="text-danger">{{ \App\Support\Currency::format($order->discount_amount ?? 0) }}</span></dd>
                                             
-                                            <dt class="col-sm-4">Coupon:</dt>
+                                            <dt class="col-sm-4">{{ __('admin.coupon') }}:</dt>
                                             <dd class="col-sm-8">{{ $order->coupon?->code ?? '—' }}</dd>
                                         </dl>
                                     </div>
@@ -382,7 +382,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9" class="text-center text-muted py-4">No orders found.</td>
+                        <td colspan="9" class="text-center text-muted py-4">{{ __('admin.no_orders_found') }}</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -498,18 +498,19 @@ function handleRangeChange() {
 function executeBulkAction() {
     const action = document.getElementById('bulkAction').value;
     if (!action) {
-        alert('Please select an action');
+        alert('{{ __('admin.please_select_action') }}');
         return;
     }
 
     const selectedIds = Array.from(document.querySelectorAll('.order-checkbox:checked')).map(cb => cb.value);
     if (selectedIds.length === 0) {
-        alert('No orders selected');
+        alert('{{ __('admin.no_orders_selected') }}');
         return;
     }
 
     if (action === 'delete') {
-        if (!confirm(`Delete ${selectedIds.length} order(s)?`)) return;
+        let deleteMsg = '{{ __('admin.delete_n_orders') }}'.replace(':count', selectedIds.length);
+        if (!confirm(deleteMsg)) return;
         
         const form = document.createElement('form');
         form.method = 'POST';
@@ -531,7 +532,8 @@ function executeBulkAction() {
         form.submit();
     } else if (action.startsWith('status_')) {
         const status = action.replace('status_', '');
-        if (!confirm(`Change status of ${selectedIds.length} order(s) to "${status}"?`)) return;
+        let statusMsg = '{{ __('admin.change_status_n_orders_to') }}'.replace(':count', selectedIds.length).replace(':status', status);
+        if (!confirm(statusMsg)) return;
         
         const form = document.createElement('form');
         form.method = 'POST';

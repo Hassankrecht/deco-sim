@@ -4,24 +4,24 @@
 <div class="container py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div>
-            <h5 class="mb-1 text-gold"><i class="bi bi-table me-2"></i>Advanced Orders Report</h5>
-            <p class="text-muted small mb-0">Comprehensive orders analytics with visual insights</p>
+            <h5 class="mb-1 text-gold"><i class="bi bi-table me-2"></i>{{ __('admin.advanced_orders_report') }}</h5>
+            <p class="text-muted small mb-0">{{ __('admin.orders_report_subtitle') }}</p>
         </div>
         <form class="d-flex flex-wrap align-items-center gap-2" method="GET" action="{{ route('admin.reports.orders.index') }}" id="dateFilterForm">
             <select name="range" class="form-select form-select-sm w-auto" id="rangeSelect" onchange="handleRangeChange()">
-                <option value="daily" {{ request('range')==='daily' ? 'selected' : '' }}>Today</option>
-                <option value="weekly" {{ request('range')==='weekly' ? 'selected' : '' }}>Last 7 days</option>
-                <option value="monthly" {{ request('range')==='monthly' ? 'selected' : '' }}>Last 30 days</option>
-                <option value="3m" {{ request('range')==='3m' ? 'selected' : '' }}>Last 3 months</option>
-                <option value="6m" {{ request('range')==='6m' ? 'selected' : '' }}>Last 6 months</option>
-                <option value="1y" {{ request('range')==='1y' ? 'selected' : '' }}>Last year</option>
-                <option value="custom" {{ request('range')==='custom' ? 'selected' : '' }}>Custom range</option>
+                <option value="daily" {{ request('range')==='daily' ? 'selected' : '' }}>{{ __('admin.today') }}</option>
+                <option value="weekly" {{ request('range')==='weekly' ? 'selected' : '' }}>{{ __('admin.last_7_days') }}</option>
+                <option value="monthly" {{ request('range')==='monthly' ? 'selected' : '' }}>{{ __('admin.last_30_days') }}</option>
+                <option value="3m" {{ request('range')==='3m' ? 'selected' : '' }}>{{ __('admin.last_3_months') }}</option>
+                <option value="6m" {{ request('range')==='6m' ? 'selected' : '' }}>{{ __('admin.last_6_months') }}</option>
+                <option value="1y" {{ request('range')==='1y' ? 'selected' : '' }}>{{ __('admin.last_year') }}</option>
+                <option value="custom" {{ request('range')==='custom' ? 'selected' : '' }}>{{ __('admin.custom_range') }}</option>
             </select>
             <div id="customRange" class="d-flex gap-2 {{ request('range')==='custom' ? '' : 'd-none' }}">
                 <input type="date" name="from" id="fromDate" value="{{ request('from', $from) }}" class="form-control form-control-sm">
-                <span class="text-muted">to</span>
+                <span class="text-muted">{{ __('admin.to') }}</span>
                 <input type="date" name="to" id="toDate" value="{{ request('to', $to) }}" class="form-control form-control-sm">
-                <button type="submit" class="btn btn-gold btn-sm">Apply</button>
+                <button type="submit" class="btn btn-gold btn-sm">{{ __('admin.apply') }}</button>
             </div>
             <span class="badge bg-dark text-gold ms-auto">{{ $from }} → {{ $to }}</span>
         </form>
@@ -29,7 +29,7 @@
 
     <div class="mb-3">
         <a class="btn btn-outline-gold btn-sm" href="{{ route('admin.reports.orders.export', request()->query()) }}">
-            <i class="bi bi-download me-1"></i>Export CSV
+            <i class="bi bi-download me-1"></i>{{ __('admin.export_csv') }}
         </a>
     </div>
 
@@ -47,9 +47,9 @@
         
         <div class="row g-2 mb-3">
             <div class="col-md-3">
-                <label class="form-label small mb-1">Status</label>
+                <label class="form-label small mb-1">{{ __('admin.status') }}</label>
                 <select name="status" class="form-select form-select-sm">
-                    <option value="">All statuses</option>
+                    <option value="">{{ __('admin.all_statuses') }}</option>
                     @foreach($statuses as $st)
                         <option value="{{ $st }}" {{ request('status')===$st ? 'selected' : '' }}>{{ $st }}</option>
                     @endforeach
@@ -57,44 +57,44 @@
             </div>
 
             <div class="col-md-3">
-                <label class="form-label small mb-1">Platform</label>
+                <label class="form-label small mb-1">{{ __('admin.platform') }}</label>
                 <select name="source_platform" class="form-select form-select-sm">
-                    <option value="">All platforms</option>
-                    <option value="web" {{ request('source_platform')==='web'?'selected':'' }}>Website</option>
-                    <option value="android" {{ request('source_platform')==='android'?'selected':'' }}>Android app</option>
-                    <option value="ios" {{ request('source_platform')==='ios'?'selected':'' }}>iOS app</option>
-                    <option value="unknown" {{ request('source_platform')==='unknown'?'selected':'' }}>Unknown</option>
+                    <option value="">{{ __('admin.all_platforms') }}</option>
+                    <option value="web" {{ request('source_platform')==='web'?'selected':'' }}>{{ __('admin.website') }}</option>
+                    <option value="android" {{ request('source_platform')==='android'?'selected':'' }}>{{ __('admin.android_app') }}</option>
+                    <option value="ios" {{ request('source_platform')==='ios'?'selected':'' }}>{{ __('admin.ios_app') }}</option>
+                    <option value="unknown" {{ request('source_platform')==='unknown'?'selected':'' }}>{{ __('admin.unknown') }}</option>
                 </select>
             </div>
 
 
             <div class="col-md-3">
-                <label class="form-label small mb-1">Discount</label>
+                <label class="form-label small mb-1">{{ __('admin.discount') }}</label>
                 <select name="discount_filter" class="form-select form-select-sm">
-                    <option value="">All</option>
-                    <option value="with" {{ request('discount_filter')==='with'?'selected':'' }}>With discount</option>
-                    <option value="without" {{ request('discount_filter')==='without'?'selected':'' }}>Without discount</option>
+                    <option value="">{{ __('admin.all') }}</option>
+                    <option value="with" {{ request('discount_filter')==='with'?'selected':'' }}>{{ __('admin.with_discount') }}</option>
+                    <option value="without" {{ request('discount_filter')==='without'?'selected':'' }}>{{ __('admin.without_discount') }}</option>
                 </select>
             </div>
 
             <div class="col-md-3">
-                <label class="form-label small mb-1">Refund</label>
+                <label class="form-label small mb-1">{{ __('admin.refund') }}</label>
                 <select name="refund_filter" class="form-select form-select-sm">
-                    <option value="">All</option>
-                    <option value="yes" {{ request('refund_filter')==='yes'?'selected':'' }}>Yes</option>
-                    <option value="no" {{ request('refund_filter')==='no'?'selected':'' }}>No</option>
+                    <option value="">{{ __('admin.all') }}</option>
+                    <option value="yes" {{ request('refund_filter')==='yes'?'selected':'' }}>{{ __('admin.yes') }}</option>
+                    <option value="no" {{ request('refund_filter')==='no'?'selected':'' }}>{{ __('admin.no') }}</option>
                 </select>
             </div>
 
             <div class="col-md-3">
-                <label class="form-label small mb-1">Coupon Code</label>
+                <label class="form-label small mb-1">{{ __('admin.coupon_code') }}</label>
                 <input type="text" name="coupon_code" class="form-control form-control-sm" value="{{ request('coupon_code') }}" placeholder="Search coupon">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label small mb-1">Customer Email</label>
+                <label class="form-label small mb-1">{{ __('admin.customer_email') }}</label>
                 <select name="user_search" class="form-select form-select-sm">
-                    <option value="">All customers</option>
+                    <option value="">{{ __('admin.all_customers') }}</option>
                     @if(!empty($facets['emails']))
                         @foreach($facets['emails'] as $item)
                             @php $label = ($item->value ?? '—'); @endphp
@@ -105,10 +105,10 @@
             </div>
 
             <div class="col-md-2 d-flex align-items-end">
-                <button class="btn btn-gold w-100" type="submit">Apply</button>
+                <button class="btn btn-gold w-100" type="submit">{{ __('admin.apply') }}</button>
             </div>
             <div class="col-md-2 d-flex align-items-end">
-                <a href="{{ route('admin.reports.orders.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
+                <a href="{{ route('admin.reports.orders.index') }}" class="btn btn-outline-secondary w-100">{{ __('admin.reset') }}</a>
             </div>
         </div>
     </form>
@@ -119,7 +119,7 @@
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-start">
-                    <div class="text-muted small">Total Orders</div>
+                    <div class="text-muted small">{{ __('admin.total_orders') }}</div>
                     @if(!is_null($growthOrders))
                         <span class="badge {{ $growthOrders >=0 ? 'bg-success' : 'bg-danger' }}">
                             {{ $growthOrders >=0 ? '↑' : '↓' }} {{ number_format(abs($growthOrders),1) }}%
@@ -127,13 +127,13 @@
                     @endif
                 </div>
                 <h4 class="mb-0 text-gold">{{ $summary['orders'] ?? 0 }}</h4>
-                <small class="text-muted">Total orders</small>
+                <small class="text-muted">{{ __('admin.total_orders') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-start">
-                    <div class="text-muted small">Net Revenue</div>
+                    <div class="text-muted small">{{ __('admin.net_revenue') }}</div>
                     @if(!is_null($growthRevenue))
                         <span class="badge {{ $growthRevenue >=0 ? 'bg-success' : 'bg-danger' }}">
                             {{ $growthRevenue >=0 ? '↑' : '↓' }} {{ number_format(abs($growthRevenue),1) }}%
@@ -141,21 +141,21 @@
                     @endif
                 </div>
                 <h4 class="mb-0 text-gold">${{ number_format($summary['net'] ?? 0,2) }}</h4>
-                <small class="text-muted">Total order revenue</small>
+                <small class="text-muted">{{ __('admin.total_order_revenue') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">ADO</div>
+                <div class="text-muted small">{{ __('admin.ado') }}</div>
                 <h4 class="mb-0 text-gold">{{ number_format($avgDailyOrders ?? 0,1) }}</h4>
-                <small class="text-muted">Average daily orders</small>
+                <small class="text-muted">{{ __('admin.average_daily_orders') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Total Discounts</div>
+                <div class="text-muted small">{{ __('admin.total_discounts') }}</div>
                 <h4 class="mb-0 text-gold">${{ number_format($summary['discounts'] ?? 0,2) }}</h4>
-                <small class="text-muted">Coupon savings</small>
+                <small class="text-muted">{{ __('admin.coupon_savings') }}</small>
             </div>
         </div>
     </div>
@@ -164,30 +164,30 @@
     <div class="row g-3 mb-3">
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Registered Users</div>
+                <div class="text-muted small">{{ __('admin.registered_users') }}</div>
                 <h5 class="mb-0 text-gold">{{ $summary['registered'] ?? 0 }}</h5>
-                <small class="text-muted">With account</small>
+                <small class="text-muted">{{ __('admin.with_account') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Guest Users</div>
+                <div class="text-muted small">{{ __('admin.guest_users') }}</div>
                 <h5 class="mb-0 text-gold">{{ $summary['guests'] ?? 0 }}</h5>
-                <small class="text-muted">Without account</small>
+                <small class="text-muted">{{ __('admin.without_account') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">With Coupon</div>
+                <div class="text-muted small">{{ __('admin.with_coupon') }}</div>
                 <h5 class="mb-0 text-gold">{{ $summary['with_coupon'] ?? 0 }}</h5>
-                <small class="text-muted">{{ number_format($couponUsageRate ?? 0,1) }}% of orders</small>
+                <small class="text-muted">{{ number_format($couponUsageRate ?? 0,1) }}% {{ __('admin.of_orders') }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Without Coupon</div>
+                <div class="text-muted small">{{ __('admin.without_coupon') }}</div>
                 <h5 class="mb-0 text-gold">{{ $summary['without_coupon'] ?? 0 }}</h5>
-                <small class="text-muted">{{ number_format(100 - ($couponUsageRate ?? 0),1) }}% of orders</small>
+                <small class="text-muted">{{ number_format(100 - ($couponUsageRate ?? 0),1) }}% {{ __('admin.of_orders') }}</small>
             </div>
         </div>
     </div>
@@ -202,30 +202,30 @@
         @endphp
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Website Orders</div>
+                <div class="text-muted small">{{ __('admin.website_orders') }}</div>
                 <h5 class="mb-0 text-gold">{{ $webPlatform->orders ?? 0 }}</h5>
                 <small class="text-muted">${{ number_format($webPlatform->revenue ?? 0,2) }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Android Orders</div>
+                <div class="text-muted small">{{ __('admin.android_orders') }}</div>
                 <h5 class="mb-0 text-gold">{{ $androidPlatform->orders ?? 0 }}</h5>
                 <small class="text-muted">${{ number_format($androidPlatform->revenue ?? 0,2) }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">iOS Orders</div>
+                <div class="text-muted small">{{ __('admin.ios_orders') }}</div>
                 <h5 class="mb-0 text-gold">{{ $iosPlatform->orders ?? 0 }}</h5>
                 <small class="text-muted">${{ number_format($iosPlatform->revenue ?? 0,2) }}</small>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="card card-dark p-3 h-100">
-                <div class="text-muted small">Unknown Source</div>
+                <div class="text-muted small">{{ __('admin.unknown_source') }}</div>
                 <h5 class="mb-0 text-gold">{{ $unknownPlatform->orders ?? 0 }}</h5>
-                <small class="text-muted">Old orders before tracking</small>
+                <small class="text-muted">{{ __('admin.old_orders_before_tracking') }}</small>
             </div>
         </div>
     </div>
@@ -234,7 +234,7 @@
     <div class="row g-3 mb-3">
         <div class="col-12">
             <div class="card card-dark p-3">
-                <h6 class="text-gold mb-3"><i class="bi bi-bar-chart me-2"></i>Orders by Status</h6>
+                <h6 class="text-gold mb-3"><i class="bi bi-bar-chart me-2"></i>{{ __('admin.orders_by_status') }}</h6>
                 <div class="row g-2">
                     @php
                         $statusCounts = [
@@ -256,31 +256,31 @@
                     <div class="col-md-2.4 col-4">
                         <div class="text-center">
                             <h6 class="text-warning mb-1">{{ $statusCounts['pending'] }}</h6>
-                            <small class="text-muted">Pending</small>
+                            <small class="text-muted">{{ __('admin.pending') }}</small>
                         </div>
                     </div>
                     <div class="col-md-2.4 col-4">
                         <div class="text-center">
                             <h6 class="text-success mb-1">{{ $statusCounts['paid'] }}</h6>
-                            <small class="text-muted">Paid</small>
+                            <small class="text-muted">{{ __('admin.paid') }}</small>
                         </div>
                     </div>
                     <div class="col-md-2.4 col-4">
                         <div class="text-center">
                             <h6 class="text-info mb-1">{{ $statusCounts['shipped'] }}</h6>
-                            <small class="text-muted">Shipped</small>
+                            <small class="text-muted">{{ __('admin.shipped') }}</small>
                         </div>
                     </div>
                     <div class="col-md-2.4 col-4">
                         <div class="text-center">
                             <h6 class="text-danger mb-1">{{ $statusCounts['cancelled'] }}</h6>
-                            <small class="text-muted">Cancelled</small>
+                            <small class="text-muted">{{ __('admin.cancelled') }}</small>
                         </div>
                     </div>
                     <div class="col-md-2.4 col-4">
                         <div class="text-center">
                             <h6 class="text-secondary mb-1">{{ $statusCounts['other'] }}</h6>
-                            <small class="text-muted">Other</small>
+                            <small class="text-muted">{{ __('admin.other') }}</small>
                         </div>
                     </div>
                 </div>
@@ -292,8 +292,8 @@
         <div class="col-md-6">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="text-gold mb-0"><i class="bi bi-bar-chart-line me-2"></i>Orders Trend</h6>
-                    <small class="text-muted">Daily breakdown</small>
+                    <h6 class="text-gold mb-0"><i class="bi bi-bar-chart-line me-2"></i>{{ __('admin.orders_trend') }}</h6>
+                    <small class="text-muted">{{ __('admin.daily_breakdown') }}</small>
                 </div>
                 <canvas id="ordersChart" height="180"></canvas>
             </div>
@@ -301,8 +301,8 @@
         <div class="col-md-6">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="text-gold mb-0"><i class="bi bi-cash-stack me-2"></i>Revenue Trend</h6>
-                    <small class="text-muted">Daily revenue</small>
+                    <h6 class="text-gold mb-0"><i class="bi bi-cash-stack me-2"></i>{{ __('admin.revenue_trend') }}</h6>
+                    <small class="text-muted">{{ __('admin.daily_revenue') }}</small>
                 </div>
                 <canvas id="revenueChart" height="180"></canvas>
             </div>
@@ -313,8 +313,8 @@
         <div class="col-md-6">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="text-gold mb-0"><i class="bi bi-person-check me-2"></i>Orders by Account Type</h6>
-                    <small class="text-muted">Registered vs Guest</small>
+                    <h6 class="text-gold mb-0"><i class="bi bi-person-check me-2"></i>{{ __('admin.orders_by_account_type') }}</h6>
+                    <small class="text-muted">{{ __('admin.registered_vs_guest') }}</small>
                 </div>
                 <canvas id="accountChart" height="180"></canvas>
             </div>
@@ -322,8 +322,8 @@
         <div class="col-md-3">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="text-gold mb-0"><i class="bi bi-pie-chart me-2"></i>Orders by Status</h6>
-                    <small class="text-muted">Distribution</small>
+                    <h6 class="text-gold mb-0"><i class="bi bi-pie-chart me-2"></i>{{ __('admin.orders_by_status') }}</h6>
+                    <small class="text-muted">{{ __('admin.distribution') }}</small>
                 </div>
                 <canvas id="statusChart" height="180"></canvas>
             </div>
@@ -331,8 +331,8 @@
         <div class="col-md-3">
             <div class="card card-dark p-3 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="text-gold mb-0"><i class="bi bi-phone me-2"></i>Orders by Platform</h6>
-                    <small class="text-muted">Web vs app</small>
+                    <h6 class="text-gold mb-0"><i class="bi bi-phone me-2"></i>{{ __('admin.orders_by_platform') }}</h6>
+                    <small class="text-muted">{{ __('admin.web_vs_app') }}</small>
                 </div>
                 <canvas id="platformChart" height="180"></canvas>
             </div>
@@ -343,13 +343,13 @@
 
     @php
         $badges = [
-            'status' => 'Status',
-            'source_platform' => 'Platform',
-            'range' => 'Range',
-            'discount_filter' => 'Discount',
-            'refund_filter' => 'Refund',
-            'coupon_code' => 'Coupon',
-            'user_search' => 'Customer',
+            'status' => __('admin.status'),
+            'source_platform' => __('admin.platform'),
+            'range' => __('admin.range'),
+            'discount_filter' => __('admin.discount'),
+            'refund_filter' => __('admin.refund'),
+            'coupon_code' => __('admin.coupon'),
+            'user_search' => __('admin.customer'),
         ];
     @endphp
     <div class="mb-2 d-flex flex-wrap gap-2">
@@ -359,7 +359,7 @@
             @endif
         @endforeach
         @if(collect($badges)->keys()->some(fn($f)=>request($f)))
-            <a href="{{ route('admin.reports.orders.index') }}" class="badge bg-danger text-decoration-none">Reset filters</a>
+            <a href="{{ route('admin.reports.orders.index') }}" class="badge bg-danger text-decoration-none">{{ __('admin.reset_filters') }}</a>
         @endif
     </div>
 
@@ -485,12 +485,12 @@
                 <thead>
                     <tr class="table-dark">
                         <th style="width: 35px;"></th>
-                        <th style="width: 80px;">ID
+                        <th style="width: 80px;">{{ __('admin.id') }}
                             @if(!empty($facets['ids']))
                             <div class="dropdown d-inline float-end">
-                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter ID"><i class="bi bi-funnel"></i></button>
+                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="{{ __('admin.filter_id') }}"><i class="bi bi-funnel"></i></button>
                                 <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                    <a href="#" class="dropdown-item facet-option" data-field="order_id" data-value="">{{ __('All') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
+                                    <a href="#" class="dropdown-item facet-option" data-field="order_id" data-value="">{{ __('admin.all') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
                                     @foreach($facets['ids'] as $item)
                                         <a href="#" class="dropdown-item facet-option" data-field="order_id" data-value="{{ $item->value }}">{{ $item->value }} <span class="text-light">({{ $item->count }})</span></a>
                                     @endforeach
@@ -498,12 +498,12 @@
                             </div>
                             @endif
                         </th>
-                        <th>User
+                        <th>{{ __('admin.customer') }}
                             @if(!empty($facets['user']))
                             <div class="dropdown d-inline float-end">
-                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter user"><i class="bi bi-funnel"></i></button>
+                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="{{ __('admin.filter_customer') }}"><i class="bi bi-funnel"></i></button>
                                 <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                    <a href="#" class="dropdown-item facet-option" data-field="user_search" data-value="">{{ __('All') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
+                                    <a href="#" class="dropdown-item facet-option" data-field="user_search" data-value="">{{ __('admin.all') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
                                     @foreach($facets['user'] as $item)
                                         @php $label = ($item->name ?? '—'); @endphp
                                         <a href="#" class="dropdown-item facet-option" data-field="user_search" data-value="{{ $item->name }}">{{ $label }} <span class="text-light">({{ $item->count }})</span></a>
@@ -512,12 +512,12 @@
                             </div>
                             @endif
                         </th>
-                        <th>Status
+                        <th>{{ __('admin.status') }}
                             @if(!empty($facets['status']))
                             <div class="dropdown d-inline float-end">
-                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter status"><i class="bi bi-funnel"></i></button>
+                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="{{ __('admin.filter_status') }}"><i class="bi bi-funnel"></i></button>
                                 <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                    <a href="#" class="dropdown-item facet-option" data-field="status" data-value="">{{ __('All') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
+                                    <a href="#" class="dropdown-item facet-option" data-field="status" data-value="">{{ __('admin.all') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
                                     @foreach($facets['status'] as $item)
                                         <a href="#" class="dropdown-item facet-option" data-field="status" data-value="{{ $item->value }}">{{ $item->value ?? '—' }} <span class="text-light">({{ $item->count }})</span></a>
                                     @endforeach
@@ -525,20 +525,20 @@
                             </div>
                             @endif
                         </th>
-                        <th>Platform
+                        <th>{{ __('admin.platform') }}
                             @if(!empty($facets['platforms']))
                             <div class="dropdown d-inline float-end">
-                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter platform"><i class="bi bi-funnel"></i></button>
+                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="{{ __('admin.filter_platform') }}"><i class="bi bi-funnel"></i></button>
                                 <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                    <a href="#" class="dropdown-item facet-option" data-field="source_platform" data-value="">{{ __('All') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
+                                    <a href="#" class="dropdown-item facet-option" data-field="source_platform" data-value="">{{ __('admin.all') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
                                     @foreach($facets['platforms'] as $item)
                                         @php
                                             $platformValue = $item->platform ?? 'unknown';
                                             $platformLabel = match($platformValue) {
-                                                'web' => 'Website',
-                                                'android' => 'Android app',
-                                                'ios' => 'iOS app',
-                                                default => 'Unknown',
+                                                'web' => __('admin.website'),
+                                                'android' => __('admin.android_app'),
+                                                'ios' => __('admin.ios_app'),
+                                                default => __('admin.unknown'),
                                             };
                                         @endphp
                                         <a href="#" class="dropdown-item facet-option" data-field="source_platform" data-value="{{ $platformValue }}">{{ $platformLabel }} <span class="text-light">({{ $item->orders }})</span></a>
@@ -547,12 +547,12 @@
                             </div>
                             @endif
                         </th>
-                        <th>Total
+                        <th>{{ __('admin.total') }}
                             @if(!empty($facets['totals']))
                             <div class="dropdown d-inline float-end">
-                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="Filter net total"><i class="bi bi-funnel"></i></button>
+                                <button class="btn btn-link btn-sm p-0 ms-1" style="color:#c7954b" type="button" data-bs-toggle="dropdown" aria-label="{{ __('admin.filter_total') }}"><i class="bi bi-funnel"></i></button>
                                 <div class="dropdown-menu dropdown-menu-dark p-2 small" style="max-height:300px;overflow:auto;">
-                                    <a href="#" class="dropdown-item facet-option" data-field="min_total" data-value="">{{ __('All') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
+                                    <a href="#" class="dropdown-item facet-option" data-field="min_total" data-value="">{{ __('admin.all') }} <span class="text-light">({{ $facets['total'] ?? 0 }})</span></a>
                                     @foreach($facets['totals'] as $item)
                                         <a href="#" class="dropdown-item facet-option" data-field="min_total" data-value="{{ $item->value }}">{{ number_format($item->value,2) }} <span class="text-light">({{ $item->count }})</span></a>
                                     @endforeach
@@ -560,7 +560,7 @@
                             </div>
                             @endif
                         </th>
-                        <th>Created at</th>
+                        <th>{{ __('admin.created_at') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -599,7 +599,7 @@
                             <td><strong>#{{ $o->id }}</strong></td>
                             <td>{{ $o->user_name ?? $o->guest_name ?? '—' }}</td>
                             <td><span class="badge bg-{{ $statusColor }}">{{ $o->status }}</span></td>
-                            <td><span class="badge bg-dark text-gold">{{ $o->source_platform ?: 'unknown' }}</span></td>
+                            <td><span class="badge bg-dark text-gold">{{ $o->source_platform ?: __('admin.unknown') }}</span></td>
                             <td><strong>${{ number_format($o->total_price ?? 0,2) }}</strong></td>
                             <td>{{ \Carbon\Carbon::parse($o->created_at)->format('Y-m-d H:i') }}</td>
                         </tr>
@@ -609,44 +609,44 @@
                                 <div class="p-3 bg-dark rounded">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <h6 class="text-gold mb-2"><i class="bi bi-person-fill me-2"></i>Customer Information</h6>
+                                            <h6 class="text-gold mb-2"><i class="bi bi-person-fill me-2"></i>{{ __('admin.customer_information') }}</h6>
                                             <dl class="row mb-0 small">
-                                                <dt class="col-sm-4">User ID:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.user_id') }}:</dt>
                                                 <dd class="col-sm-8">{{ $o->user_id ?? '—' }}</dd>
                                                 
-                                                <dt class="col-sm-4">Name:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.name') }}:</dt>
                                                 <dd class="col-sm-8">{{ $o->user_name ?? $o->guest_name ?? '—' }}</dd>
                                                 
-                                                <dt class="col-sm-4">Email:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.email') }}:</dt>
                                                 <dd class="col-sm-8">{{ $o->user_email ?? $o->guest_email ?? '—' }}</dd>
                                                 
-                                                <dt class="col-sm-4">Type:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.type') }}:</dt>
                                                 <dd class="col-sm-8">
                                                     @if($o->user_id)
-                                                        <span class="badge bg-success">Registered</span>
+                                                        <span class="badge bg-success">{{ __('admin.registered') }}</span>
                                                     @else
-                                                        <span class="badge bg-secondary">Guest</span>
+                                                        <span class="badge bg-secondary">{{ __('admin.guest') }}</span>
                                                     @endif
                                                 </dd>
                                             </dl>
                                         </div>
                                         <div class="col-md-6">
-                                            <h6 class="text-gold mb-2"><i class="bi bi-cash-coin me-2"></i>Financial Details</h6>
+                                            <h6 class="text-gold mb-2"><i class="bi bi-cash-coin me-2"></i>{{ __('admin.financial_details') }}</h6>
                                             <dl class="row mb-0 small">
-                                                <dt class="col-sm-4">Subtotal:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.subtotal') }}:</dt>
                                                 <dd class="col-sm-8">${{ number_format($subtotal,2) }}</dd>
                                                 
-                                                <dt class="col-sm-4">Discount:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.discount') }}:</dt>
                                                 <dd class="col-sm-8">
                                                     <span class="text-danger">-${{ number_format($o->discount_amount ?? 0,2) }}</span>
                                                 </dd>
                                                 
-                                                <dt class="col-sm-4">Net Total:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.net_total') }}:</dt>
                                                 <dd class="col-sm-8">
                                                     <strong class="text-success">${{ number_format($o->total_price ?? 0,2) }}</strong>
                                                 </dd>
                                                 
-                                                <dt class="col-sm-4">Refund:</dt>
+                                                <dt class="col-sm-4">{{ __('admin.refund') }}:</dt>
                                                 <dd class="col-sm-8">
                                                     <span class="text-warning">${{ number_format($o->refund_amount ?? 0,2) }}</span>
                                                 </dd>
@@ -655,18 +655,18 @@
                                     </div>
                                     <div class="row g-3 mt-2">
                                         <div class="col-md-12">
-                                            <h6 class="text-gold mb-2"><i class="bi bi-bookmark-fill me-2"></i>Additional Information</h6>
+                                            <h6 class="text-gold mb-2"><i class="bi bi-bookmark-fill me-2"></i>{{ __('admin.additional_information') }}</h6>
                                             <dl class="row mb-0 small">
-                                                <dt class="col-sm-2">Coupon Code:</dt>
+                                                <dt class="col-sm-2">{{ __('admin.coupon_code') }}:</dt>
                                                 <dd class="col-sm-10">{{ $o->coupon_code ?? '—' }}</dd>
                                                 
-                                                <dt class="col-sm-2">Status:</dt>
+                                                <dt class="col-sm-2">{{ __('admin.status') }}:</dt>
                                                 <dd class="col-sm-10"><span class="badge bg-{{ $statusColor }}">{{ $o->status }}</span></dd>
                                                 
-                                                <dt class="col-sm-2">Platform:</dt>
-                                                <dd class="col-sm-10"><span class="badge bg-dark text-gold">{{ $o->source_platform ?: 'unknown' }}</span></dd>
+                                                <dt class="col-sm-2">{{ __('admin.platform') }}:</dt>
+                                                <dd class="col-sm-10"><span class="badge bg-dark text-gold">{{ $o->source_platform ?: __('admin.unknown') }}</span></dd>
                                                 
-                                                <dt class="col-sm-2">Created:</dt>
+                                                <dt class="col-sm-2">{{ __('admin.created') }}:</dt>
                                                 <dd class="col-sm-10">{{ \Carbon\Carbon::parse($o->created_at)->format('Y-m-d H:i:s') }}</dd>
                                             </dl>
                                         </div>
@@ -675,7 +675,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="7" class="text-center py-4 text-muted">No orders found</td></tr>
+                        <tr><td colspan="7" class="text-center py-4 text-muted">{{ __('admin.no_orders_found') }}</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -770,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels,
                 datasets: [
                     {
-                        label: 'Total Orders',
+                        label: '{{ addslashes(__('admin.total_orders')) }}',
                         data: ordersCount,
                         backgroundColor: 'rgba(199, 149, 75, 0.7)', // gold
                         borderColor: '#c7954b',
@@ -809,7 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels,
                 datasets: [
                     {
-                        label: 'Revenue',
+                        label: '{{ addslashes(__('admin.revenue')) }}',
                         data: revenue,
                         borderColor: '#16c79a', // green
                         backgroundColor: gradient,
@@ -847,14 +847,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels,
                 datasets: [
                     {
-                        label: 'Registered Users',
+                        label: '{{ addslashes(__('admin.registered_users')) }}',
                         data: registeredOrders,
                         backgroundColor: 'rgba(91, 141, 239, 0.7)', // blue
                         borderColor: '#5b8def',
                         borderWidth: 1
                     },
                     {
-                        label: 'Guest Users',
+                        label: '{{ addslashes(__('admin.guest_users')) }}',
                         data: guestOrders,
                         backgroundColor: 'rgba(255, 159, 67, 0.7)', // orange
                         borderColor: '#ff9f43',
@@ -889,21 +889,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels,
                 datasets: [
                     {
-                        label: 'Website',
+                        label: '{{ addslashes(__('admin.website')) }}',
                         data: webOrders,
                         backgroundColor: 'rgba(199, 149, 75, 0.75)',
                         borderColor: '#c7954b',
                         borderWidth: 1
                     },
                     {
-                        label: 'Android',
+                        label: '{{ addslashes(__('admin.android')) }}',
                         data: androidOrders,
                         backgroundColor: 'rgba(59, 130, 246, 0.75)',
                         borderColor: '#3b82f6',
                         borderWidth: 1
                     },
                     {
-                        label: 'iOS',
+                        label: '{{ addslashes(__('admin.ios')) }}',
                         data: iosOrders,
                         backgroundColor: 'rgba(34, 197, 94, 0.75)',
                         borderColor: '#22c55e',
@@ -932,7 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Orders by Status Pie Chart
     const statusCtx = document.getElementById('statusChart');
     if (statusCtx && statusBreakdown && statusBreakdown.length > 0) {
-        const statusLabels = statusBreakdown.map(s => s.status || 'Unknown');
+        const statusLabels = statusBreakdown.map(s => s.status || '{{ addslashes(__('admin.unknown')) }}');
         const statusData = statusBreakdown.map(s => s.count);
         const statusColors = [
             'rgba(34, 197, 94, 0.8)',   // green for paid/completed

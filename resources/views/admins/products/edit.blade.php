@@ -7,12 +7,12 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h3 class="fw-bold" style="color: #c7954b;">
-                    ✏️ Edit Product
+                    ✏️ {{ __('admin.edit_product') }}
                 </h3>
                 <p class="text-muted small mb-0">{{ $product->title }}</p>
             </div>
             <a href="{{ route('admin.products.index') }}" class="btn btn-outline-gold fw-semibold px-4">
-                ← Back
+                ← {{ __('admin.back') }}
             </a>
         </div>
 
@@ -37,13 +37,13 @@
                         <div class="card border mb-2" style="background: #f8f9fa;">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 class="mb-0 fw-bold" style="color: #c7954b;">Product Category</h6>
+                                    <h6 class="mb-0 fw-bold" style="color: #c7954b;">{{ __('admin.product_category') }}</h6>
                                     <div class="d-flex gap-2">
-                                        <button type="button" class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addParentCatModal">+ Parent</button>
-                                        <button type="button" class="btn btn-outline-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addChildCatModal">+ Child</button>
+                                        <button type="button" class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addParentCatModal">{{ __('admin.add_parent') }}</button>
+                                        <button type="button" class="btn btn-outline-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addChildCatModal">{{ __('admin.add_child') }}</button>
                                     </div>
                                 </div>
-                                <label class="form-label fw-semibold">Select Category</label>
+                                <label class="form-label fw-semibold">{{ __('admin.select_category') }}</label>
                                 <select name="category_id" class="form-select" required id="categorySelect">
                                     @php
                                         $parents = $categories->whereNull('parent_id');
@@ -57,14 +57,14 @@
                                         @endforeach
                                     @endforeach
                                 </select>
-                                <small class="text-muted">Select one child category for this product.</small>
+                                <small class="text-muted">{{ __('admin.select_child_category_help') }}</small>
                             </div>
                         </div>
                     </div>
 
                     {{-- Title --}}
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Title (Português)</label>
+                        <label class="form-label fw-semibold">{{ __('admin.title_portuguese') }}</label>
                         <input type="text" name="title" 
                                class="form-control" 
                                value="{{ $product->title }}" required>
@@ -72,13 +72,13 @@
 
                     {{-- Description --}}
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Description (Português)</label>
+                        <label class="form-label fw-semibold">{{ __('admin.description_portuguese') }}</label>
                         <textarea name="description" rows="4" class="form-control">{{ $product->description }}</textarea>
                     </div>
 
                     {{-- English (optional) --}}
                     <div class="mb-4">
-                        <h5 class="fw-bold mb-3" style="color: #c7954b;">English (optional)</h5>
+                        <h5 class="fw-bold mb-3" style="color: #c7954b;">{{ __('admin.english_optional') }}</h5>
                         @php
                             $locales = config('app.admin_content_locales', ['pt', 'en']);
                             $primaryLocale = config('app.admin_primary_content_locale', 'pt');
@@ -88,12 +88,12 @@
                             @php $t = $product->translations->firstWhere('locale', $locale); @endphp
                             <div class="border rounded p-3 mb-3 bg-white">
                                 <div class="mb-2">
-                                    <label class="form-label small mb-1">Title ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
+                                    <label class="form-label small mb-1">{{ $locale === 'pt' ? __('admin.title_portuguese') : __('admin.title_english') }}</label>
                                     <input type="text" name="translations[{{ $locale }}][title]" class="form-control"
                                         value="{{ old('translations.' . $locale . '.title', $t->title ?? '') }}">
                                 </div>
                                 <div class="mb-0">
-                                    <label class="form-label small mb-1">Description ({{ $locale === 'pt' ? 'Português' : ($locale === 'en' ? 'English' : strtoupper($locale)) }})</label>
+                                    <label class="form-label small mb-1">{{ $locale === 'pt' ? __('admin.description_portuguese') : __('admin.description_english') }}</label>
                                     <textarea name="translations[{{ $locale }}][description]" rows="3" class="form-control">{{ old('translations.' . $locale . '.description', $t->description ?? '') }}</textarea>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
 
                     {{-- Price --}}
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Price</label>
+                        <label class="form-label fw-semibold">{{ __('admin.price') }}</label>
                         <input type="number" name="price" step="0.01" 
                                class="form-control"
                                value="{{ $product->price }}" required>
@@ -111,7 +111,7 @@
 
                     {{-- Standard Set Components --}}
                     <div class="mb-4">
-                        <h5 class="fw-bold mb-3" style="color: #c7954b;">Standard Set Components</h5>
+                        <h5 class="fw-bold mb-3" style="color: #c7954b;">{{ __('admin.standard_set_components') }}</h5>
                         <div id="components-list">
                             @php
                                 $components = old('components', $product->productComponents->toArray());
@@ -119,11 +119,11 @@
                             @foreach ($components as $i => $component)
                                 <div class="component-row mb-3 p-3 border rounded bg-white">
                                     <div class="mb-2">
-                                        <label class="form-label small mb-1">Name (Português)</label>
+                                        <label class="form-label small mb-1">{{ __('admin.name_portuguese') }}</label>
                                         <input type="text" name="components[{{ $i }}][name_translations][pt]" value="{{ $component['name_translations']['pt'] ?? '' }}" class="form-control" required>
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label small mb-1">Name (English) <span class="text-muted">(optional)</span></label>
+                                        <label class="form-label small mb-1">{{ __('admin.name_english') }} <span class="text-muted">({{ __('admin.optional') }})</span></label>
                                         <input type="text" name="components[{{ $i }}][name_translations][en]" value="{{ $component['name_translations']['en'] ?? '' }}" class="form-control">
                                     </div>
                                     @if(isset($component['name_translations']['ar']) && !empty($component['name_translations']['ar']))
@@ -131,30 +131,30 @@
                                     @endif
                                     <div class="row g-2">
                                         <div class="col-md-3">
-                                            <input type="text" name="components[{{ $i }}][width]" value="{{ $component['width'] ?? '' }}" placeholder="Width" class="form-control">
+                                            <input type="text" name="components[{{ $i }}][width]" value="{{ $component['width'] ?? '' }}" placeholder="{{ __('admin.width') }}" class="form-control">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" name="components[{{ $i }}][length]" value="{{ $component['length'] ?? '' }}" placeholder="Length" class="form-control">
+                                            <input type="text" name="components[{{ $i }}][length]" value="{{ $component['length'] ?? '' }}" placeholder="{{ __('admin.length') }}" class="form-control">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" name="components[{{ $i }}][height]" value="{{ $component['height'] ?? '' }}" placeholder="Height" class="form-control">
+                                            <input type="text" name="components[{{ $i }}][height]" value="{{ $component['height'] ?? '' }}" placeholder="{{ __('admin.height') }}" class="form-control">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" name="components[{{ $i }}][material]" value="{{ $component['material'] ?? '' }}" placeholder="Material" class="form-control">
+                                            <input type="text" name="components[{{ $i }}][material]" value="{{ $component['material'] ?? '' }}" placeholder="{{ __('admin.material') }}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="mt-2 text-end">
-                                        <button type="button" class="btn btn-danger btn-sm btn-remove-component">Remove</button>
+                                        <button type="button" class="btn btn-danger btn-sm btn-remove-component">{{ __('admin.remove') }}</button>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <button type="button" id="add-component" class="btn btn-secondary mt-2">Add Component</button>
+                        <button type="button" id="add-component" class="btn btn-secondary mt-2">{{ __('admin.add_component') }}</button>
                     </div>
 
                     {{-- Main Image --}}
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Main Image</label><br>
+                        <label class="form-label fw-semibold">{{ __('admin.main_image') }}</label><br>
 
                         @php
                             $mainImg = $product->image
@@ -176,11 +176,11 @@
                     {{-- SUBMIT --}}
                     <div class="d-flex gap-3 mt-4">
                         <button type="submit" class="btn btn-gold fw-semibold px-4">
-                            🔄 Update Product
+                            🔄 {{ __('admin.update_product') }}
                         </button>
 
                         <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark px-4">
-                            Cancel
+                            {{ __('admin.cancel') }}
                         </a>
                     </div>
 
@@ -191,19 +191,19 @@
                     <form action="{{ route('admin.products.mainimage.delete', $product->id) }}"
                           method="POST" 
                           class="mt-3"
-                          onsubmit="return confirm('Delete ONLY the main image?')">
+                          onsubmit="return confirm('{{ __('admin.delete_only_main_image') }}')">
 
                         @csrf
                         @method('DELETE')
 
                         <button class="btn btn-danger btn-sm">
-                            🗑️ Delete Main Image
+                            🗑️ {{ __('admin.delete') }} {{ __('admin.main_image') }}
                         </button>
                     </form>
                 @endif
 
                 {{-- GALLERY SECTION --}}
-                <h4 class="fw-bold mt-5">Gallery Images</h4>
+                <h4 class="fw-bold mt-5">{{ __('admin.gallery_images') }}</h4>
 
                 <div class="d-flex flex-wrap gap-3">
 
@@ -226,7 +226,7 @@
                             {{-- Delete one gallery image --}}
                             <form action="{{ route('admin.products.image.delete', $img->id) }}"
                                   method="POST"
-                                  onsubmit="return confirm('Delete this image?')"
+                                  onsubmit="return confirm('{{ __('admin.delete_this_image') }}')"
                                   class="position-absolute top-0 end-0 m-1">
 
                                 @csrf
@@ -251,11 +251,11 @@
 
                     @csrf
 
-                    <label class="form-label fw-semibold">Add More Images</label>
+                    <label class="form-label fw-semibold">{{ __('admin.add_more_images') }}</label>
                     <input type="file" name="gallery[]" class="form-control" multiple>
 
                     <button class="btn btn-dark btn-sm mt-2">
-                        ➕ Upload Images
+                        ➕ {{ __('admin.upload_images') }}
                     </button>
 
                 </form>
@@ -272,28 +272,28 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Parent Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title">{{ __('admin.add_parent_category') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
             </div>
             <div class="modal-body">
-                <p class="text-muted small">Parent categories organize your product categories.</p>
+                <p class="text-muted small">{{ __('admin.parent_categories_organize') }}</p>
                 <div class="mb-3">
-                    <label class="form-label">Name (Português)</label>
-                    <input type="text" id="parentCatName" class="form-control" placeholder="e.g., Doors">
+                    <label class="form-label">{{ __('admin.name_portuguese') }}</label>
+                    <input type="text" id="parentCatName" class="form-control" placeholder="{{ __('admin.placeholder_parent_category') }}">
                 </div>
                 <div class="row g-2">
                     @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.admin_primary_content_locale', 'pt'))
                         <div class="col-12">
-                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
+                            <label class="form-label">{{ __('admin.name_english') }} <span class="text-muted">({{ __('admin.optional') }})</span></label>
                             <input type="text" id="parentCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-gold" onclick="saveParentCategory()">Save Category</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
+                <button type="button" class="btn btn-gold" onclick="saveParentCategory()">{{ __('admin.save_category') }}</button>
             </div>
         </div>
     </div>
@@ -304,14 +304,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Child Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title">{{ __('admin.add_child_category') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label class="form-label">Parent Category</label>
+                    <label class="form-label">{{ __('admin.parent_category') }}</label>
                     <select id="childCatParent" class="form-select">
-                        <option value="">Select Parent</option>
+                        <option value="">{{ __('admin.select_parent') }}</option>
                         @php $parents = $categories->whereNull('parent_id'); @endphp
                         @foreach($parents as $parent)
                             <option value="{{ $parent->id }}">{{ $parent->name }}</option>
@@ -319,22 +319,22 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Name (Português)</label>
-                    <input type="text" id="childCatName" class="form-control" placeholder="e.g., Sliding Doors">
+                    <label class="form-label">{{ __('admin.name_portuguese') }}</label>
+                    <input type="text" id="childCatName" class="form-control" placeholder="{{ __('admin.placeholder_child_category') }}">
                 </div>
                 <div class="row g-2">
                     @foreach(config('app.admin_content_locales', ['pt', 'en']) as $locale)
                         @continue($locale === config('app.admin_primary_content_locale', 'pt'))
                         <div class="col-12">
-                            <label class="form-label">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }}) <span class="text-muted">(optional)</span></label>
+                            <label class="form-label">{{ __('admin.name_english') }} <span class="text-muted">({{ __('admin.optional') }})</span></label>
                             <input type="text" id="childCatName_{{ $locale }}" class="form-control">
                         </div>
                     @endforeach
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-gold" onclick="saveChildCategory()">Save Category</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
+                <button type="button" class="btn btn-gold" onclick="saveChildCategory()">{{ __('admin.save_category') }}</button>
             </div>
         </div>
     </div>
@@ -351,29 +351,29 @@ document.getElementById('add-component').onclick = function() {
     row.className = 'component-row mb-3 p-3 border rounded bg-white';
     row.innerHTML = `
         <div class="mb-2">
-            <label class="form-label small mb-1">Name (Português)</label>
+            <label class="form-label small mb-1">{{ __('admin.name_portuguese') }}</label>
             <input type="text" name="components[${index}][name_translations][pt]" class="form-control" required>
         </div>
         <div class="mb-2">
-            <label class="form-label small mb-1">Name (English) <span class="text-muted">(optional)</span></label>
+            <label class="form-label small mb-1">{{ __('admin.name_english') }} <span class="text-muted">({{ __('admin.optional') }})</span></label>
             <input type="text" name="components[${index}][name_translations][en]" class="form-control">
         </div>
         <div class="row g-2">
             <div class="col-md-3">
-                <input type="text" name="components[${index}][width]" placeholder="Width" class="form-control">
+                <input type="text" name="components[${index}][width]" placeholder="{{ __('admin.width') }}" class="form-control">
             </div>
             <div class="col-md-3">
-                <input type="text" name="components[${index}][length]" placeholder="Length" class="form-control">
+                <input type="text" name="components[${index}][length]" placeholder="{{ __('admin.length') }}" class="form-control">
             </div>
             <div class="col-md-3">
-                <input type="text" name="components[${index}][height]" placeholder="Height" class="form-control">
+                <input type="text" name="components[${index}][height]" placeholder="{{ __('admin.height') }}" class="form-control">
             </div>
             <div class="col-md-3">
-                <input type="text" name="components[${index}][material]" placeholder="Material" class="form-control">
+                <input type="text" name="components[${index}][material]" placeholder="{{ __('admin.material') }}" class="form-control">
             </div>
         </div>
         <div class="mt-2 text-end">
-            <button type="button" class="btn btn-danger btn-sm btn-remove-component">Remove</button>
+            <button type="button" class="btn btn-danger btn-sm btn-remove-component">{{ __('admin.remove') }}</button>
         </div>
     `;
     list.appendChild(row);

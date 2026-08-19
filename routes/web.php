@@ -145,6 +145,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+        // Admin interface language switcher
+        Route::get('lang/{locale}', function ($locale) {
+            $allowed = config('app.admin_locales', ['pt', 'en']);
+            if (in_array($locale, $allowed)) {
+                session(['admin_locale' => $locale]);
+            }
+            return back();
+        })->name('lang.switch');
+
         // 📂 Projects CRUD
         Route::resource('projects', AdminProjectController::class);
 

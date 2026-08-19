@@ -98,7 +98,10 @@ return [
     'admin_primary_content_locale' => 'pt',
 
     // Dashboard interface locale (separate from content locales)
-    'admin_locale' => 'en',
+    'admin_locale' => 'pt',
+
+    // Admin interface selectable locales (Portuguese default, English available)
+    'admin_locales' => ['pt', 'en'],
 
     /*
     |--------------------------------------------------------------------------

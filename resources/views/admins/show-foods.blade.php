@@ -6,25 +6,25 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title mb-4 d-inline">Foods</h5>
+                        <h5 class="card-title mb-4 d-inline">{{ __('admin.foods') }}</h5>
                         <a href="{{ route('admin.foods.create') }}"
-                            class="btn btn-primary mb-4 text-center float-right">Create Foods</a>
+                            class="btn btn-primary mb-4 text-center float-right">{{ __('admin.create_foods') }}</a>
                             <a href="{{ route('admin.category.create') }}" style="margin-right: 10px;"
-                            class="btn btn-primary mb-4 text-center float-right">Add Category</a>
+                            class="btn btn-primary mb-4 text-center float-right">{{ __('admin.add_category') }}</a>
                             <a href="{{ route('admin.foods.create') }}" style="margin-right: 10px;"
-                            class="btn btn-primary mb-4 text-center float-right">edit Category</a>
+                            class="btn btn-primary mb-4 text-center float-right">{{ __('admin.edit_category') }}</a>
 
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">image</th>
-                                    <th scope="col">category</th>
-                                    <th scope="col">description</th>
-                                    <th scope="col">price</th>
-                                    <th scope="col">Edit</th>
-                                    <th scope="col">delete</th>
+                                    <th scope="col">{{ __('admin.hash') }}</th>
+                                    <th scope="col">{{ __('admin.name') }}</th>
+                                    <th scope="col">{{ __('admin.image') }}</th>
+                                    <th scope="col">{{ __('admin.category') }}</th>
+                                    <th scope="col">{{ __('admin.description') }}</th>
+                                    <th scope="col">{{ __('admin.price') }}</th>
+                                    <th scope="col">{{ __('admin.edit') }}</th>
+                                    <th scope="col">{{ __('admin.delete') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +43,7 @@
                                         <td>
                                             <button class="btn btn-warning"><a
                                                     href="{{ route('admin.foods.edit', $food->id) }}"
-                                                    class="text-white">Edit</a></button>
+                                                    class="text-white">{{ __('admin.edit') }}</a></button>
                                         </td>
                                         <td>
                                             <form action="{{ route('admin.foods.delete', $food->id) }}" method="POST"
@@ -52,7 +52,7 @@
 
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure?')">delete</button>
+                                                    onclick="return confirm('{{ __('admin.are_you_sure') }}')">{{ __('admin.delete') }}</button>
                                             </form>
                                         </td>
                                     </tr>

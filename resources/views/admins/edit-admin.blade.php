@@ -20,30 +20,30 @@
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h5 class="card-title mb-0 d-flex align-items-center gap-2">
-                        <i class="bi bi-person-gear"></i> Edit Admin
+                        <i class="bi bi-person-gear"></i> {{ __('admin.edit_admin') }}
                     </h5>
-                    <a href="{{ route('admin.admin-users.index') }}" class="btn btn-sm btn-outline-dark">Back</a>
+                    <a href="{{ route('admin.admin-users.index') }}" class="btn btn-sm btn-outline-dark">{{ __('admin.back') }}</a>
                 </div>
                 <form method="POST" action="{{ route('admin.admin-users.update', $admin->id) }}">
                     @csrf
                     @method('PUT')
 
                     <div class="form-outline mb-3">
-                        <label class="form-label small text-muted">Email</label>
-                        <input type="email" name="email" value="{{ $admin->email }}" class="form-control" placeholder="Email" required />
+                        <label class="form-label small text-muted">{{ __('admin.email') }}</label>
+                        <input type="email" name="email" value="{{ $admin->email }}" class="form-control" placeholder="{{ __('admin.email') }}" required />
                     </div>
 
                     <div class="form-outline mb-3">
-                        <label class="form-label small text-muted">Username</label>
-                        <input type="text" name="name" value="{{ $admin->name }}" class="form-control" placeholder="Username" required />
+                        <label class="form-label small text-muted">{{ __('admin.username') }}</label>
+                        <input type="text" name="name" value="{{ $admin->name }}" class="form-control" placeholder="{{ __('admin.placeholder_username') }}" required />
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label class="form-label small text-muted">New Password (Leave blank to keep current)</label>
-                        <input type="password" name="password" class="form-control" placeholder="New Password" />
+                        <label class="form-label small text-muted">{{ __('admin.new_password_leave_blank') }}</label>
+                        <input type="password" name="password" class="form-control" placeholder="{{ __('admin.placeholder_new_password') }}" />
                     </div>
 
-                    <button type="submit" class="btn btn-gold w-100 fw-semibold">Update Admin</button>
+                    <button type="submit" class="btn btn-gold w-100 fw-semibold">{{ __('admin.update_admin') }}</button>
                 </form>
             </div>
         </div>

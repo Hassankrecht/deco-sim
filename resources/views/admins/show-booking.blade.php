@@ -6,20 +6,20 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title mb-4 d-inline">Bookings</h5>
+                        <h5 class="card-title mb-4 d-inline">{{ __('admin.bookings') }}</h5>
 
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">email</th>
-                                    <th scope="col">date_booking</th>
-                                    <th scope="col">num_people</th>
-                                    <th scope="col">special_request</th>
-                                    <th scope="col">status</th>
-                                    <th scope="col">created_at</th>
-                                    <th scope="col">delete</th>
+                                    <th scope="col">{{ __('admin.hash') }}</th>
+                                    <th scope="col">{{ __('admin.name') }}</th>
+                                    <th scope="col">{{ __('admin.email') }}</th>
+                                    <th scope="col">{{ __('admin.date_booking') }}</th>
+                                    <th scope="col">{{ __('admin.num_people') }}</th>
+                                    <th scope="col">{{ __('admin.special_request') }}</th>
+                                    <th scope="col">{{ __('admin.status') }}</th>
+                                    <th scope="col">{{ __('admin.created_at') }}</th>
+                                    <th scope="col">{{ __('admin.delete') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,7 @@
 
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure?')">delete</button>
+                                                onclick="return confirm('{{ __('admin.are_you_sure') }}')">{{ __('admin.delete') }}</button>
                                         </form>
                                     </td>
                                 @endforeach

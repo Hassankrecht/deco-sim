@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login | Deco Sim</title>
+    <title>{{ __('admin.login') }} | Deco Sim</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background: #0f0f0f; }
@@ -26,8 +26,8 @@
 <body>
 <div class="login-box text-center">
     <img src="{{ asset('assets/img/deco-sim-logo.jpg') }}" alt="Deco Sim" style="height:60px" class="mb-3">
-    <h4 class="mb-3">Admin Panel</h4>
-    <p class="text-muted small mb-4">Sign in to manage products, projects, orders.</p>
+    <h4 class="mb-3">{{ __('admin.admin_panel') }}</h4>
+    <p class="text-muted small mb-4">{{ __('admin.sign_in_to_manage') }}</p>
 
     @if ($errors->any())
         <div class="alert alert-danger py-2">
@@ -38,18 +38,18 @@
     <form method="POST" action="{{ route('admin.login.submit') }}">
         @csrf
         <div class="mb-3 text-start">
-            <label class="form-label">Email</label>
+            <label class="form-label">{{ __('admin.email') }}</label>
             <input type="email" name="email" value="{{ old('email') }}" class="form-control bg-dark text-white border-0" required autofocus>
         </div>
         <div class="mb-3 text-start">
-            <label class="form-label">Password</label>
+            <label class="form-label">{{ __('admin.password') }}</label>
             <input type="password" name="password" class="form-control bg-dark text-white border-0" required>
         </div>
         <div class="mb-3 text-start form-check">
             <input type="checkbox" name="remember" class="form-check-input" id="remember">
-            <label for="remember" class="form-check-label small">Remember me</label>
+            <label for="remember" class="form-check-label small">{{ __('admin.remember_me') }}</label>
         </div>
-        <button class="btn btn-gold w-100 py-2">Login</button>
+        <button class="btn btn-gold w-100 py-2">{{ __('admin.login') }}</button>
     </form>
 </div>
 </body>

@@ -14,7 +14,14 @@ class SetLocale
     public function handle(Request $request, Closure $next)
     {
         if ($request->is('admin*')) {
-            App::setLocale(config('app.admin_locale', 'en'));
+            $adminLocale = session('admin_locale', config('app.admin_locale', 'pt'));
+            $allowed = config('app.admin_locales', ['pt', 'en']);
+
+            if (! in_array($adminLocale, $allowed)) {
+                $adminLocale = config('app.admin_locale', 'pt');
+            }
+
+            App::setLocale($adminLocale);
             return $next($request);
         }
 

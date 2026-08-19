@@ -43,13 +43,13 @@
             {{-- HEADER --}}
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h5 class="mb-1 text-gold"><i class="bi bi-box-seam me-2"></i>Products Management</h5>
-                    <p class="text-muted small mb-0">Manage products and categories</p>
+                    <h5 class="mb-1 text-gold"><i class="bi bi-box-seam me-2"></i>{{ __('admin.product_management') }}</h5>
+                    <p class="text-muted small mb-0">{{ __('admin.manage_products_and_categories') }}</p>
                 </div>
                 <div class="d-flex gap-2">
                     {{-- ADD PRODUCT --}}
                     <a href="{{ route('admin.products.create') }}" class="btn btn-gold fw-semibold">
-                        <i class="bi bi-plus-lg me-1"></i> New Product
+                        <i class="bi bi-plus-lg me-1"></i> {{ __('admin.new_product') }}
                     </a>
                 </div>
             </div>
@@ -65,30 +65,30 @@
                 <div class="card card-dark p-3 mb-3">
                     <form class="row g-2 align-items-end" method="GET" action="{{ route('admin.products.index') }}">
                         <div class="col-md-4">
-                            <label class="form-label small mb-1">Search</label>
-                            <input type="text" name="q" class="form-control" placeholder="Title or description" value="{{ $search ?? '' }}">
+                            <label class="form-label small mb-1">{{ __('admin.search') }}</label>
+                            <input type="text" name="q" class="form-control" placeholder="{{ __('admin.title_or_description') }}" value="{{ $search ?? '' }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label small mb-1">Sort</label>
+                            <label class="form-label small mb-1">{{ __('admin.sort') }}</label>
                             <select name="sort" class="form-select">
-                                <option value="newest" {{ ($sort ?? '')==='newest' ? 'selected' : '' }}>Newest</option>
-                                <option value="oldest" {{ ($sort ?? '')==='oldest' ? 'selected' : '' }}>Oldest</option>
-                                <option value="price_asc" {{ ($sort ?? '')==='price_asc' ? 'selected' : '' }}>Price low → high</option>
-                                <option value="price_desc" {{ ($sort ?? '')==='price_desc' ? 'selected' : '' }}>Price high → low</option>
+                                <option value="newest" {{ ($sort ?? '')==='newest' ? 'selected' : '' }}>{{ __('admin.newest') }}</option>
+                                <option value="oldest" {{ ($sort ?? '')==='oldest' ? 'selected' : '' }}>{{ __('admin.oldest') }}</option>
+                                <option value="price_asc" {{ ($sort ?? '')==='price_asc' ? 'selected' : '' }}>{{ __('admin.price_low_high') }}</option>
+                                <option value="price_desc" {{ ($sort ?? '')==='price_desc' ? 'selected' : '' }}>{{ __('admin.price_high_low') }}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label small mb-1">Category</label>
+                            <label class="form-label small mb-1">{{ __('admin.category') }}</label>
                             <select name="category" class="form-select">
-                                <option value="">All</option>
+                                <option value="">{{ __('admin.all') }}</option>
                                 @foreach($allCategories as $cat)
                                     <option value="{{ $cat->id }}" {{ ($categoryId ?? '') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-2 d-flex gap-2">
-                            <button class="btn btn-gold w-100">Apply</button>
-                            <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark w-100">Reset</a>
+                            <button class="btn btn-gold w-100">{{ __('admin.apply') }}</button>
+                            <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark w-100">{{ __('admin.reset') }}</a>
                         </div>
                     </form>
                 </div>
@@ -96,19 +96,19 @@
                 <div class="row g-3 mb-3">
                     <div class="col-md-4 col-12">
                         <div class="card card-dark p-3 h-100 d-flex justify-content-center">
-                            <div class="text-muted small">Products</div>
+                            <div class="text-muted small">{{ __('admin.products_count') }}</div>
                             <div class="fs-4 fw-bold text-gold">{{ $productsTotal ?? 0 }}</div>
                         </div>
                     </div>
                     <div class="col-md-4 col-6">
                         <div class="card card-dark p-3 h-100 d-flex justify-content-center">
-                            <div class="text-muted small">Parent categories</div>
+                            <div class="text-muted small">{{ __('admin.parent_categories') }}</div>
                             <div class="fs-4 fw-bold text-gold">{{ $parentCount ?? 0 }}</div>
                         </div>
                     </div>
                     <div class="col-md-4 col-6">
                         <div class="card card-dark p-3 h-100 d-flex justify-content-center">
-                            <div class="text-muted small">Child categories</div>
+                            <div class="text-muted small">{{ __('admin.child_categories') }}</div>
                             <div class="fs-4 fw-bold text-gold">{{ $childCount ?? 0 }}</div>
                         </div>
                     </div>
@@ -127,10 +127,10 @@
 
                 <div class="akg-newcard mb-4 p-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="text-gold fw-bold mb-0">Categories</h5>
+                        <h5 class="text-gold fw-bold mb-0">{{ __('admin.categories') }}</h5>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addParentModal">Parent Category</button>
-                            <button class="btn btn-outline-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addChildModal">Child Category</button>
+                            <button class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addParentModal">{{ __('admin.add_parent_category') }}</button>
+                            <button class="btn btn-outline-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addChildModal">{{ __('admin.add_child_category') }}</button>
                         </div>
                     </div>
 
@@ -146,13 +146,13 @@
                                         <div class="dropdown ms-auto">
                                             <button class="btn btn-sm btn-outline-gold py-0 px-1 dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></button>
                                             <ul class="dropdown-menu dropdown-menu-dark">
-                                                <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editParentModal{{ $parent->id }}">Edit</button></li>
+                                                <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editParentModal{{ $parent->id }}">{{ __('admin.edit') }}</button></li>
                                                 <li><hr class="dropdown-divider"></li>
                                                 <li>
-                                                    <form action="{{ route('admin.categories.destroy', $parent->id) }}" method="POST" onsubmit="return confirm('Delete this category?')" class="d-inline">
+                                                    <form action="{{ route('admin.categories.destroy', $parent->id) }}" method="POST" onsubmit="return confirm('{{ __('admin.delete_category_confirm') }}')" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="dropdown-item text-danger">Delete</button>
+                                                        <button class="dropdown-item text-danger">{{ __('admin.delete') }}</button>
                                                     </form>
                                                 </li>
                                             </ul>
@@ -172,7 +172,7 @@
                             <ul class="nav nav-pills justify-content-start flex-wrap gap-2">
                                 <li class="nav-item">
                                     <div class="nav-link category-pill d-flex align-items-center gap-2 {{ $activeChildId ? '' : 'active' }} text-dark">
-                                        <a href="{{ route('admin.products.index') }}" class="text-decoration-none text-dark fw-semibold">All</a>
+                                        <a href="{{ route('admin.products.index') }}" class="text-decoration-none text-dark fw-semibold">{{ __('admin.all') }}</a>
                                         <span class="count-badge">{{ $childTotal }}</span>
                                     </div>
                                 </li>
@@ -186,13 +186,13 @@
                                         <div class="dropdown">
                                             <button class="btn btn-sm btn-outline-gold py-0 px-1 dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></button>
                                             <ul class="dropdown-menu dropdown-menu-dark">
-                                                <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editChildModal{{ $child->id }}">Edit</button></li>
+                                                <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editChildModal{{ $child->id }}">{{ __('admin.edit') }}</button></li>
                                                 <li><hr class="dropdown-divider"></li>
                                                 <li>
-                                                    <form action="{{ route('admin.categories.destroy', $child->id) }}" method="POST" onsubmit="return confirm('Delete this category?')" class="d-inline">
+                                                    <form action="{{ route('admin.categories.destroy', $child->id) }}" method="POST" onsubmit="return confirm('{{ __('admin.delete_category_confirm') }}')" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="dropdown-item text-danger">Delete</button>
+                                                        <button class="dropdown-item text-danger">{{ __('admin.delete') }}</button>
                                                     </form>
                                                 </li>
                                             </ul>
@@ -204,7 +204,7 @@
                     </div>
                     @endforeach
                     @else
-                        <div class="alert alert-info mb-0">No categories yet. Add a parent category first.</div>
+                        <div class="alert alert-info mb-0">{{ __('admin.no_categories_yet') }}</div>
                     @endif
                 </div>
 
@@ -216,14 +216,14 @@
                                 @csrf
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add Parent Category</h5>
+                                    <h5 class="modal-title">{{ __('admin.add_parent_category') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label class="form-label">Name (Português)</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Category name" required>
+                                        <label class="form-label">{{ __('admin.name_portuguese') }}</label>
+                                        <input type="text" name="name" class="form-control" placeholder="{{ __('admin.category_name') }}" required>
                                     </div>
                                     @php
                                         $locales = config('app.admin_content_locales', ['pt', 'en']);
@@ -232,19 +232,19 @@
                                     @foreach ($locales as $locale)
                                         @if ($locale === $primaryLocale) @continue @endif
                                         <div class="mb-3">
-                                            <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                            <label class="form-label small mb-1">{{ __('admin.name_english') }}</label>
                                             <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
                                         </div>
                                     @endforeach
                                     <div class="mt-3">
-                                        <label class="form-label">Order (optional)</label>
+                                        <label class="form-label">{{ __('admin.order_optional') }}</label>
                                         <input type="number" name="order" class="form-control" value="0">
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-warning">Add</button>
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
+                                    <button class="btn btn-warning">{{ __('admin.add') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -259,13 +259,13 @@
                                 @csrf
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add Child Category</h5>
+                                    <h5 class="modal-title">{{ __('admin.add_child_category') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label class="form-label">Parent</label>
+                                        <label class="form-label">{{ __('admin.parent') }}</label>
                                         <select name="parent_id" class="form-select" required>
                                             @foreach($parentCategories as $parent)
                                                 <option value="{{ $parent->id }}">{{ $parent->name_localized }}</option>
@@ -273,7 +273,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Name (Português)</label>
+                                        <label class="form-label">{{ __('admin.name_portuguese') }}</label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                     @php
@@ -283,19 +283,19 @@
                                     @foreach ($locales as $locale)
                                         @if ($locale === $primaryLocale) @continue @endif
                                         <div class="mb-3">
-                                            <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                            <label class="form-label small mb-1">{{ __('admin.name_english') }}</label>
                                             <input type="text" name="translations[{{ $locale }}][name]" class="form-control">
                                         </div>
                                     @endforeach
                                     <div class="mt-3">
-                                        <label class="form-label">Order (optional)</label>
+                                        <label class="form-label">{{ __('admin.order_optional') }}</label>
                                         <input type="number" name="order" class="form-control" value="0">
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button class="btn btn-warning">Save</button>
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.close') }}</button>
+                                    <button class="btn btn-warning">{{ __('admin.save') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -312,13 +312,13 @@
                                     @method('PUT')
 
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Edit Parent</h5>
+                                        <h5 class="modal-title">{{ __('admin.edit_parent') }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
 
                                     <div class="modal-body">
                                         <div class="mb-3">
-                                            <label class="form-label">Name (Português)</label>
+                                            <label class="form-label">{{ __('admin.name_portuguese') }}</label>
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ $parent->name }}" required>
                                         </div>
@@ -330,19 +330,19 @@
                                             @if ($locale === $primaryLocale) @continue @endif
                                             @php $tr = $parent->translations->firstWhere('locale',$locale); @endphp
                                             <div class="mb-3">
-                                                <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                                <label class="form-label small mb-1">{{ __('admin.name_english') }}</label>
                                                 <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
                                             </div>
                                         @endforeach
                                         <div class="mt-3">
-                                            <label class="form-label">Order</label>
+                                            <label class="form-label">{{ __('admin.order_optional') }}</label>
                                             <input type="number" name="order" class="form-control" value="{{ $parent->order ?? 0 }}">
                                         </div>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button class="btn btn-warning">Save</button>
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.close') }}</button>
+                                        <button class="btn btn-warning">{{ __('admin.save') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -361,13 +361,13 @@
                                         @method('PUT')
 
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Child</h5>
+                                            <h5 class="modal-title">{{ __('admin.edit_child') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
 
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label class="form-label">Parent</label>
+                                                <label class="form-label">{{ __('admin.parent') }}</label>
                                                 <select name="parent_id" class="form-select" required>
                                                     @foreach($parentCategories as $p)
                                                         <option value="{{ $p->id }}" {{ $child->parent_id == $p->id ? 'selected' : '' }}>{{ $p->name_localized }}</option>
@@ -375,7 +375,7 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Name (Português)</label>
+                                                <label class="form-label">{{ __('admin.name_portuguese') }}</label>
                                                 <input type="text" name="name" class="form-control" value="{{ $child->name }}" required>
                                             </div>
                                             @php
@@ -386,19 +386,19 @@
                                                 @if ($locale === $primaryLocale) @continue @endif
                                                 @php $tr = $child->translations->firstWhere('locale',$locale); @endphp
                                                 <div class="mb-3">
-                                                    <label class="form-label small mb-1">Name ({{ $locale === 'en' ? 'English' : strtoupper($locale) }})</label>
+                                                    <label class="form-label small mb-1">{{ __('admin.name_english') }}</label>
                                                     <input type="text" name="translations[{{ $locale }}][name]" class="form-control" value="{{ $tr->name ?? '' }}">
                                                 </div>
                                             @endforeach
                                             <div class="mt-3">
-                                                <label class="form-label">Order</label>
+                                                <label class="form-label">{{ __('admin.order_optional') }}</label>
                                                 <input type="number" name="order" class="form-control" value="{{ $child->order ?? 0 }}">
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button class="btn btn-warning">Save</button>
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin.close') }}</button>
+                                            <button class="btn btn-warning">{{ __('admin.save') }}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -413,13 +413,13 @@
                 <table class="table table-hover align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>#</th>
-                            <th>Main Image</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Created</th>
-                            <th>Price</th>
-                            <th width="180">Actions</th>
+                            <th>{{ __('admin.id') }}</th>
+                            <th>{{ __('admin.main_image') }}</th>
+                            <th>{{ __('admin.title') }}</th>
+                            <th>{{ __('admin.category') }}</th>
+                            <th>{{ __('admin.created') }}</th>
+                            <th>{{ __('admin.price') }}</th>
+                            <th width="180">{{ __('admin.actions') }}</th>
                         </tr>
                     </thead>
 
@@ -464,14 +464,14 @@
 
                                         <a href="{{ route('admin.products.edit', $item->id) }}"
                                             class="btn btn-sm btn-outline-gold fw-semibold px-3">
-                                            <i class="bi bi-pencil"></i> Edit
+                                            <i class="bi bi-pencil"></i> {{ __('admin.edit') }}
                                         </a>
                                         <form action="{{ route('admin.products.destroy', $item->id) }}" method="POST"
-                                            onsubmit="return confirm('Delete this product?')" class="d-inline">
+                                            onsubmit="return confirm('{{ __('admin.delete_product_confirm') }}')" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-outline-danger fw-semibold px-3">
-                                                <i class="bi bi-trash"></i> Delete
+                                                <i class="bi bi-trash"></i> {{ __('admin.delete') }}
                                             </button>
                                         </form>
 
@@ -482,7 +482,7 @@
                         @empty
                             <tr>
                                 <td colspan="6" class="text-center text-muted py-4">
-                                    No products found.
+                                    {{ __('admin.no_products_found') }}
                                 </td>
                             </tr>
                         @endforelse

@@ -4,8 +4,8 @@
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-                <h5 class="mb-1 text-gold"><i class="bi bi-house-door me-2"></i>Home Settings</h5>
-                <p class="text-muted small mb-0">Header (hero), Banner, and Theme.</p>
+                <h5 class="mb-1 text-gold"><i class="bi bi-house-door me-2"></i>{{ __('admin.home_settings') }}</h5>
+                <p class="text-muted small mb-0">{{ __('admin.home_settings_subtitle') }}</p>
             </div>
         </div>
 
@@ -128,10 +128,10 @@
                     style="position:absolute; inset:0; background:{{ $overlayColor }}; opacity: {{ $overlayOpacity }}; z-index:2; pointer-events:none; {{ $overlayEnabled ? '' : 'display:none;' }}">
                 </div>
                 <div class="position-absolute top-0 end-0 p-2 d-flex flex-column align-items-end gap-1" style="z-index:7;">
-                    <span class="badge bg-dark text-white small" id="sizeLabel">Size:
+                    <span class="badge bg-dark text-white small" id="sizeLabel">{{ __('admin.size') }}:
                         {{ $heroWidth ? $heroWidth . 'px' : 'auto' }} × {{ $heroHeight }}px</span>
-                    <span class="badge bg-dark text-white small" id="heightLabel">H: {{ $heroHeight }}px</span>
-                    <span class="badge bg-dark text-white small" id="zoomLabel">Zoom: {{ $heroBgSize }}%</span>
+                    <span class="badge bg-dark text-white small" id="heightLabel">{{ __('admin.height') }}: {{ $heroHeight }}px</span>
+                    <span class="badge bg-dark text-white small" id="zoomLabel">{{ __('admin.zoom') }}: {{ $heroBgSize }}%</span>
                 </div>
                 <div class="position-absolute top-0 start-0 end-0 p-3" id="miniBannerWrap">
                     @if (!empty($hs?->banner_enabled) && $hs?->banner_text)
@@ -157,28 +157,28 @@
                     <div class="d-flex gap-2 flex-wrap">
                         <a href="#" class="btn btn-sm btn-gold" id="btnPrimaryPreview"
                             style="display: {{ $pVisible ? 'inline-flex' : 'none' }}; background: {{ $pBg }}; border-color: {{ $hs->btn_primary_color ?? '#c7954b' }}; color: {{ $pColor }}; border-radius: {{ $pRadius }}; {{ $heroButtonSize ? 'font-size:' . $heroButtonSize . 'px;' : '' }}">
-                            {{ $hs->btn_primary_text ?? 'Projects' }}
+                            {{ $hs->btn_primary_text ?? __('admin.projects') }}
                         </a>
                         <a href="#" class="btn btn-sm btn-outline-light" id="btnSecondaryPreview"
                             style="display: {{ $sVisible ? 'inline-flex' : 'none' }}; border-color: {{ $hs->btn_secondary_color ?? '#ffffff' }}; color: {{ $sColor }}; background: {{ $sBg }}; border-radius: {{ $sRadius }}; {{ $heroButtonSize ? 'font-size:' . $heroButtonSize . 'px;' : '' }}">
-                            {{ $hs->btn_secondary_text ?? 'Contact' }}
+                            {{ $hs->btn_secondary_text ?? __('admin.contact') }}
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" id="miniHeroShow" class="btn btn-sm btn-gold">Show preview</button>
+        <button type="button" id="miniHeroShow" class="btn btn-sm btn-gold">{{ __('admin.show_preview') }}</button>
 
         {{-- Tabs --}}
         <ul class="nav nav-tabs mb-3" id="homeSettingsTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active text-dark fw-semibold" id="hero-tab" data-bs-toggle="tab" data-bs-target="#heroTab" type="button" role="tab">Header</button>
+                <button class="nav-link active text-dark fw-semibold" id="hero-tab" data-bs-toggle="tab" data-bs-target="#heroTab" type="button" role="tab">{{ __('admin.header') }}</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link text-dark fw-semibold" id="banner-tab" data-bs-toggle="tab" data-bs-target="#bannerTab" type="button" role="tab">Banner</button>
+                <button class="nav-link text-dark fw-semibold" id="banner-tab" data-bs-toggle="tab" data-bs-target="#bannerTab" type="button" role="tab">{{ __('admin.banner') }}</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link text-dark fw-semibold" id="theme-tab" data-bs-toggle="tab" data-bs-target="#themeTab" type="button" role="tab">Theme</button>
+                <button class="nav-link text-dark fw-semibold" id="theme-tab" data-bs-toggle="tab" data-bs-target="#themeTab" type="button" role="tab">{{ __('admin.theme') }}</button>
             </li>
         </ul>
 
@@ -186,36 +186,36 @@
             <div class="tab-pane fade show active" id="heroTab" role="tabpanel">
                 <div class="card card-dark p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="text-gold mb-0">Hero header</h6>
-                        <small class="text-muted">Media, text, colors, buttons</small>
+                        <h6 class="text-gold mb-0">{{ __('admin.hero_header') }}</h6>
+                        <small class="text-muted">{{ __('admin.media_text_colors_buttons') }}</small>
                     </div>
                     <form method="POST" action="{{ route('admin.home.settings.update') }}" enctype="multipart/form-data"
                         class="row g-3">
                         @csrf
                         <input type="hidden" name="section" value="header">
                         <div class="col-md-6">
-                            <label class="form-label">Hero title</label>
+                            <label class="form-label">{{ __('admin.hero_title') }}</label>
                             <input type="text" name="hero_title" class="form-control"
                                 value="{{ old('hero_title', $settings->hero_title ?? '') }}">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Hero subtitle</label>
-                            <textarea name="hero_subtitle" class="form-control" rows="3" placeholder="Enter subtitle with line breaks">{{ old('hero_subtitle', $settings->hero_subtitle ?? '') }}</textarea>
+                            <label class="form-label">{{ __('admin.hero_subtitle') }}</label>
+                            <textarea name="hero_subtitle" class="form-control" rows="3" placeholder="{{ __('admin.enter_subtitle') }}">{{ old('hero_subtitle', $settings->hero_subtitle ?? '') }}</textarea>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Media type</label>
+                            <label class="form-label">{{ __('admin.media_type') }}</label>
                             @php $selType = $settings->hero_media_type ?? ($settings?->hero_video_path ? 'video' : 'image'); @endphp
                             <select name="hero_media_type" class="form-select">
                                 <option value="image"
-                                    {{ $selType === 'image' ? 'selected' : '' }}>Image
+                                    {{ $selType === 'image' ? 'selected' : '' }}>{{ __('admin.image') }}
                                 </option>
                                 <option value="video"
                                     {{ $selType === 'video' ? 'selected' : '' }}>
-                                    Video URL</option>
+                                    {{ __('admin.video_url') }}</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Background color</label>
+                            <label class="form-label">{{ __('admin.background_color') }}</label>
                             <input type="color" name="hero_bg_color" class="form-control form-control-color"
                                 value="{{ old('hero_bg_color', $settings->hero_bg_color ?? '#0b1220') }}">
                         </div>
@@ -225,27 +225,27 @@
                                 <input class="form-check-input" type="checkbox" name="hero_stretch" value="1"
                                     id="heroStretch"
                                     {{ old('hero_stretch', $settings->hero_stretch ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="heroStretch">Stretch media (fill box)</label>
+                                <label class="form-check-label" for="heroStretch">{{ __('admin.stretch_media') }}</label>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Title size (px)</label>
+                            <label class="form-label">{{ __('admin.title_size') }}</label>
                             <input type="number" name="hero_title_size" class="form-control" min="16"
                                 max="96" value="{{ old('hero_title_size', $settings->hero_title_size ?? '') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Subtitle size (px)</label>
+                            <label class="form-label">{{ __('admin.subtitle_size') }}</label>
                             <input type="number" name="hero_subtitle_size" class="form-control" min="12"
                                 max="64"
                                 value="{{ old('hero_subtitle_size', $settings->hero_subtitle_size ?? '') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Title color</label>
+                            <label class="form-label">{{ __('admin.title_color') }}</label>
                             <input type="color" name="hero_title_color" class="form-control form-control-color"
                                 value="{{ old('hero_title_color', $settings->hero_title_color ?? '#ffffff') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Subtitle color</label>
+                            <label class="form-label">{{ __('admin.subtitle_color') }}</label>
                             <input type="color" name="hero_subtitle_color" class="form-control form-control-color"
                                 value="{{ old('hero_subtitle_color', $settings->hero_subtitle_color ?? '#ffffff') }}">
                         </div>
@@ -255,7 +255,7 @@
                                 <input class="form-check-input" type="checkbox" name="show_title" value="1"
                                     id="showTitle"
                                     {{ old('show_title', $settings->show_title ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="showTitle">Show title</label>
+                                <label class="form-check-label" for="showTitle">{{ __('admin.show_title') }}</label>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
@@ -264,11 +264,11 @@
                                 <input class="form-check-input" type="checkbox" name="show_subtitle" value="1"
                                     id="showSubtitle"
                                     {{ old('show_subtitle', $settings->show_subtitle ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="showSubtitle">Show subtitle</label>
+                                <label class="form-check-label" for="showSubtitle">{{ __('admin.show_subtitle') }}</label>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Buttons size (px)</label>
+                            <label class="form-label">{{ __('admin.buttons_size') }}</label>
                             <input type="number" name="hero_button_size" class="form-control" min="10"
                                 max="48" value="{{ old('hero_button_size', $settings->hero_button_size ?? '') }}">
                         </div>
@@ -278,14 +278,14 @@
                                 <input class="form-check-input" type="checkbox" name="overlay_enabled" value="1"
                                     id="overlayEnabled"
                                     {{ old('overlay_enabled', $settings->overlay_enabled ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="overlayEnabled">Overlay (on/off)</label>
+                                <label class="form-check-label" for="overlayEnabled">{{ __('admin.overlay') }}</label>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Title font</label>
+                            <label class="form-label">{{ __('admin.title_font') }}</label>
                             @php $titleFont = old('hero_title_font', $settings->hero_title_font ?? ''); @endphp
                             <select class="form-select" name="hero_title_font" id="titleFontSelect">
-                                <option value="" {{ $titleFont===''?'selected':'' }}>Default</option>
+                                <option value="" {{ $titleFont===''?'selected':'' }}>{{ __('admin.default') }}</option>
                                 <option value="'Poppins', sans-serif" {{ $titleFont=="'Poppins', sans-serif"?'selected':'' }}>Poppins</option>
                                 <option value="'Inter', sans-serif" {{ $titleFont=="'Inter', sans-serif"?'selected':'' }}>Inter</option>
                                 <option value="'Montserrat', sans-serif" {{ $titleFont=="'Montserrat', sans-serif"?'selected':'' }}>Montserrat</option>
@@ -297,10 +297,10 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Subtitle font</label>
+                            <label class="form-label">{{ __('admin.subtitle_font') }}</label>
                             @php $subtitleFont = old('hero_subtitle_font', $settings->hero_subtitle_font ?? ''); @endphp
                             <select class="form-select" name="hero_subtitle_font" id="subtitleFontSelect">
-                                <option value="" {{ $subtitleFont===''?'selected':'' }}>Default</option>
+                                <option value="" {{ $subtitleFont===''?'selected':'' }}>{{ __('admin.default') }}</option>
                                 <option value="'Poppins', sans-serif" {{ $subtitleFont=="'Poppins', sans-serif"?'selected':'' }}>Poppins</option>
                                 <option value="'Inter', sans-serif" {{ $subtitleFont=="'Inter', sans-serif"?'selected':'' }}>Inter</option>
                                 <option value="'Montserrat', sans-serif" {{ $subtitleFont=="'Montserrat', sans-serif"?'selected':'' }}>Montserrat</option>
@@ -312,69 +312,69 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Content X (%)</label>
+                            <label class="form-label">{{ __('admin.content_x') }}</label>
                             <input type="number" name="hero_content_pos_x" class="form-control" min="0" max="100"
                                 value="{{ old('hero_content_pos_x', $settings->hero_content_pos_x ?? 10) }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Content Y (%)</label>
+                            <label class="form-label">{{ __('admin.content_y') }}</label>
                             <input type="number" name="hero_content_pos_y" class="form-control" min="0" max="100"
                                 value="{{ old('hero_content_pos_y', $settings->hero_content_pos_y ?? 20) }}">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Hero image</label>
+                            <label class="form-label">{{ __('admin.hero_image') }}</label>
                             <input type="file" name="hero_image" class="form-control">
                             @if (!empty($settings?->hero_image_path))
-                                <small class="text-muted d-block mt-1">Current: {{ $settings->hero_image_path }}</small>
+                                <small class="text-muted d-block mt-1">{{ __('admin.current') }}: {{ $settings->hero_image_path }}</small>
                             @endif
                         </div>
                         <div class="col-md-5">
-                            <label class="form-label">Hero video URL</label>
+                            <label class="form-label">{{ __('admin.hero_video_url') }}</label>
                             <input type="url" name="hero_video_url" class="form-control"
                                 value="{{ old('hero_video_url', $settings->hero_video_url ?? '') }}"
                                 placeholder="https://...">
                             @if (!empty($settings?->hero_video_path))
-                                <small class="text-muted d-block mt-1">Uploaded video:
+                                <small class="text-muted d-block mt-1">{{ __('admin.uploaded_video') }}
                                     {{ $settings->hero_video_path }}</small>
                             @endif
                         </div>
                         <div class="col-md-7">
-                            <label class="form-label">Or upload MP4/WebM (max 50MB)</label>
+                            <label class="form-label">{{ __('admin.upload_mp4') }}</label>
                             <input type="file" name="hero_video_upload" class="form-control"
                                 accept="video/mp4,video/webm,video/ogg">
                         </div>
                         <div class="col-md-12">
-                            <label class="form-label">Hero gallery (slider)</label>
+                            <label class="form-label">{{ __('admin.hero_gallery_slider') }}</label>
                             <input type="file" name="hero_gallery[]" class="form-control" multiple>
                             @if (!empty($settings?->hero_gallery))
-                                <small class="text-muted d-block mt-1">Current:
+                                <small class="text-muted d-block mt-1">{{ __('admin.current') }}:
                                     {{ implode(', ', $settings->hero_gallery) }}</small>
                             @endif
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Primary button text</label>
+                            <label class="form-label">{{ __('admin.primary_button_text') }}</label>
                             <input type="text" name="btn_primary_text" class="form-control"
                                 value="{{ old('btn_primary_text', $settings->btn_primary_text ?? '') }}"
-                                placeholder="Projects">
+                                placeholder="{{ __('admin.projects') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Primary button link</label>
+                            <label class="form-label">{{ __('admin.primary_button_link') }}</label>
                             <input type="url" name="btn_primary_link" class="form-control"
                                 value="{{ old('btn_primary_link', $settings->btn_primary_link ?? '') }}"
                                 placeholder="#projects">
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Primary color</label>
+                            <label class="form-label">{{ __('admin.primary_color') }}</label>
                             <input type="color" name="btn_primary_color" class="form-control form-control-color"
                                 value="{{ old('btn_primary_color', $settings->btn_primary_color ?? '#c7954b') }}">
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Style</label>
+                            <label class="form-label">{{ __('admin.style') }}</label>
                             @php $pStyle = old('btn_primary_style', $settings->btn_primary_style ?? 'solid'); @endphp
                             <select name="btn_primary_style" class="form-select">
-                                <option value="solid" {{ $pStyle === 'solid' ? 'selected' : '' }}>Solid</option>
-                                <option value="outline" {{ $pStyle === 'outline' ? 'selected' : '' }}>Outline</option>
-                                <option value="pill" {{ $pStyle === 'pill' ? 'selected' : '' }}>Pill</option>
+                                <option value="solid" {{ $pStyle === 'solid' ? 'selected' : '' }}>{{ __('admin.solid') }}</option>
+                                <option value="outline" {{ $pStyle === 'outline' ? 'selected' : '' }}>{{ __('admin.outline') }}</option>
+                                <option value="pill" {{ $pStyle === 'pill' ? 'selected' : '' }}>{{ __('admin.pill') }}</option>
                             </select>
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
@@ -382,33 +382,33 @@
                                 <input class="form-check-input" type="checkbox" name="btn_primary_visible"
                                     value="1" id="btnPrimaryVisible"
                                     {{ old('btn_primary_visible', $settings->btn_primary_visible ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="btnPrimaryVisible">Show</label>
+                                <label class="form-check-label" for="btnPrimaryVisible">{{ __('admin.show') }}</label>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Secondary button text</label>
+                            <label class="form-label">{{ __('admin.secondary_button_text') }}</label>
                             <input type="text" name="btn_secondary_text" class="form-control"
                                 value="{{ old('btn_secondary_text', $settings->btn_secondary_text ?? '') }}"
-                                placeholder="Contact">
+                                placeholder="{{ __('admin.contact') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Secondary button link</label>
+                            <label class="form-label">{{ __('admin.secondary_button_link') }}</label>
                             <input type="url" name="btn_secondary_link" class="form-control"
                                 value="{{ old('btn_secondary_link', $settings->btn_secondary_link ?? '') }}"
                                 placeholder="#contact">
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Secondary color</label>
+                            <label class="form-label">{{ __('admin.secondary_color') }}</label>
                             <input type="color" name="btn_secondary_color" class="form-control form-control-color"
                                 value="{{ old('btn_secondary_color', $settings->btn_secondary_color ?? '#ffffff') }}">
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Style</label>
+                            <label class="form-label">{{ __('admin.style') }}</label>
                             @php $sStyle = old('btn_secondary_style', $settings->btn_secondary_style ?? 'outline'); @endphp
                             <select name="btn_secondary_style" class="form-select">
-                                <option value="solid" {{ $sStyle === 'solid' ? 'selected' : '' }}>Solid</option>
-                                <option value="outline" {{ $sStyle === 'outline' ? 'selected' : '' }}>Outline</option>
-                                <option value="pill" {{ $sStyle === 'pill' ? 'selected' : '' }}>Pill</option>
+                                <option value="solid" {{ $sStyle === 'solid' ? 'selected' : '' }}>{{ __('admin.solid') }}</option>
+                                <option value="outline" {{ $sStyle === 'outline' ? 'selected' : '' }}>{{ __('admin.outline') }}</option>
+                                <option value="pill" {{ $sStyle === 'pill' ? 'selected' : '' }}>{{ __('admin.pill') }}</option>
                             </select>
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
@@ -416,11 +416,11 @@
                                 <input class="form-check-input" type="checkbox" name="btn_secondary_visible"
                                     value="1" id="btnSecondaryVisible"
                                     {{ old('btn_secondary_visible', $settings->btn_secondary_visible ?? true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="btnSecondaryVisible">Show</label>
+                                <label class="form-check-label" for="btnSecondaryVisible">{{ __('admin.show') }}</label>
                             </div>
                         </div>
                         <div class="col-12 text-start">
-                            <button class="btn btn-gold">Save header</button>
+                            <button class="btn btn-gold">{{ __('admin.save_header') }}</button>
                         </div>
                     </form>
                 </div>
@@ -429,8 +429,8 @@
             <div class="tab-pane fade" id="bannerTab" role="tabpanel">
                 <div class="card card-dark p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="text-gold mb-0">Banner</h6>
-                        <small class="text-muted">Toggle and text/link</small>
+                        <h6 class="text-gold mb-0">{{ __('admin.banner') }}</h6>
+                        <small class="text-muted">{{ __('admin.toggle_and_text_link') }}</small>
                     </div>
                     <form method="POST" action="{{ route('admin.home.settings.update') }}"
                         enctype="multipart/form-data" class="row g-3">
@@ -446,7 +446,7 @@
                                         alt="Preview" style="object-fit:cover; width:100%; height:100%; {{ empty($settings?->banner_image_path) ? 'display:none;' : '' }}">
                                     <div id="bannerPreviewPlaceholder" class="text-center text-muted small"
                                         style="position:absolute; inset:0; display: {{ empty($settings?->banner_image_path) ? 'grid' : 'none' }}; place-items:center;">
-                                        No image
+                                        {{ __('admin.no_image') }}
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -461,28 +461,28 @@
                                 <input class="form-check-input" type="checkbox" name="banner_enabled" value="1"
                                     id="bannerEnabled"
                                     {{ old('banner_enabled', $settings->banner_enabled ?? false) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="bannerEnabled">Show banner</label>
+                                <label class="form-check-label" for="bannerEnabled">{{ __('admin.show_banner') }}</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Banner text</label>
+                            <label class="form-label">{{ __('admin.banner_text') }}</label>
                             <input type="text" name="banner_text" class="form-control"
                                 value="{{ old('banner_text', $settings->banner_text ?? '') }}">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Banner link (optional)</label>
+                            <label class="form-label">{{ __('admin.banner_link_optional') }}</label>
                             <input type="url" name="banner_link" class="form-control"
                                 value="{{ old('banner_link', $settings->banner_link ?? '') }}" placeholder="https://...">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Banner image (optional)</label>
+                            <label class="form-label">{{ __('admin.banner_image') }}</label> (optional)
                             <input type="file" name="banner_image" class="form-control">
                             @if (!empty($settings?->banner_image_path))
-                                <small class="text-muted d-block mt-1">Current: {{ $settings->banner_image_path }}</small>
+                                <small class="text-muted d-block mt-1">{{ __('admin.current') }}: {{ $settings->banner_image_path }}</small>
                             @endif
                         </div>
                         <div class="col-12 text-start">
-                            <button class="btn btn-gold">Save banner</button>
+                            <button class="btn btn-gold">{{ __('admin.save_banner') }}</button>
                         </div>
                     </form>
                 </div>
@@ -491,8 +491,8 @@
             <div class="tab-pane fade" id="themeTab" role="tabpanel">
                 <div class="card card-dark p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="text-gold mb-0">Theme (site-wide)</h6>
-                        <small class="text-muted">Global colors & buttons</small>
+                        <h6 class="text-gold mb-0">{{ __('admin.theme_site_wide') }}</h6>
+                        <small class="text-muted">{{ __('admin.global_colors_buttons') }}</small>
                     </div>
                     <form method="POST" action="{{ route('admin.home.settings.update') }}" class="row g-3">
                         @csrf
@@ -501,82 +501,82 @@
                             <div id="themePreview" class="p-3 rounded border" style="background: {{ $settings->theme_bg ?? '#0b1220' }}; color: {{ $settings->body_text_color ?? '#d4d4d4' }}; border-color: rgba(255,255,255,0.08);">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <div>
-                                        <h6 id="themePreviewHeading" class="mb-1" style="color: {{ $settings->headings_color ?? '#ffffff' }}">Preview heading</h6>
-                                        <p id="themePreviewText" class="mb-1 small">Body text example lorem ipsum.</p>
-                                        <a id="themePreviewLink" href="#" class="small" style="color: {{ $settings->link_color ?? '#c7954b' }}">Link preview</a>
+                                        <h6 id="themePreviewHeading" class="mb-1" style="color: {{ $settings->headings_color ?? '#ffffff' }}">{{ __('admin.preview_heading') }}</h6>
+                                        <p id="themePreviewText" class="mb-1 small">{{ __('admin.body_text_example') }}</p>
+                                        <a id="themePreviewLink" href="#" class="small" style="color: {{ $settings->link_color ?? '#c7954b' }}">{{ __('admin.link_preview') }}</a>
                                     </div>
                                     <div class="d-flex gap-2">
-                                        <button type="button" id="themePreviewBtnPrimary" class="btn btn-sm" style="background: {{ $settings->btn_global_primary_color ?? '#c7954b' }}; border:1px solid {{ $settings->btn_global_primary_color ?? '#c7954b' }}; color:#0f172a;">Primary</button>
-                                        <button type="button" id="themePreviewBtnSecondary" class="btn btn-sm" style="background: transparent; border:1px solid {{ $settings->btn_global_secondary_color ?? '#ffffff' }}; color: {{ $settings->btn_global_secondary_color ?? '#ffffff' }};">Secondary</button>
+                                        <button type="button" id="themePreviewBtnPrimary" class="btn btn-sm" style="background: {{ $settings->btn_global_primary_color ?? '#c7954b' }}; border:1px solid {{ $settings->btn_global_primary_color ?? '#c7954b' }}; color:#0f172a;">{{ __('admin.primary') }}</button>
+                                        <button type="button" id="themePreviewBtnSecondary" class="btn btn-sm" style="background: transparent; border:1px solid {{ $settings->btn_global_secondary_color ?? '#ffffff' }}; color: {{ $settings->btn_global_secondary_color ?? '#ffffff' }};">{{ __('admin.secondary') }}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Primary (gold)</label>
+                            <label class="form-label">{{ __('admin.primary_gold') }}</label>
                             <input type="color" name="theme_primary" class="form-control form-control-color"
                                 value="{{ old('theme_primary', $settings->theme_primary ?? '#c7954b') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Dark</label>
+                            <label class="form-label">{{ __('admin.dark') }}</label>
                             <input type="color" name="theme_dark" class="form-control form-control-color"
                                 value="{{ old('theme_dark', $settings->theme_dark ?? '#0f172a') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Text color</label>
+                            <label class="form-label">{{ __('admin.text_color') }}</label>
                             <input type="color" name="theme_text" class="form-control form-control-color"
                                 value="{{ old('theme_text', $settings->theme_text ?? '#ffffff') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Background</label>
+                            <label class="form-label">{{ __('admin.background') }}</label>
                             <input type="color" name="theme_bg" class="form-control form-control-color"
                                 value="{{ old('theme_bg', $settings->theme_bg ?? '#0b1220') }}">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Headings color</label>
+                            <label class="form-label">{{ __('admin.headings_color') }}</label>
                             <input type="color" name="headings_color" class="form-control form-control-color"
                                 value="{{ old('headings_color', $settings->headings_color ?? '#ffffff') }}">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Body text</label>
+                            <label class="form-label">{{ __('admin.body_text') }}</label>
                             <input type="color" name="body_text_color" class="form-control form-control-color"
                                 value="{{ old('body_text_color', $settings->body_text_color ?? '#d4d4d4') }}">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Link color</label>
+                            <label class="form-label">{{ __('admin.link_color') }}</label>
                             <input type="color" name="link_color" class="form-control form-control-color"
                                 value="{{ old('link_color', $settings->link_color ?? '#c7954b') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Primary btn color</label>
+                            <label class="form-label">{{ __('admin.primary_btn_color') }}</label>
                             <input type="color" name="btn_global_primary_color" class="form-control form-control-color"
                                 value="{{ old('btn_global_primary_color', $settings->btn_global_primary_color ?? '#c7954b') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Primary btn style</label>
+                            <label class="form-label">{{ __('admin.primary_btn_style') }}</label>
                             @php $gpStyle = old('btn_global_primary_style', $settings->btn_global_primary_style ?? 'solid'); @endphp
                             <select name="btn_global_primary_style" class="form-select">
-                                <option value="solid" {{ $gpStyle==='solid'?'selected':'' }}>Solid</option>
-                                <option value="outline" {{ $gpStyle==='outline'?'selected':'' }}>Outline</option>
-                                <option value="pill" {{ $gpStyle==='pill'?'selected':'' }}>Pill</option>
+                                <option value="solid" {{ $gpStyle==='solid'?'selected':'' }}>{{ __('admin.solid') }}</option>
+                                <option value="outline" {{ $gpStyle==='outline'?'selected':'' }}>{{ __('admin.outline') }}</option>
+                                <option value="pill" {{ $gpStyle==='pill'?'selected':'' }}>{{ __('admin.pill') }}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Secondary btn color</label>
+                            <label class="form-label">{{ __('admin.secondary_btn_color') }}</label>
                             <input type="color" name="btn_global_secondary_color" class="form-control form-control-color"
                                 value="{{ old('btn_global_secondary_color', $settings->btn_global_secondary_color ?? '#ffffff') }}">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Secondary btn style</label>
+                            <label class="form-label">{{ __('admin.secondary_btn_style') }}</label>
                             @php $gsStyle = old('btn_global_secondary_style', $settings->btn_global_secondary_style ?? 'outline'); @endphp
                             <select name="btn_global_secondary_style" class="form-select">
-                                <option value="solid" {{ $gsStyle==='solid'?'selected':'' }}>Solid</option>
-                                <option value="outline" {{ $gsStyle==='outline'?'selected':'' }}>Outline</option>
-                                <option value="pill" {{ $gsStyle==='pill'?'selected':'' }}>Pill</option>
+                                <option value="solid" {{ $gsStyle==='solid'?'selected':'' }}>{{ __('admin.solid') }}</option>
+                                <option value="outline" {{ $gsStyle==='outline'?'selected':'' }}>{{ __('admin.outline') }}</option>
+                                <option value="pill" {{ $gsStyle==='pill'?'selected':'' }}>{{ __('admin.pill') }}</option>
                             </select>
                         </div>
                         <div class="col-12 text-start">
-                            <button class="btn btn-gold">Save theme</button>
+                            <button class="btn btn-gold">{{ __('admin.save_theme') }}</button>
                         </div>
                     </form>
                 </div>
@@ -612,54 +612,6 @@
             const sizeLabel = document.getElementById('sizeLabel');
             const heightLabel = document.getElementById('heightLabel');
             const zoomLabel = document.getElementById('zoomLabel');
-
-            const heroTitleEl = document.getElementById('miniHeroTitle');
-            const heroSubtitleEl = document.getElementById('miniHeroSubtitle');
-            const miniHero = document.getElementById('miniHero');
-            const miniContent = document.getElementById('miniContent');
-            const heroImgEl = document.getElementById('miniHeroImg');
-            const heroVideoEl = document.getElementById('miniHeroVideo');
-            const titleFontSelect = document.getElementById('titleFontSelect');
-            const subtitleFontSelect = document.getElementById('subtitleFontSelect');
-            let miniHeroCarousel = document.getElementById('miniHeroCarousel');
-            let miniHeroCarouselInner = document.getElementById('miniHeroCarouselInner');
-            const heroOverlayEl = document.getElementById('miniOverlay');
-            const bannerWrap = document.getElementById('miniBannerWrap');
-            const bannerPreviewText = document.getElementById('bannerPreviewText');
-            const bannerPreviewLink = document.getElementById('bannerPreviewLink');
-            const bannerPreviewImg = document.getElementById('bannerPreviewImg');
-            const bannerPreviewPlaceholder = document.getElementById('bannerPreviewPlaceholder');
-            const themePrimaryInput = document.querySelector('[name="theme_primary"]');
-            const themeDarkInput = document.querySelector('[name="theme_dark"]');
-            const themeTextInput = document.querySelector('[name="theme_text"]');
-            const themeBgInput = document.querySelector('[name="theme_bg"]');
-            const headingsColorInput = document.querySelector('[name="headings_color"]');
-            const bodyTextColorInput = document.querySelector('[name="body_text_color"]');
-            const linkColorInput = document.querySelector('[name="link_color"]');
-            const btnGlobalPrimaryColorInput = document.querySelector('[name="btn_global_primary_color"]');
-            const btnGlobalPrimaryStyleSelect = document.querySelector('[name="btn_global_primary_style"]');
-            const btnGlobalSecondaryColorInput = document.querySelector('[name="btn_global_secondary_color"]');
-            const btnGlobalSecondaryStyleSelect = document.querySelector('[name="btn_global_secondary_style"]');
-            const themePreviewBox = document.getElementById('themePreview');
-            const themePreviewHeading = document.getElementById('themePreviewHeading');
-            const themePreviewText = document.getElementById('themePreviewText');
-            const themePreviewLink = document.getElementById('themePreviewLink');
-            const themePreviewBtnPrimary = document.getElementById('themePreviewBtnPrimary');
-            const themePreviewBtnSecondary = document.getElementById('themePreviewBtnSecondary');
-            const btnPrimaryPreview = document.getElementById('btnPrimaryPreview');
-            const btnSecondaryPreview = document.getElementById('btnSecondaryPreview');
-            const heroTitleColorInput = document.querySelector('[name="hero_title_color"]');
-            const heroSubtitleColorInput = document.querySelector('[name="hero_subtitle_color"]');
-            const showTitleInput = document.getElementById('showTitle');
-            const showSubtitleInput = document.getElementById('showSubtitle');
-            const btnPrimaryText = document.querySelector('[name="btn_primary_text"]');
-            const btnSecondaryText = document.querySelector('[name="btn_secondary_text"]');
-            const btnPrimaryColor = document.querySelector('[name="btn_primary_color"]');
-            const btnSecondaryColor = document.querySelector('[name="btn_secondary_color"]');
-            const btnPrimaryStyle = document.querySelector('[name="btn_primary_style"]');
-            const btnSecondaryStyle = document.querySelector('[name="btn_secondary_style"]');
-            const btnPrimaryVisible = document.getElementById('btnPrimaryVisible');
-            const btnSecondaryVisible = document.getElementById('btnSecondaryVisible');
 
             const initialVideoSrc =
                 heroVideoEl.getAttribute('src') ||
@@ -733,9 +685,9 @@
                 }
             };
 
-            titleInput?.addEventListener('input', () => heroTitleEl.textContent = titleInput.value || 'Hero title');
+            titleInput?.addEventListener('input', () => heroTitleEl.textContent = titleInput.value || '{{ addslashes(__('admin.hero_title')) }}');
             subtitleInput?.addEventListener('input', () => {
-                heroSubtitleEl.textContent = subtitleInput.value || 'Hero subtitle';
+                heroSubtitleEl.textContent = subtitleInput.value || '{{ addslashes(__('admin.hero_subtitle')) }}';
             });
             mediaTypeSelect?.addEventListener('change', updateMedia);
             videoInput?.addEventListener('input', () => {
@@ -869,14 +821,14 @@
                 } else {
                     bannerWrap.innerHTML = '';
                 }
-                if (bannerPreviewText) bannerPreviewText.textContent = bannerText?.value || 'Banner text';
-                if (bannerPreviewLink) bannerPreviewLink.textContent = bannerLink?.value || 'Link';
+                if (bannerPreviewText) bannerPreviewText.textContent = bannerText?.value || '{{ addslashes(__('admin.banner_text')) }}';
+                if (bannerPreviewLink) bannerPreviewLink.textContent = bannerLink?.value || '{{ addslashes(__('admin.link')) }}';
             };
     bannerEnabled?.addEventListener('change', renderBanner);
     bannerText?.addEventListener('input', renderBanner);
     bannerLink?.addEventListener('input', renderBanner);
     bannerImageInput?.addEventListener('change', (e) => {
-        const file = e.target.files[0];
+                const file = e.target.files[0];
                 if (file) {
                     const url = URL.createObjectURL(file);
                     if (bannerPreviewImg) {
@@ -984,9 +936,9 @@
             };
 
             btnPrimaryText?.addEventListener('input', () => btnPrimaryPreview.textContent = btnPrimaryText.value ||
-                'Projects');
+                '{{ addslashes(__('admin.projects')) }}');
             btnSecondaryText?.addEventListener('input', () => btnSecondaryPreview.textContent = btnSecondaryText
-                .value || 'Contact');
+                .value || '{{ addslashes(__('admin.contact')) }}');
             btnPrimaryColor?.addEventListener('input', refreshButtons);
             btnSecondaryColor?.addEventListener('input', refreshButtons);
             btnPrimaryStyle?.addEventListener('change', refreshButtons);
@@ -996,7 +948,7 @@
             const updateSizeLabel = () => {
                 if (!miniHero || !sizeLabel) return;
                 const rect = miniHero.getBoundingClientRect();
-                sizeLabel.textContent = `Size: ${Math.round(rect.width)}px × ${Math.round(rect.height)}px`;
+                sizeLabel.textContent = `{{ __('admin.size') }}: ${Math.round(rect.width)}px × ${Math.round(rect.height)}px`;
             };
 
             const applyWidth = () => {
@@ -1016,7 +968,7 @@
 
             heroHeightInput?.addEventListener('input', () => {
                 miniHero.style.height = `${heroHeightInput.value || 220}px`;
-                if (heightLabel) heightLabel.textContent = `H: ${heroHeightInput.value || 220}px`;
+                if (heightLabel) heightLabel.textContent = `{{ __('admin.height') }}: ${heroHeightInput.value || 220}px`;
                 updateSizeLabel();
             });
             heroWidthInput?.addEventListener('input', applyWidth);
@@ -1025,7 +977,7 @@
                 heroImgEl.style.objectFit = fit;
                 heroVideoEl.style.objectFit = fit;
                 document.querySelectorAll('#miniHeroCarousel img').forEach(img => img.style.objectFit = fit);
-                if (zoomLabel) zoomLabel.textContent = fit === 'fill' ? 'Zoom: fill' : 'Zoom: contain';
+                if (zoomLabel) zoomLabel.textContent = `{{ __('admin.zoom') }}: ` + (fit === 'fill' ? '{{ __('admin.fill') }}' : '{{ __('admin.contain') }}');
             };
             heroStretchInput?.addEventListener('change', applyFit);
             // X/Y غير مستخدمة في وضع contain

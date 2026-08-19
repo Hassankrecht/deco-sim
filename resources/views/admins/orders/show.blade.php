@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <div>
         <h5 class="mb-0 text-gold d-flex align-items-center gap-2">
-            <i class="bi bi-receipt"></i> Order #{{ $order->id }}
+            <i class="bi bi-receipt"></i>{{ __('admin.order') }} #{{ $order->id }}
             @php
                 $statusLower = strtolower($order->status ?? '');
                 $statusColor = 'secondary';
@@ -15,23 +15,23 @@
             @endphp
             <span class="badge bg-{{ $statusColor }}">{{ $order->status }}</span>
         </h5>
-        <div class="small text-muted">Created {{ $order->created_at->format('Y-m-d H:i') }}</div>
+        <div class="small text-muted">{{ __('admin.created') }} {{ $order->created_at->format('Y-m-d H:i') }}</div>
         @if(!empty($order->paid_at))
-            <div class="small text-success">Paid at {{ \Carbon\Carbon::parse($order->paid_at)->format('Y-m-d H:i') }}</div>
+            <div class="small text-success">{{ __('admin.paid_at') }} {{ \Carbon\Carbon::parse($order->paid_at)->format('Y-m-d H:i') }}</div>
         @endif
     </div>
     <div class="dropdown">
         <button class="btn btn-outline-gold btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            Actions
+            {{ __('admin.actions') }}
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="{{ route('admin.orders.index') }}"><i class="bi bi-arrow-left me-2"></i>Back to list</a></li>
-            <li><a class="dropdown-item" href="{{ route('admin.orders.show', $order) }}"><i class="bi bi-printer me-2"></i>Print/Preview</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.orders.index') }}"><i class="bi bi-arrow-left me-2"></i>{{ __('admin.back_to_list') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.orders.show', $order) }}"><i class="bi bi-printer me-2"></i>{{ __('admin.print_preview') }}</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
-                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('Delete this order?');">
+                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('{{ __('admin.delete_order_confirm') }}');">
                     @csrf @method('DELETE')
-                    <button class="dropdown-item text-danger" type="submit"><i class="bi bi-trash me-2"></i>Delete</button>
+                    <button class="dropdown-item text-danger" type="submit"><i class="bi bi-trash me-2"></i>{{ __('admin.delete') }}</button>
                 </form>
             </li>
         </ul>
@@ -54,7 +54,7 @@
 <div class="row g-3">
     <div class="col-lg-5">
         <div class="card card-dark p-3 mb-3">
-            <h6 class="fw-bold mb-2">Status</h6>
+            <h6 class="fw-bold mb-2">{{ __('admin.status') }}</h6>
             <form action="{{ route('admin.orders.update', $order) }}" method="POST" class="d-flex gap-2 align-items-center">
                 @csrf @method('PUT')
                 <select name="status" class="form-select form-select-sm w-auto">
@@ -62,88 +62,90 @@
                         <option value="{{ $status }}" {{ $order->status === $status ? 'selected' : '' }}>{{ $status }}</option>
                     @endforeach
                 </select>
-                <button class="btn btn-gold btn-sm">Update</button>
+                <button class="btn btn-gold btn-sm">{{ __('admin.update') }}</button>
             </form>
         </div>
 
         <div class="card card-dark p-3">
-            <h6 class="fw-bold mb-2">Customer</h6>
-            <div class="small text-muted">Name</div>
-            <div class="fw-semibold mb-2">{{ $order->name }}</div>
-            <div class="small text-muted">Email</div>
-            <div class="fw-semibold mb-2">{{ $order->email }}</div>
-            <div class="small text-muted">Phone</div>
-            <div class="fw-semibold mb-2">{{ $order->phone_number }}</div>
-            <div class="small text-muted">Address</div>
-            <div class="fw-semibold">{{ $order->address }}, {{ $order->town }}, {{ $order->country }} ({{ $order->zipcode }})</div>
+            <h6 class="fw-bold mb-2">{{ __('admin.customer_details') }}</h6>
+            <dl class="row">
+                <dt class="col-sm-4">{{ __('admin.name') }}:</dt>
+                <dd class="col-sm-8">{{ $order->name }}</dd>
+                <dt class="col-sm-4">{{ __('admin.email') }}:</dt>
+                <dd class="col-sm-8">{{ $order->email }}</dd>
+                <dt class="col-sm-4">{{ __('admin.phone') }}:</dt>
+                <dd class="col-sm-8">{{ $order->phone_number }}</dd>
+                <dt class="col-sm-4">{{ __('admin.address') }}:</dt>
+                <dd class="col-sm-8">{{ $order->address }}, {{ $order->town }}, {{ $order->country }} ({{ $order->zipcode }})</dd>
+            </dl>
         </div>
     </div>
 
     <div class="col-lg-7">
         <div class="card card-dark p-3 mb-3">
             <div class="d-flex justify-content-between align-items-center">
-                <h6 class="fw-bold mb-0">Totals</h6>
+                <h6 class="fw-bold mb-0">{{ __('admin.totals') }}</h6>
             </div>
             @php
                 $subtotal = $order->total_before_discount ?? $order->total_price + ($order->discount_amount ?? 0);
             @endphp
             <div class="d-flex justify-content-between small text-muted mt-2">
-                <span>Subtotal</span>
+                <span>{{ __('admin.subtotal') }}</span>
                 <span>{{ \App\Support\Currency::format($subtotal) }}</span>
             </div>
             <div class="d-flex justify-content-between small text-muted">
-                <span>Discount</span>
+                <span>{{ __('admin.discount') }}</span>
                 <span>{{ \App\Support\Currency::format($order->discount_amount ?? 0) }} {{ $order->coupon?->code ? "({$order->coupon->code})" : '' }}</span>
             </div>
             <div class="d-flex justify-content-between fw-bold fs-6">
-                <span>Net total</span>
+                <span>{{ __('admin.net_total') }}</span>
                 <span>{{ \App\Support\Currency::format($order->total_price) }}</span>
             </div>
         </div>
 
         <div class="card card-dark p-3 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h6 class="fw-bold mb-0">Refund</h6>
+                <h6 class="fw-bold mb-2">{{ __('admin.refund') }}</h6>
                 @if($order->refund_amount)
-                    <span class="badge bg-success">Recorded</span>
+                    <span class="badge bg-success">{{ __('admin.recorded') }}</span>
                 @endif
             </div>
             <div class="small text-muted mb-2">
-                Refund allowed فقط بعد الدفع (paid_at) والحالة Paid ثم Cancelled.
+                {{ __('admin.refund_allowed') }}
                 @if(isset($order->paid_at) && $order->paid_at)
-                    <br><span class="text-success">Paid at: {{ \Carbon\Carbon::parse($order->paid_at)->format('Y-m-d H:i') }}</span>
+                    <br><span class="text-success">{{ __('admin.paid_at') }}: {{ \Carbon\Carbon::parse($order->paid_at)->format('Y-m-d H:i') }}</span>
                 @else
-                    <br><span class="text-danger">No paid_at recorded.</span>
+                    <br><span class="text-danger">{{ __('admin.no_paid_at_recorded') }}</span>
                 @endif
             </div>
             <div class="d-flex justify-content-between small text-muted">
-                <span>Recorded amount</span>
+                <span>{{ __('admin.recorded_amount') }}</span>
                 <span>{{ \App\Support\Currency::format($order->refund_amount ?? 0) }}</span>
             </div>
             @if(in_array($order->status, ['Paid','Cancelled']) && !empty($order->paid_at))
                 <form action="{{ route('admin.orders.refund', $order) }}" method="POST" class="mt-3 d-flex gap-2 align-items-end flex-wrap">
                     @csrf
                     <div>
-                        <label class="form-label small mb-1">Refund amount</label>
+                        <label class="form-label small mb-1">{{ __('admin.refund_amount') }}</label>
                         <input type="number" name="refund_amount" step="0.01" class="form-control form-control-sm" value="{{ old('refund_amount', $order->refund_amount ?? $order->total_price) }}">
                     </div>
-                    <button class="btn btn-outline-danger btn-sm mt-3"><i class="bi bi-arrow-counterclockwise me-1"></i>Record refund</button>
+                    <button class="btn btn-outline-danger btn-sm mt-3"><i class="bi bi-arrow-counterclockwise me-1"></i>{{ __('admin.record_refund') }}</button>
                 </form>
             @else
-                <div class="alert alert-warning mt-3 mb-0 py-2 small">Refund not allowed unless status is Paid/Cancelled and payment recorded.</div>
+                <div class="alert alert-warning mt-3 mb-0 py-2 small">{{ __('admin.refund_not_allowed') }}</div>
             @endif
         </div>
 
         <div class="card card-dark p-3">
-            <h6 class="fw-bold mb-2">Items</h6>
+            <h6 class="fw-bold mb-2">{{ __('admin.items') }}</h6>
             <div class="table-responsive">
                 <table class="table table-sm align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Total</th>
+                            <th>{{ __('admin.name') }}</th>
+                            <th>{{ __('admin.qty') }}</th>
+                            <th>{{ __('admin.price') }}</th>
+                            <th>{{ __('admin.total') }}</th>
                         </tr>
                     </thead>
                     <tbody>

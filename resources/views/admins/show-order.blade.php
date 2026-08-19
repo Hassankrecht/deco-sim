@@ -6,22 +6,22 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title mb-4 d-inline">Orders</h5>
+                        <h5 class="card-title mb-4 d-inline">{{ __('admin.orders') }}</h5>
 
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">email</th>
-                                    <th scope="col">town</th>
-                                    <th scope="col">country</th>
-                                    <th scope="col">zipcode</th>
-                                    <th scope="col">phone_number</th>
-                                    <th scope="col">address</th>
-                                    <th scope="col">total_price</th>
-                                    <th scope="col">status</th>
-                                    <th scope="col">delete</th>
+                                    <th scope="col">{{ __('admin.hash') }}</th>
+                                    <th scope="col">{{ __('admin.name') }}</th>
+                                    <th scope="col">{{ __('admin.email') }}</th>
+                                    <th scope="col">{{ __('admin.town') }}</th>
+                                    <th scope="col">{{ __('admin.country') }}</th>
+                                    <th scope="col">{{ __('admin.zipcode') }}</th>
+                                    <th scope="col">{{ __('admin.phone') }}</th>
+                                    <th scope="col">{{ __('admin.address') }}</th>
+                                    <th scope="col">{{ __('admin.total_price') }}</th>
+                                    <th scope="col">{{ __('admin.status') }}</th>
+                                    <th scope="col">{{ __('admin.delete') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,7 +46,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                                    onclick="return confirm('{{ __('admin.are_you_sure') }}')">{{ __('admin.delete') }}</button>
                                             </form>
                                         </td>
                                         
