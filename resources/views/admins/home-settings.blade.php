@@ -613,6 +613,54 @@
             const heightLabel = document.getElementById('heightLabel');
             const zoomLabel = document.getElementById('zoomLabel');
 
+            const heroTitleEl = document.getElementById('miniHeroTitle');
+            const heroSubtitleEl = document.getElementById('miniHeroSubtitle');
+            const miniHero = document.getElementById('miniHero');
+            const miniContent = document.getElementById('miniContent');
+            const heroImgEl = document.getElementById('miniHeroImg');
+            const heroVideoEl = document.getElementById('miniHeroVideo');
+            const titleFontSelect = document.getElementById('titleFontSelect');
+            const subtitleFontSelect = document.getElementById('subtitleFontSelect');
+            let miniHeroCarousel = document.getElementById('miniHeroCarousel');
+            let miniHeroCarouselInner = document.getElementById('miniHeroCarouselInner');
+            const heroOverlayEl = document.getElementById('miniOverlay');
+            const bannerWrap = document.getElementById('miniBannerWrap');
+            const bannerPreviewText = document.getElementById('bannerPreviewText');
+            const bannerPreviewLink = document.getElementById('bannerPreviewLink');
+            const bannerPreviewImg = document.getElementById('bannerPreviewImg');
+            const bannerPreviewPlaceholder = document.getElementById('bannerPreviewPlaceholder');
+            const themePrimaryInput = document.querySelector('[name="theme_primary"]');
+            const themeDarkInput = document.querySelector('[name="theme_dark"]');
+            const themeTextInput = document.querySelector('[name="theme_text"]');
+            const themeBgInput = document.querySelector('[name="theme_bg"]');
+            const headingsColorInput = document.querySelector('[name="headings_color"]');
+            const bodyTextColorInput = document.querySelector('[name="body_text_color"]');
+            const linkColorInput = document.querySelector('[name="link_color"]');
+            const btnGlobalPrimaryColorInput = document.querySelector('[name="btn_global_primary_color"]');
+            const btnGlobalPrimaryStyleSelect = document.querySelector('[name="btn_global_primary_style"]');
+            const btnGlobalSecondaryColorInput = document.querySelector('[name="btn_global_secondary_color"]');
+            const btnGlobalSecondaryStyleSelect = document.querySelector('[name="btn_global_secondary_style"]');
+            const themePreviewBox = document.getElementById('themePreview');
+            const themePreviewHeading = document.getElementById('themePreviewHeading');
+            const themePreviewText = document.getElementById('themePreviewText');
+            const themePreviewLink = document.getElementById('themePreviewLink');
+            const themePreviewBtnPrimary = document.getElementById('themePreviewBtnPrimary');
+            const themePreviewBtnSecondary = document.getElementById('themePreviewBtnSecondary');
+            const btnPrimaryPreview = document.getElementById('btnPrimaryPreview');
+            const btnSecondaryPreview = document.getElementById('btnSecondaryPreview');
+            const heroTitleColorInput = document.querySelector('[name="hero_title_color"]');
+            const heroSubtitleColorInput = document.querySelector('[name="hero_subtitle_color"]');
+            const showTitleInput = document.getElementById('showTitle');
+            const showSubtitleInput = document.getElementById('showSubtitle');
+            const btnPrimaryText = document.querySelector('[name="btn_primary_text"]');
+            const btnSecondaryText = document.querySelector('[name="btn_secondary_text"]');
+            const btnPrimaryColor = document.querySelector('[name="btn_primary_color"]');
+            const btnSecondaryColor = document.querySelector('[name="btn_secondary_color"]');
+            const btnPrimaryStyle = document.querySelector('[name="btn_primary_style"]');
+            const btnSecondaryStyle = document.querySelector('[name="btn_secondary_style"]');
+            const btnPrimaryVisible = document.getElementById('btnPrimaryVisible');
+            const btnSecondaryVisible = document.getElementById('btnSecondaryVisible');
+
             const initialVideoSrc =
                 heroVideoEl.getAttribute('src') ||
                 heroVideoEl.currentSrc ||
