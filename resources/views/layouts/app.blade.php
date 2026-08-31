@@ -851,7 +851,6 @@
 
     @php $recaptchaSiteKey = env('RECAPTCHA_SITE_KEY'); @endphp
     @if ($recaptchaSiteKey)
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             window.__recaptchaActiveForm = null;
 
@@ -890,12 +889,15 @@
                 console.error('recaptcha error-callback fired (implicit). Check domain/sitekey.');
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
+            function renderRecaptchaForms() {
                 const forms = Array.from(document.querySelectorAll('form.js-recaptcha'));
 
                 forms.forEach(form => {
                     const btn = form.querySelector('[data-sitekey]');
                     if (!btn) return;
+                    if (btn.dataset.recaptchaBound === '1') return;
+                    btn.dataset.recaptchaBound = '1';
+
                     let widgetId = null;
 
                     const ensureWidget = () => {
@@ -920,7 +922,7 @@
 
                         const id = ensureWidget();
                         if (id === null) {
-                            form.submit();
+                            onRecaptchaError();
                             return;
                         }
 
@@ -931,8 +933,15 @@
                         grecaptcha.execute(id);
                     });
                 });
+            }
+
+            window.renderRecaptchaForms = renderRecaptchaForms;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                renderRecaptchaForms();
             });
         </script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=renderRecaptchaForms&render=explicit" async defer></script>
     @endif
 
     <!-- Start of Tawk.to Script -->
